@@ -1,17 +1,59 @@
-# Welcome to MkDocs
+# Backend Engineering Notes
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Personal knowledge base covering Java, JVM internals, concurrency, Spring, databases, messaging systems, Kubernetes, and system design.
 
-## Commands
+The purpose of these notes is:
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+* Strengthen backend engineering fundamentals
+* Prepare for senior engineering interviews
+* Document practical production knowledge
+* Create a long-term reference library
 
-## Project layout
+## Topics
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+### Java
+
+* Collections
+* JVM Internals
+* Memory Management
+* Concurrency
+
+### Spring
+
+* Dependency Injection
+* Transactions
+* AOP
+* Security
+
+### Persistence
+
+* JPA
+* Hibernate
+* Locking
+* Performance
+
+### Databases
+
+* ACID
+* Isolation Levels
+* Query Optimization
+* Indexing
+
+### Messaging
+
+* Kafka
+* Consumer Groups
+* Delivery Guarantees
+
+### Kubernetes
+
+* Deployments
+* Troubleshooting
+* Observability
+
+### System Design
+
+* Payment Systems
+* Money Transfers
+* Rate Limiting
+* Notifications
