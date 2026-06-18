@@ -1,129 +1,226 @@
-/* ChatGPT-inspired dark theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
---chat-bg: #212121;
---chat-surface: #2f2f2f;
---chat-text: #ececec;
---chat-muted: #b4b4b4;
---chat-border: #3f3f3f;
+  --gpt-bg: #212121;
+  --gpt-sidebar: #171717;
+  --gpt-surface: #2a2a2a;
+  --gpt-border: #3a3a3a;
+  --gpt-text: #ececec;
+  --gpt-muted: #a0a0a0;
+  --gpt-accent: #10a37f;
 }
 
-/* Main page */
-body,
+
+html,
+body {
+  background: var(--gpt-bg) !important;
+  color: var(--gpt-text) !important;
+  font-family: Inter, sans-serif;
+}
+
+/* Main layout */
+
 .md-main,
-.md-content {
-background-color: var(--chat-bg);
-color: var(--chat-text);
+.md-content,
+.md-main__inner {
+  background: var(--gpt-bg) !important;
 }
 
-/* Content width */
 .md-grid {
-max-width: 1000px;
+  max-width: 1600px;
 }
 
-/* Article content */
 .md-content__inner {
-max-width: 850px;
-margin: 0 auto;
+  max-width: 900px;
+  margin: auto;
+  padding-top: 3rem;
 }
 
-/* Typography */
-.md-typeset {
-font-size: 1rem;
-line-height: 1.8;
+/* Hide Material branding */
+
+.md-header {
+  display: none;
 }
 
-.md-typeset h1 {
-font-size: 2.2rem;
-font-weight: 700;
-margin-bottom: 1.2rem;
-color: white;
+.md-tabs {
+  display: none;
 }
 
-.md-typeset h2 {
-font-size: 1.6rem;
-font-weight: 600;
-margin-top: 2rem;
-color: white;
-}
-
-.md-typeset h3 {
-font-size: 1.2rem;
-font-weight: 600;
-color: white;
-}
-
-/* Links */
-.md-typeset a {
-color: #8ab4f8;
-text-decoration: none;
-}
-
-.md-typeset a:hover {
-text-decoration: underline;
+.md-footer {
+  display: none;
 }
 
 /* Sidebar */
-.md-sidebar,
-.md-nav {
-background-color: #171717;
+
+.md-sidebar {
+  background: var(--gpt-sidebar) !important;
+  border-right: 1px solid var(--gpt-border);
 }
 
-/* Header */
-.md-header {
-background-color: #171717;
-box-shadow: none;
-border-bottom: 1px solid var(--chat-border);
+.md-nav {
+  background: transparent !important;
+}
+
+.md-nav__title {
+  display: none;
+}
+
+.md-nav__link {
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: all 0.15s ease;
+}
+
+.md-nav__link:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.md-nav__link--active {
+  background: rgba(255,255,255,0.08);
+  color: white !important;
 }
 
 /* Search */
+
+.md-search {
+  padding: 1rem;
+}
+
 .md-search__form {
-background-color: #2f2f2f;
-border-radius: 12px;
+  background: #2f2f2f;
+  border: 1px solid var(--gpt-border);
+  border-radius: 12px;
+}
+
+.md-search__input {
+  color: white !important;
+}
+
+/* Typography */
+
+.md-typeset {
+  color: var(--gpt-text);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.md-typeset h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.md-typeset h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.md-typeset h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+/* Links */
+
+.md-typeset a {
+  color: var(--gpt-accent);
+}
+
+.md-typeset a:hover {
+  opacity: .9;
 }
 
 /* Code blocks */
+
 .md-typeset pre {
-background-color: #171717;
-border: 1px solid var(--chat-border);
-border-radius: 12px;
+  background: #111111;
+  border: 1px solid var(--gpt-border);
+  border-radius: 14px;
+  padding: 1rem;
 }
 
 .md-typeset code {
-background-color: #2f2f2f;
-color: #ececec;
-border-radius: 6px;
-}
-
-/* Blockquotes */
-.md-typeset blockquote {
-border-left: 3px solid #555;
-background-color: rgba(255,255,255,0.02);
+  background: rgba(255,255,255,0.08);
+  color: #f4f4f4;
+  border-radius: 6px;
+  padding: 0.15em 0.35em;
 }
 
 /* Tables */
+
 .md-typeset table {
-border: none;
+  border: 1px solid var(--gpt-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.md-typeset th {
+  background: #2b2b2b;
 }
 
 .md-typeset td,
 .md-typeset th {
-border-color: var(--chat-border);
+  border-color: var(--gpt-border);
+}
+
+/* Quotes */
+
+.md-typeset blockquote {
+  background: rgba(255,255,255,0.03);
+  border-left: 3px solid var(--gpt-accent);
+  border-radius: 0 8px 8px 0;
 }
 
 /* Admonitions */
+
 .md-typeset .admonition {
-background-color: #2f2f2f;
-border: 1px solid var(--chat-border);
-border-radius: 12px;
+  background: #2b2b2b;
+  border: 1px solid var(--gpt-border);
+  border-radius: 12px;
 }
 
-/* Remove bright material feeling */
-.md-tabs {
-display: none;
+.md-typeset .admonition-title {
+  background: rgba(255,255,255,0.04);
 }
 
-/* Footer */
-.md-footer {
-background-color: #171717;
+/* Scrollbars */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #171717;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Remove shadows everywhere */
+
+* {
+  box-shadow: none !important;
+}
+
+/* Content spacing */
+
+.md-typeset ul li,
+.md-typeset ol li {
+  margin-bottom: 0.4rem;
+}
+
+/* ChatGPT-like page width */
+
+@media screen and (min-width: 1400px) {
+  .md-content__inner {
+    max-width: 1000px;
+  }
 }

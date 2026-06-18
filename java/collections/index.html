@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../java-core/">
       
       
         
@@ -45,7 +49,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/custom.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/chatgpt.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -61,7 +65,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -228,8 +232,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -240,13 +246,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -267,7 +271,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -282,10 +286,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../collection.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -301,6 +332,148 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hashmap-vs-concurrenthashmap-vs-hashtable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HashMap vs ConcurrentHashMap vs Hashtable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HashMap vs ConcurrentHashMap vs Hashtable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-how-does-concurrenthashmap-achieve-thread-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: How does ConcurrentHashMap achieve thread safety?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-what-is-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: What is CAS?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-what-is-a-hash-collision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: What is a hash collision?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-why-is-hashtable-slower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: Why is Hashtable slower?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equals-vs-hashcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        equals() vs hashCode()
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="equals() vs hashCode()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1298,7 +1471,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.instant", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
