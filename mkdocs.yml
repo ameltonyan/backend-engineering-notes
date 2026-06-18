@@ -1,0 +1,16 @@
+# mkdocs.yml
+
+site_name: Senior Java Interview Notes
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Java Core: java-core.md
+  - Concurrency: concurrency.md
+  - Spring: spring.md
+  - Hibernate: hibernate.md
+  - Kafka: kafka.md
+  - Kubernetes: kubernetes.md
+  - System Design: system-design.md
