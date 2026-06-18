@@ -2,8 +2,10 @@ site_name: Backend Engineering Notes
 
 theme:
   name: material
+
   logo: false
   favicon: false
+
   features:
     - navigation.sections
     - navigation.expand
@@ -12,6 +14,7 @@ theme:
     - search.highlight
     - search.suggest
     - content.code.copy
+
   palette:
     scheme: slate
     primary: black
@@ -20,7 +23,7 @@ plugins:
   - search
 
 extra_css:
-  - assets/stylesheets/custom.css
+  - assets/stylesheets/chatgpt.css
 
 markdown_extensions:
   - admonition
