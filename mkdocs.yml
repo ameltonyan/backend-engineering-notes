@@ -8,11 +8,13 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.instant
+    - navigation.tracking
     - search.highlight
     - search.suggest
     - content.code.copy
   palette:
     scheme: slate
+    primary: black
 
 plugins:
   - search
@@ -32,7 +34,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Java:
-      - Collections: java/collection.md
+      - Collections: java/collections.md
       - Java Core: java/java-core.md
       - JVM Internals: java/jvm.md
       - Concurrency: java/concurrency.md
