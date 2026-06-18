@@ -9,24 +9,28 @@
       
       
       
+        <link rel="prev" href="../java-core/">
+      
+      
+        <link rel="next" href="../concurrency/">
       
       
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Backend Engineering Notes</title>
+        <title>JVM Internals - Backend Engineering Notes</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -45,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#jvm-internals" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Backend Engineering Notes" class="md-header__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
+    <a href="../.." title="Backend Engineering Notes" class="md-header__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -99,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              JVM Internals
             
           </span>
         </div>
@@ -179,7 +188,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Backend Engineering Notes" class="md-nav__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
+    <a href="../.." title="Backend Engineering Notes" class="md-nav__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -197,7 +206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -221,8 +230,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -233,13 +244,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -260,7 +269,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -278,7 +287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/java/collection/" class="md-nav__link">
+      <a href="../collection/" class="md-nav__link">
         
   
   
@@ -306,7 +315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/java/java-core/" class="md-nav__link">
+      <a href="../java-core/" class="md-nav__link">
         
   
   
@@ -331,10 +340,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/java/jvm/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JVM Internals
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -350,6 +386,271 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#heap-vs-stack-vs-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap vs Stack vs Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heap vs Stack vs Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-are-local-variables-thread-safe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why are local variables thread-safe?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-metaspace-part-of-the-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Is Metaspace part of the heap?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-existed-before-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What existed before Metaspace?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Pool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="String Pool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-is-string-pool-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where is String Pool stored?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-is-string-immutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why is String immutable?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-gc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full GC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full GC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-stop-the-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Stop-The-World?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClassLoader
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ClassLoader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parent-delegation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parent Delegation Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-loads-javalangstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What loads java.lang.String?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -362,7 +663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/java/concurrency/" class="md-nav__link">
+      <a href="../concurrency/" class="md-nav__link">
         
   
   
@@ -451,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/spring/spring/" class="md-nav__link">
+      <a href="../../spring/spring/" class="md-nav__link">
         
   
   
@@ -540,7 +841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/persistence/hibernate/" class="md-nav__link">
+      <a href="../../persistence/hibernate/" class="md-nav__link">
         
   
   
@@ -629,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/acid/" class="md-nav__link">
+      <a href="../../databases/acid/" class="md-nav__link">
         
   
   
@@ -657,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/isolation-levels/" class="md-nav__link">
+      <a href="../../databases/isolation-levels/" class="md-nav__link">
         
   
   
@@ -685,7 +986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/indexing/" class="md-nav__link">
+      <a href="../../databases/indexing/" class="md-nav__link">
         
   
   
@@ -713,7 +1014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/query-optimization/" class="md-nav__link">
+      <a href="../../databases/query-optimization/" class="md-nav__link">
         
   
   
@@ -741,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/transactions/" class="md-nav__link">
+      <a href="../../databases/transactions/" class="md-nav__link">
         
   
   
@@ -830,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/messaging/kafka/" class="md-nav__link">
+      <a href="../../messaging/kafka/" class="md-nav__link">
         
   
   
@@ -919,7 +1220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/kubernetes/kubernetes/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes/" class="md-nav__link">
         
   
   
@@ -1008,7 +1309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/system-design/system-design/" class="md-nav__link">
+      <a href="../../system-design/system-design/" class="md-nav__link">
         
   
   
@@ -1053,6 +1354,261 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#heap-vs-stack-vs-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap vs Stack vs Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heap vs Stack vs Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-are-local-variables-thread-safe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why are local variables thread-safe?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-metaspace-part-of-the-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Is Metaspace part of the heap?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-existed-before-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What existed before Metaspace?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Pool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="String Pool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-is-string-pool-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where is String Pool stored?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-is-string-immutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why is String immutable?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-gc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full GC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full GC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-stop-the-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Stop-The-World?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClassLoader
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ClassLoader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parent-delegation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parent Delegation Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-loads-javalangstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What loads java.lang.String?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1065,8 +1621,104 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="jvm-internals">JVM Internals</h1>
+<h2 id="heap-vs-stack-vs-metaspace">Heap vs Stack vs Metaspace</h2>
+<h3 id="interview-answer">Interview Answer</h3>
+<p>Heap stores objects and arrays and is shared among all threads.</p>
+<p>Stack stores method frames, local variables, and references and is private to each thread.</p>
+<p>Metaspace stores class metadata and resides in native memory outside the heap.</p>
+<hr />
+<h2 id="heap">Heap</h2>
+<p>Stores:</p>
+<ul>
+<li>Objects</li>
+<li>Arrays</li>
+</ul>
+<p>Managed by the garbage collector.</p>
+<p>Shared between all threads.</p>
+<hr />
+<h2 id="stack">Stack</h2>
+<p>Stores:</p>
+<ul>
+<li>Method calls</li>
+<li>Local variables</li>
+<li>References</li>
+</ul>
+<p>Each thread has its own stack.</p>
+<p>Follows LIFO behavior.</p>
+<h3 id="why-are-local-variables-thread-safe">Why are local variables thread-safe?</h3>
+<p>Each thread owns its own stack.</p>
+<p>Local variables are not shared between threads.</p>
+<hr />
+<h2 id="metaspace">Metaspace</h2>
+<p>Stores:</p>
+<ul>
+<li>Class definitions</li>
+<li>Methods</li>
+<li>Fields</li>
+<li>Annotations</li>
+<li>Bytecode metadata</li>
+</ul>
+<h3 id="is-metaspace-part-of-the-heap">Is Metaspace part of the heap?</h3>
+<p>No.</p>
+<p>Metaspace uses native memory outside the Java heap.</p>
+<h3 id="what-existed-before-metaspace">What existed before Metaspace?</h3>
+<p>PermGen.</p>
+<p>Java 8 replaced PermGen with Metaspace.</p>
+<hr />
+<h2 id="string-pool">String Pool</h2>
+<h3 id="interview-answer_1">Interview Answer</h3>
+<p>The String Pool is a special memory area used to store String literals.</p>
+<p>If a String already exists in the pool, the JVM reuses it instead of creating a new object.</p>
+<h3 id="where-is-string-pool-stored">Where is String Pool stored?</h3>
+<p>In modern Java versions, the String Pool resides inside the heap.</p>
+<h3 id="why-is-string-immutable">Why is String immutable?</h3>
+<ul>
+<li>Thread safety</li>
+<li>String pooling</li>
+<li>Hashcode caching</li>
+<li>Security</li>
+</ul>
+<hr />
+<h2 id="full-gc">Full GC</h2>
+<h3 id="interview-answer_2">Interview Answer</h3>
+<p>Full GC performs garbage collection across the entire heap.</p>
+<p>Application threads are paused during the operation.</p>
+<p>Frequent Full GC events usually indicate memory pressure or memory leaks.</p>
+<h3 id="what-is-stop-the-world">What is Stop-The-World?</h3>
+<p>Application threads are temporarily paused while garbage collection is performed.</p>
+<hr />
+<h2 id="classloader">ClassLoader</h2>
+<h3 id="interview-answer_3">Interview Answer</h3>
+<p>ClassLoaders load classes into memory at runtime.</p>
+<p>Main ClassLoaders:</p>
+<ul>
+<li>Bootstrap ClassLoader</li>
+<li>Platform ClassLoader</li>
+<li>Application ClassLoader</li>
+</ul>
+<h3 id="parent-delegation-model">Parent Delegation Model</h3>
+<p>A child class loader asks its parent to load a class first.</p>
+<p>This prevents duplicate loading and improves security.</p>
+<h3 id="what-loads-javalangstring">What loads java.lang.String?</h3>
+<p>Bootstrap ClassLoader.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1103,10 +1755,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest", "content.code.copy"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

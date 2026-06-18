@@ -9,24 +9,28 @@
       
       
       
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../java-core/">
       
       
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Backend Engineering Notes</title>
+        <title>Collections - Backend Engineering Notes</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -45,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#collections" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Backend Engineering Notes" class="md-header__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
+    <a href="../.." title="Backend Engineering Notes" class="md-header__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -99,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Collections
             
           </span>
         </div>
@@ -179,7 +188,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Backend Engineering Notes" class="md-nav__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
+    <a href="../.." title="Backend Engineering Notes" class="md-nav__button md-logo" aria-label="Backend Engineering Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -197,7 +206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -221,8 +230,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -233,13 +244,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -260,7 +269,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -275,10 +284,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/java/collection/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -294,6 +330,148 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hashmap-vs-concurrenthashmap-vs-hashtable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HashMap vs ConcurrentHashMap vs Hashtable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HashMap vs ConcurrentHashMap vs Hashtable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-how-does-concurrenthashmap-achieve-thread-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: How does ConcurrentHashMap achieve thread safety?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-what-is-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: What is CAS?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-what-is-a-hash-collision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: What is a hash collision?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-why-is-hashtable-slower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: Why is Hashtable slower?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equals-vs-hashcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        equals() vs hashCode()
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="equals() vs hashCode()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -306,7 +484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/java/java-core/" class="md-nav__link">
+      <a href="../java-core/" class="md-nav__link">
         
   
   
@@ -334,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/java/jvm/" class="md-nav__link">
+      <a href="../jvm/" class="md-nav__link">
         
   
   
@@ -362,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/java/concurrency/" class="md-nav__link">
+      <a href="../concurrency/" class="md-nav__link">
         
   
   
@@ -451,7 +629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/spring/spring/" class="md-nav__link">
+      <a href="../../spring/spring/" class="md-nav__link">
         
   
   
@@ -540,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/persistence/hibernate/" class="md-nav__link">
+      <a href="../../persistence/hibernate/" class="md-nav__link">
         
   
   
@@ -629,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/acid/" class="md-nav__link">
+      <a href="../../databases/acid/" class="md-nav__link">
         
   
   
@@ -657,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/isolation-levels/" class="md-nav__link">
+      <a href="../../databases/isolation-levels/" class="md-nav__link">
         
   
   
@@ -685,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/indexing/" class="md-nav__link">
+      <a href="../../databases/indexing/" class="md-nav__link">
         
   
   
@@ -713,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/query-optimization/" class="md-nav__link">
+      <a href="../../databases/query-optimization/" class="md-nav__link">
         
   
   
@@ -741,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/databases/transactions/" class="md-nav__link">
+      <a href="../../databases/transactions/" class="md-nav__link">
         
   
   
@@ -830,7 +1008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/messaging/kafka/" class="md-nav__link">
+      <a href="../../messaging/kafka/" class="md-nav__link">
         
   
   
@@ -919,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/kubernetes/kubernetes/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes/" class="md-nav__link">
         
   
   
@@ -1008,7 +1186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/system-design/system-design/" class="md-nav__link">
+      <a href="../../system-design/system-design/" class="md-nav__link">
         
   
   
@@ -1053,6 +1231,138 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hashmap-vs-concurrenthashmap-vs-hashtable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HashMap vs ConcurrentHashMap vs Hashtable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HashMap vs ConcurrentHashMap vs Hashtable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-how-does-concurrenthashmap-achieve-thread-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: How does ConcurrentHashMap achieve thread safety?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-what-is-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: What is CAS?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-what-is-a-hash-collision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: What is a hash collision?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-why-is-hashtable-slower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up: Why is Hashtable slower?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equals-vs-hashcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        equals() vs hashCode()
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="equals() vs hashCode()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1065,8 +1375,64 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="collections">Collections</h1>
+<h2 id="hashmap-vs-concurrenthashmap-vs-hashtable">HashMap vs ConcurrentHashMap vs Hashtable</h2>
+<h3 id="interview-answer">Interview Answer</h3>
+<p>HashMap is a non-thread-safe key-value data structure that provides O(1) average lookup performance using hashing.</p>
+<p>ConcurrentHashMap is a thread-safe implementation designed for concurrent access. It uses fine-grained synchronization and CAS operations, allowing multiple threads to work efficiently.</p>
+<p>Hashtable is a legacy synchronized implementation that locks most operations using a single monitor, resulting in lower scalability.</p>
+<h3 id="follow-up-how-does-concurrenthashmap-achieve-thread-safety">Follow-up: How does ConcurrentHashMap achieve thread safety?</h3>
+<p>ConcurrentHashMap avoids locking the entire map.</p>
+<p>It synchronizes only small portions of the internal structure when required and uses CAS operations for simple updates.</p>
+<p>This allows multiple threads to update different buckets simultaneously.</p>
+<h3 id="follow-up-what-is-cas">Follow-up: What is CAS?</h3>
+<p>CAS stands for Compare-And-Set.</p>
+<p>It is a hardware-supported atomic operation provided by the CPU.</p>
+<p>Process:</p>
+<ol>
+<li>Compare current value with expected value.</li>
+<li>If equal, update the value.</li>
+<li>Otherwise fail and retry.</li>
+</ol>
+<p>AtomicInteger and ConcurrentHashMap use CAS internally.</p>
+<h3 id="follow-up-what-is-a-hash-collision">Follow-up: What is a hash collision?</h3>
+<p>A hash collision occurs when multiple keys map to the same bucket.</p>
+<p>HashMap stores multiple entries within that bucket and uses equals() to locate the correct entry.</p>
+<h3 id="follow-up-why-is-hashtable-slower">Follow-up: Why is Hashtable slower?</h3>
+<p>Hashtable synchronizes most operations on a single lock.</p>
+<p>This forces threads to wait even when accessing unrelated entries.</p>
+<p>ConcurrentHashMap provides much better scalability.</p>
+<hr />
+<h2 id="equals-vs-hashcode">equals() vs hashCode()</h2>
+<h3 id="interview-answer_1">Interview Answer</h3>
+<p>equals() defines logical equality.</p>
+<p>hashCode() determines the bucket location used by hash-based collections.</p>
+<p>Whenever equals() is overridden, hashCode() must also be overridden.</p>
+<h3 id="why">Why?</h3>
+<p>HashMap first uses hashCode() to find a bucket and then uses equals() to find the matching object.</p>
+<p>Failing to override both methods can cause lookup failures.</p>
+<h3 id="example">Example</h3>
+<p>Two objects may be logically equal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">user1</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">user2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+<p>but produce different hash codes, preventing HashMap from locating them correctly.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1103,10 +1469,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest", "content.code.copy"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
