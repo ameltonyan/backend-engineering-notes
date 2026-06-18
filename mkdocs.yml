@@ -1,14 +1,110 @@
-site_name: Senior Java Interview Notes
+site_name: Backend Engineering Notes
 
 theme:
-  name: material
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - search.highlight
-    - content.code.copy
+name: material
+
+features:
+- navigation.sections
+- navigation.expand
+- search.highlight
+- search.suggest
+- content.code.copy
+
+palette:
+scheme: slate
+
+plugins:
+
+* search
 
 markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
+
+* admonition
+* pymdownx.details
+* pymdownx.superfences
+* pymdownx.highlight:
+  anchor_linenums: true
+* pymdownx.inlinehilite
+* pymdownx.snippets
+
+nav:
+
+* Home: index.md
+
+* Java:
+
+  * Collections: java/collections.md
+  * JVM Internals: java/jvm.md
+  * Concurrency: java/concurrency.md
+  * Generics: java/generics.md
+  * Exceptions: java/exceptions.md
+
+* Spring:
+
+  * Beans: spring/beans.md
+  * Transactions: spring/transactions.md
+  * AOP: spring/aop.md
+  * Security: spring/security.md
+  * Testing: spring/testing.md
+
+* Persistence:
+
+  * Hibernate: persistence/hibernate.md
+  * JPA: persistence/jpa.md
+  * Lazy Loading: persistence/lazy-loading.md
+  * Locking: persistence/locking.md
+  * Performance: persistence/performance.md
+
+* Databases:
+
+  * ACID: databases/acid.md
+  * Isolation Levels: databases/isolation-levels.md
+  * Indexing: databases/indexing.md
+  * Query Optimization: databases/query-optimization.md
+  * Transactions: databases/transactions.md
+
+* Messaging:
+
+  * Kafka: messaging/kafka.md
+  * Consumer Groups: messaging/consumer-groups.md
+  * Partitions: messaging/partitions.md
+  * Delivery Guarantees: messaging/delivery-guarantees.md
+
+* Microservices:
+
+  * Saga Pattern: microservices/saga.md
+  * Circuit Breaker: microservices/circuit-breaker.md
+  * Retries: microservices/retries.md
+  * Idempotency: microservices/idempotency.md
+  * Distributed Transactions: microservices/distributed-transactions.md
+
+* Kubernetes:
+
+  * Basics: kubernetes/basics.md
+  * Deployments: kubernetes/deployments.md
+  * Services: kubernetes/services.md
+  * Ingress: kubernetes/ingress.md
+  * Troubleshooting: kubernetes/troubleshooting.md
+  * Observability: kubernetes/observability.md
+
+* System Design:
+
+  * Payment System: system-design/payment-system.md
+  * Money Transfer: system-design/money-transfer.md
+  * Rate Limiter: system-design/rate-limiter.md
+  * Notification System: system-design/notification-system.md
+  * URL Shortener: system-design/url-shortener.md
+  * Chat System: system-design/chat-system.md
+
+* Architecture:
+
+  * Monolith vs Microservices: architecture/monolith-vs-microservices.md
+  * Event Driven Architecture: architecture/event-driven.md
+  * CQRS: architecture/cqrs.md
+  * Event Sourcing: architecture/event-sourcing.md
+
+* Behavioral:
+
+  * Leadership: behavioral/leadership.md
+  * Conflict Resolution: behavioral/conflict-resolution.md
+  * Project Examples: behavioral/project-examples.md
