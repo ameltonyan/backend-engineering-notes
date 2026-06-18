@@ -1,0 +1,129 @@
+/* ChatGPT-inspired dark theme */
+
+:root {
+--chat-bg: #212121;
+--chat-surface: #2f2f2f;
+--chat-text: #ececec;
+--chat-muted: #b4b4b4;
+--chat-border: #3f3f3f;
+}
+
+/* Main page */
+body,
+.md-main,
+.md-content {
+background-color: var(--chat-bg);
+color: var(--chat-text);
+}
+
+/* Content width */
+.md-grid {
+max-width: 1000px;
+}
+
+/* Article content */
+.md-content__inner {
+max-width: 850px;
+margin: 0 auto;
+}
+
+/* Typography */
+.md-typeset {
+font-size: 1rem;
+line-height: 1.8;
+}
+
+.md-typeset h1 {
+font-size: 2.2rem;
+font-weight: 700;
+margin-bottom: 1.2rem;
+color: white;
+}
+
+.md-typeset h2 {
+font-size: 1.6rem;
+font-weight: 600;
+margin-top: 2rem;
+color: white;
+}
+
+.md-typeset h3 {
+font-size: 1.2rem;
+font-weight: 600;
+color: white;
+}
+
+/* Links */
+.md-typeset a {
+color: #8ab4f8;
+text-decoration: none;
+}
+
+.md-typeset a:hover {
+text-decoration: underline;
+}
+
+/* Sidebar */
+.md-sidebar,
+.md-nav {
+background-color: #171717;
+}
+
+/* Header */
+.md-header {
+background-color: #171717;
+box-shadow: none;
+border-bottom: 1px solid var(--chat-border);
+}
+
+/* Search */
+.md-search__form {
+background-color: #2f2f2f;
+border-radius: 12px;
+}
+
+/* Code blocks */
+.md-typeset pre {
+background-color: #171717;
+border: 1px solid var(--chat-border);
+border-radius: 12px;
+}
+
+.md-typeset code {
+background-color: #2f2f2f;
+color: #ececec;
+border-radius: 6px;
+}
+
+/* Blockquotes */
+.md-typeset blockquote {
+border-left: 3px solid #555;
+background-color: rgba(255,255,255,0.02);
+}
+
+/* Tables */
+.md-typeset table {
+border: none;
+}
+
+.md-typeset td,
+.md-typeset th {
+border-color: var(--chat-border);
+}
+
+/* Admonitions */
+.md-typeset .admonition {
+background-color: #2f2f2f;
+border: 1px solid var(--chat-border);
+border-radius: 12px;
+}
+
+/* Remove bright material feeling */
+.md-tabs {
+display: none;
+}
+
+/* Footer */
+.md-footer {
+background-color: #171717;
+}
