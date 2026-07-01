@@ -1,59 +1,59 @@
 # Backend Engineering Notes
 
-A personal knowledge base covering backend engineering topics, including:
+A personal knowledge base for backend engineering topics such as Java, JVM internals, concurrency, Spring, databases, Kafka, Kubernetes, and system design.
 
-* Java Core
-* JVM Internals
-* Concurrency
-* Spring Framework
-* Hibernate / JPA
-* Databases
-* Kafka
-* Kubernetes
-* Microservices
-* System Design
+## Quick start with MkDocs
 
-## Purpose
-
-These notes serve as:
-
-* A long-term engineering reference
-* A collection of interview preparation materials
-* A place to document concepts, patterns, and real-world experience
-
-## Local Development
-
-Install dependencies:
+### 1) Install Python dependencies
 
 ```bash
 pip install mkdocs-material
 ```
 
-Run locally:
+### 2) Run locally
 
 ```bash
 mkdocs serve
 ```
 
-Open:
+Then open:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-## Build
+### 3) Build the site
 
 ```bash
 mkdocs build
 ```
 
-## Topics
+This generates the static site in the `site/` folder.
 
-* Java
-* Concurrency
-* Spring
-* Persistence
-* Databases
-* Messaging
-* Kubernetes
-* System Design
+### 4) Deploy to GitHub Pages
+
+```bash
+mkdocs gh-deploy --force
+```
+
+This builds the site and publishes it to the `gh-pages` branch, which can be used by GitHub Pages.
+
+## Project structure
+
+- `docs/` - Markdown source files
+- `mkdocs.yml` - MkDocs configuration and navigation
+- `site/` - Generated static output
+
+## Add a new page
+
+1. Create a new Markdown file inside `docs/`
+2. Add it to the navigation in `mkdocs.yml`
+3. Run `mkdocs serve` to preview it locally
+
+## Purpose
+
+These notes are intended to be:
+
+- a long-term engineering reference
+- interview preparation material
+- a place to document concepts, patterns, and experience
