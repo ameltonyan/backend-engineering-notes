@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#collections" class="md-skip">
+        <a href="#java-core-and-concurrency" class="md-skip">
           Skip to content
         </a>
       
@@ -349,22 +349,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hashmap-vs-concurrenthashmap-vs-hashtable" class="md-nav__link">
+  <a href="#1-hashmap-vs-concurrenthashmap-vs-hashtable" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HashMap vs ConcurrentHashMap vs Hashtable
+        1. HashMap vs ConcurrentHashMap vs Hashtable
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="HashMap vs ConcurrentHashMap vs Hashtable">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Internal Implementation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#interview-answer" class="md-nav__link">
+  <a href="#hashmap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interview Answer
+        HashMap
       
     </span>
   </a>
@@ -372,10 +405,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#follow-up-how-does-concurrenthashmap-achieve-thread-safety" class="md-nav__link">
+  <a href="#hash-collisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follow-up: How does ConcurrentHashMap achieve thread safety?
+        Hash Collisions
       
     </span>
   </a>
@@ -383,10 +416,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#follow-up-what-is-cas" class="md-nav__link">
+  <a href="#concurrenthashmap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follow-up: What is CAS?
+        ConcurrentHashMap
       
     </span>
   </a>
@@ -394,21 +427,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#follow-up-what-is-a-hash-collision" class="md-nav__link">
+  <a href="#hashtable" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follow-up: What is a hash collision?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#follow-up-why-is-hashtable-slower" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Follow-up: Why is Hashtable slower?
+        Hashtable
       
     </span>
   </a>
@@ -421,22 +443,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#equals-vs-hashcode" class="md-nav__link">
+  <a href="#follow-up-questions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        equals() vs hashCode()
+        Follow-Up Questions
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="equals() vs hashCode()">
+    <nav class="md-nav" aria-label="Follow-Up Questions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#interview-answer_1" class="md-nav__link">
+  <a href="#is-hashmap-always-o1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interview Answer
+        Is HashMap always O(1)?
       
     </span>
   </a>
@@ -444,10 +466,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why" class="md-nav__link">
+  <a href="#why-is-concurrenthashmap-faster-than-hashtable" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why?
+        Why is ConcurrentHashMap faster than Hashtable?
       
     </span>
   </a>
@@ -455,10 +477,711 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#can-hashmap-be-used-safely-by-multiple-threads" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example
+        Can HashMap be used safely by multiple threads?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-points-to-remember" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Points to Remember
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-happens-when-executing-string-s-hello" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What happens when executing String s = "hello";?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. What happens when executing String s = &#34;hello&#34;;?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-strings-are-immutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Strings Are Immutable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-explain-heap-stack-and-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Explain Heap, Stack, and Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Explain Heap, Stack, and Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metaspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-what-is-the-difference-between-and-equals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. What is the difference between == and equals()?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. What is the difference between == and equals()?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ==
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        equals()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-is-a-memory-leak-in-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What is a memory leak in Java?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. What is a memory leak in Java?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-causes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Causes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Point
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-explain-volatile-synchronized-and-atomicinteger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Explain volatile, synchronized, and AtomicInteger
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Explain volatile, synchronized, and AtomicInteger">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        volatile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        synchronized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomicinteger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AtomicInteger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is CAS?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-what-happens-during-a-full-gc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. What happens during a Full GC?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-what-is-a-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. What is a ClassLoader?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. What is a ClassLoader?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap ClassLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform ClassLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application ClassLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parent-delegation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parent Delegation Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-what-happens-when-multiple-threads-modify-the-same-hashmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. What happens when multiple threads modify the same HashMap?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. What happens when multiple threads modify the same HashMap?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-resize-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrent Resize Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-explain-optimistic-and-pessimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Explain optimistic and pessimistic locking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Explain optimistic and pessimistic locking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimistic Locking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimistic Locking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pessimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pessimistic Locking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pessimistic Locking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-explain-executorservice-forkjoinpool-and-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Explain ExecutorService, ForkJoinPool, and CompletableFuture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Explain ExecutorService, ForkJoinPool, and CompletableFuture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executorservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ExecutorService
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forkjoinpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForkJoinPool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-stealing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work Stealing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CompletableFuture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-what-is-a-deadlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. What is a deadlock?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. What is a deadlock?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-what-is-the-difference-between-synchronized-and-reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. What is the difference between synchronized and ReentrantLock?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. What is the difference between synchronized and ReentrantLock?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronized_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        synchronized
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="synchronized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReentrantLock
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReentrantLock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-how-would-you-implement-a-thread-safe-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. How would you implement a thread-safe counter?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. How would you implement a thread-safe counter?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using synchronized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-atomicinteger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using AtomicInteger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-throughput-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High Throughput Systems
       
     </span>
   </a>
@@ -1243,22 +1966,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hashmap-vs-concurrenthashmap-vs-hashtable" class="md-nav__link">
+  <a href="#1-hashmap-vs-concurrenthashmap-vs-hashtable" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HashMap vs ConcurrentHashMap vs Hashtable
+        1. HashMap vs ConcurrentHashMap vs Hashtable
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="HashMap vs ConcurrentHashMap vs Hashtable">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Internal Implementation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#interview-answer" class="md-nav__link">
+  <a href="#hashmap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interview Answer
+        HashMap
       
     </span>
   </a>
@@ -1266,10 +2022,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#follow-up-how-does-concurrenthashmap-achieve-thread-safety" class="md-nav__link">
+  <a href="#hash-collisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follow-up: How does ConcurrentHashMap achieve thread safety?
+        Hash Collisions
       
     </span>
   </a>
@@ -1277,10 +2033,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#follow-up-what-is-cas" class="md-nav__link">
+  <a href="#concurrenthashmap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follow-up: What is CAS?
+        ConcurrentHashMap
       
     </span>
   </a>
@@ -1288,21 +2044,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#follow-up-what-is-a-hash-collision" class="md-nav__link">
+  <a href="#hashtable" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follow-up: What is a hash collision?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#follow-up-why-is-hashtable-slower" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Follow-up: Why is Hashtable slower?
+        Hashtable
       
     </span>
   </a>
@@ -1315,22 +2060,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#equals-vs-hashcode" class="md-nav__link">
+  <a href="#follow-up-questions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        equals() vs hashCode()
+        Follow-Up Questions
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="equals() vs hashCode()">
+    <nav class="md-nav" aria-label="Follow-Up Questions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#interview-answer_1" class="md-nav__link">
+  <a href="#is-hashmap-always-o1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interview Answer
+        Is HashMap always O(1)?
       
     </span>
   </a>
@@ -1338,10 +2083,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why" class="md-nav__link">
+  <a href="#why-is-concurrenthashmap-faster-than-hashtable" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why?
+        Why is ConcurrentHashMap faster than Hashtable?
       
     </span>
   </a>
@@ -1349,10 +2094,711 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#can-hashmap-be-used-safely-by-multiple-threads" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example
+        Can HashMap be used safely by multiple threads?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-points-to-remember" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Points to Remember
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-happens-when-executing-string-s-hello" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What happens when executing String s = "hello";?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. What happens when executing String s = &#34;hello&#34;;?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-strings-are-immutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Strings Are Immutable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-explain-heap-stack-and-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Explain Heap, Stack, and Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Explain Heap, Stack, and Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metaspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-what-is-the-difference-between-and-equals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. What is the difference between == and equals()?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. What is the difference between == and equals()?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ==
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        equals()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-is-a-memory-leak-in-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What is a memory leak in Java?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. What is a memory leak in Java?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-causes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Causes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Point
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-explain-volatile-synchronized-and-atomicinteger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Explain volatile, synchronized, and AtomicInteger
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Explain volatile, synchronized, and AtomicInteger">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        volatile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        synchronized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomicinteger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AtomicInteger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is CAS?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-what-happens-during-a-full-gc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. What happens during a Full GC?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-what-is-a-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. What is a ClassLoader?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. What is a ClassLoader?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap ClassLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform ClassLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-classloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application ClassLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parent-delegation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parent Delegation Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-what-happens-when-multiple-threads-modify-the-same-hashmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. What happens when multiple threads modify the same HashMap?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. What happens when multiple threads modify the same HashMap?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-resize-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrent Resize Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-explain-optimistic-and-pessimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Explain optimistic and pessimistic locking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Explain optimistic and pessimistic locking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimistic Locking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimistic Locking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pessimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pessimistic Locking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pessimistic Locking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-explain-executorservice-forkjoinpool-and-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Explain ExecutorService, ForkJoinPool, and CompletableFuture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Explain ExecutorService, ForkJoinPool, and CompletableFuture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executorservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ExecutorService
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forkjoinpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForkJoinPool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-stealing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work Stealing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CompletableFuture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-what-is-a-deadlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. What is a deadlock?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. What is a deadlock?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-what-is-the-difference-between-synchronized-and-reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. What is the difference between synchronized and ReentrantLock?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. What is the difference between synchronized and ReentrantLock?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronized_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        synchronized
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="synchronized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReentrantLock
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReentrantLock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-how-would-you-implement-a-thread-safe-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. How would you implement a thread-safe counter?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. How would you implement a thread-safe counter?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using synchronized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-atomicinteger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using AtomicInteger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-throughput-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High Throughput Systems
       
     </span>
   </a>
@@ -1381,47 +2827,532 @@
 
 
 
-<h1 id="collections">Collections</h1>
-<h2 id="hashmap-vs-concurrenthashmap-vs-hashtable">HashMap vs ConcurrentHashMap vs Hashtable</h2>
-<h3 id="interview-answer">Interview Answer</h3>
-<p>HashMap is a non-thread-safe key-value data structure that provides O(1) average lookup performance using hashing.</p>
-<p>ConcurrentHashMap is a thread-safe implementation designed for concurrent access. It uses fine-grained synchronization and CAS operations, allowing multiple threads to work efficiently.</p>
-<p>Hashtable is a legacy synchronized implementation that locks most operations using a single monitor, resulting in lower scalability.</p>
-<h3 id="follow-up-how-does-concurrenthashmap-achieve-thread-safety">Follow-up: How does ConcurrentHashMap achieve thread safety?</h3>
-<p>ConcurrentHashMap avoids locking the entire map.</p>
-<p>It synchronizes only small portions of the internal structure when required and uses CAS operations for simple updates.</p>
-<p>This allows multiple threads to update different buckets simultaneously.</p>
-<h3 id="follow-up-what-is-cas">Follow-up: What is CAS?</h3>
+<h1 id="java-core-and-concurrency">Java Core and Concurrency</h1>
+<h2 id="1-hashmap-vs-concurrenthashmap-vs-hashtable">1. HashMap vs ConcurrentHashMap vs Hashtable</h2>
+<h2 id="question">Question</h2>
+<p>What is the difference between HashMap, ConcurrentHashMap, and Hashtable?</p>
+<h2 id="answer">Answer</h2>
+<p>HashMap is a non-thread-safe implementation of the Map interface that stores data as key-value pairs. Internally it uses hashing to distribute entries across buckets, which allows O(1) average lookup performance.</p>
+<p>ConcurrentHashMap is a thread-safe implementation designed for highly concurrent environments. Unlike Hashtable, it does not lock the entire map for every operation. Modern implementations use a combination of CAS operations and fine-grained synchronization, allowing multiple threads to read and update the map concurrently with much better scalability.</p>
+<p>Hashtable is a legacy thread-safe implementation. Most operations synchronize on the entire map, meaning only one thread can effectively modify or access protected operations at a time. Because of this, it typically performs worse than ConcurrentHashMap under contention.</p>
+<p>In modern applications, ConcurrentHashMap is generally preferred over Hashtable when thread safety is required.</p>
+<h2 id="internal-implementation">Internal Implementation</h2>
+<h3 id="hashmap">HashMap</h3>
+<p>When inserting a value:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+</code></pre></div>
+<p>HashMap:</p>
+<ol>
+<li>Calculates the key's hashcode.</li>
+<li>Maps the hashcode to a bucket.</li>
+<li>Stores the entry in that bucket.</li>
+</ol>
+<p>When retrieving:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>the same hash calculation is performed, allowing the map to jump directly to the correct bucket.</p>
+<p>This is why average lookup complexity is O(1).</p>
+<h3 id="hash-collisions">Hash Collisions</h3>
+<p>Multiple keys may end up in the same bucket.</p>
+<p>Before Java 8, collisions were stored as linked lists.</p>
+<p>Since Java 8, large collision chains can be converted into balanced trees, improving worst-case lookup performance.</p>
+<h3 id="concurrenthashmap">ConcurrentHashMap</h3>
+<p>ConcurrentHashMap improves concurrency by:</p>
+<ul>
+<li>Using CAS operations for many updates.</li>
+<li>Applying synchronization only where necessary.</li>
+<li>Allowing mostly lock-free reads.</li>
+</ul>
+<p>This significantly reduces contention compared to Hashtable.</p>
+<h3 id="hashtable">Hashtable</h3>
+<p>Hashtable synchronizes most operations using a single monitor.</p>
+<p>Effectively:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="nf">get</span><span class="p">(...)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="nf">put</span><span class="p">(...)</span>
+</code></pre></div>
+<p>Every operation competes for the same lock.</p>
+<h2 id="follow-up-questions">Follow-Up Questions</h2>
+<h3 id="is-hashmap-always-o1">Is HashMap always O(1)?</h3>
+<p>No.</p>
+<p>Average complexity is O(1), but excessive hash collisions can degrade performance.</p>
+<p>Before Java 8, worst-case complexity could become O(n).</p>
+<p>Since Java 8, treeified buckets improve worst-case complexity to O(log n).</p>
+<h3 id="why-is-concurrenthashmap-faster-than-hashtable">Why is ConcurrentHashMap faster than Hashtable?</h3>
+<p>Hashtable uses a single lock for most operations.</p>
+<p>ConcurrentHashMap allows multiple threads to access different regions of the map concurrently, significantly reducing lock contention.</p>
+<h3 id="can-hashmap-be-used-safely-by-multiple-threads">Can HashMap be used safely by multiple threads?</h3>
+<p>Not without external synchronization.</p>
+<p>Concurrent modifications can cause:</p>
+<ul>
+<li>Lost updates</li>
+<li>Inconsistent reads</li>
+<li>Internal structure corruption</li>
+</ul>
+<p>For concurrent access, ConcurrentHashMap should be used.</p>
+<h2 id="key-points-to-remember">Key Points to Remember</h2>
+<ul>
+<li>HashMap → Fast, non-thread-safe.</li>
+<li>ConcurrentHashMap → Thread-safe, scalable, modern choice.</li>
+<li>Hashtable → Thread-safe, legacy implementation, generally avoided.</li>
+<li>HashMap uses buckets and hashing.</li>
+<li>ConcurrentHashMap uses CAS and fine-grained synchronization.</li>
+<li>Hashtable synchronizes the entire map.</li>
+</ul>
+<hr />
+<h2 id="2-what-happens-when-executing-string-s-hello">2. What happens when executing <code>String s = "hello";</code>?</h2>
+<p>When the JVM encounters the string literal <code>"hello"</code>, it first checks the String Pool.</p>
+<ul>
+<li>If the string already exists, the existing instance is reused.</li>
+<li>Otherwise, a new String object is created in the String Pool.</li>
+</ul>
+<p>The variable <code>s</code> stores a reference to that pooled String.</p>
+<h3 id="why-strings-are-immutable">Why Strings Are Immutable</h3>
+<p>String immutability provides:</p>
+<ul>
+<li>Thread safety</li>
+<li>String Pooling</li>
+<li>Hashcode caching</li>
+<li>Security</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">String</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Both variables reference the same String object.</p>
+<hr />
+<h2 id="3-explain-heap-stack-and-metaspace">3. Explain Heap, Stack, and Metaspace</h2>
+<h3 id="heap">Heap</h3>
+<p>The heap stores:</p>
+<ul>
+<li>Objects</li>
+<li>Arrays</li>
+</ul>
+<p>Characteristics:</p>
+<ul>
+<li>Shared among all threads</li>
+<li>Managed by the garbage collector</li>
+<li>Configurable using <code>-Xms</code> and <code>-Xmx</code></li>
+</ul>
+<hr />
+<h3 id="stack">Stack</h3>
+<p>Each thread has its own stack.</p>
+<p>The stack stores:</p>
+<ul>
+<li>Method frames</li>
+<li>Local variables</li>
+<li>Object references</li>
+</ul>
+<p>Characteristics:</p>
+<ul>
+<li>One stack per thread</li>
+<li>LIFO (Last-In-First-Out)</li>
+</ul>
+<hr />
+<h3 id="metaspace">Metaspace</h3>
+<p>Metaspace stores class metadata such as:</p>
+<ul>
+<li>Class definitions</li>
+<li>Methods</li>
+<li>Fields</li>
+<li>Annotations</li>
+<li>Inheritance information</li>
+</ul>
+<p>Characteristics:</p>
+<ul>
+<li>Stored in native memory</li>
+<li>Outside the heap</li>
+<li>Replaced PermGen in Java 8</li>
+</ul>
+<hr />
+<h2 id="4-what-is-the-difference-between-and-equals">4. What is the difference between <code>==</code> and <code>equals()</code>?</h2>
+<h3 id="_1"><code>==</code></h3>
+<p>Compares:</p>
+<ul>
+<li>Primitive values</li>
+<li>Object references</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">String</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>false
+</code></pre></div>
+<hr />
+<h3 id="equals"><code>equals()</code></h3>
+<p>Compares logical equality.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>true
+</code></pre></div>
+<h3 id="important-rule">Important Rule</h3>
+<p>Whenever <code>equals()</code> is overridden, <code>hashCode()</code> must also be overridden.</p>
+<hr />
+<h2 id="5-what-is-a-memory-leak-in-java">5. What is a memory leak in Java?</h2>
+<p>A memory leak occurs when objects are no longer needed but remain reachable from GC roots.</p>
+<h3 id="common-causes">Common Causes</h3>
+<ul>
+<li>Static collections</li>
+<li>Caches without eviction</li>
+<li>ThreadLocal misuse</li>
+<li>Unremoved listeners</li>
+<li>Long-lived references</li>
+</ul>
+<h3 id="key-point">Key Point</h3>
+<p>Garbage Collection cannot remove objects that are still reachable.</p>
+<hr />
+<h2 id="6-explain-volatile-synchronized-and-atomicinteger">6. Explain <code>volatile</code>, <code>synchronized</code>, and <code>AtomicInteger</code></h2>
+<h3 id="volatile">volatile</h3>
+<p>Provides:</p>
+<ul>
+<li>Visibility guarantees</li>
+<li>Ordering guarantees</li>
+</ul>
+<p>Does not provide:</p>
+<ul>
+<li>Atomicity</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">volatile</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+</code></pre></div>
+<p>The increment operation is still not thread-safe.</p>
+<hr />
+<h3 id="synchronized">synchronized</h3>
+<p>Provides:</p>
+<ul>
+<li>Mutual exclusion</li>
+<li>Visibility guarantees</li>
+<li>Atomic execution of critical sections</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">synchronized</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="atomicinteger">AtomicInteger</h3>
+<p>Provides lock-free thread-safe operations using CAS (Compare-And-Set).</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">AtomicInteger</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AtomicInteger</span><span class="p">();</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">counter</span><span class="p">.</span><span class="na">incrementAndGet</span><span class="p">();</span>
+</code></pre></div>
+<hr />
+<h3 id="what-is-cas">What is CAS?</h3>
 <p>CAS stands for Compare-And-Set.</p>
-<p>It is a hardware-supported atomic operation provided by the CPU.</p>
+<p>Conceptually:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>IF currentValue == expectedValue
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    update value
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>ELSE
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    fail
+</code></pre></div>
+<p>CAS is implemented using CPU-level atomic instructions such as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>CMPXCHG
+</code></pre></div>
+<p>on x86 processors.</p>
+<hr />
+<h2 id="7-what-happens-during-a-full-gc">7. What happens during a Full GC?</h2>
+<p>A Full GC performs garbage collection across the entire heap.</p>
+<p>Typically includes:</p>
+<ul>
+<li>Young Generation</li>
+<li>Old Generation</li>
+</ul>
+<p>Characteristics:</p>
+<ul>
+<li>Stop-The-World pause</li>
+<li>Application threads are paused</li>
+<li>Memory is reclaimed</li>
+</ul>
+<p>Frequent Full GCs may indicate:</p>
+<ul>
+<li>Memory leaks</li>
+<li>Insufficient heap size</li>
+<li>Poor JVM tuning</li>
+</ul>
+<hr />
+<h2 id="8-what-is-a-classloader">8. What is a ClassLoader?</h2>
+<p>A ClassLoader loads classes into JVM memory at runtime.</p>
+<h3 id="bootstrap-classloader">Bootstrap ClassLoader</h3>
+<p>Loads core Java classes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">String</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">List</span>
+</code></pre></div>
+<hr />
+<h3 id="platform-classloader">Platform ClassLoader</h3>
+<p>Loads JDK platform libraries.</p>
+<hr />
+<h3 id="application-classloader">Application ClassLoader</h3>
+<p>Loads application classes from the classpath.</p>
+<hr />
+<h3 id="parent-delegation-model">Parent Delegation Model</h3>
+<p>Class loading follows this order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Application
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    ↓
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>Platform
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    ↓
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>Bootstrap
+</code></pre></div>
+<p>Benefits:</p>
+<ul>
+<li>Security</li>
+<li>Prevents duplicate class loading</li>
+</ul>
+<hr />
+<h2 id="9-what-happens-when-multiple-threads-modify-the-same-hashmap">9. What happens when multiple threads modify the same HashMap?</h2>
+<p>HashMap is not thread-safe.</p>
+<p>Possible issues:</p>
+<ul>
+<li>Lost updates</li>
+<li>Inconsistent reads</li>
+<li>Corrupted internal state</li>
+<li>Resize-related problems</li>
+</ul>
+<h3 id="concurrent-resize-problem">Concurrent Resize Problem</h3>
+<p>When a HashMap grows, it resizes and rehashes entries.</p>
+<p>Concurrent modifications during resize can corrupt internal structures.</p>
+<p>For concurrent access, use:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">ConcurrentHashMap</span>
+</code></pre></div>
+<hr />
+<h2 id="10-explain-optimistic-and-pessimistic-locking">10. Explain optimistic and pessimistic locking</h2>
+<h3 id="optimistic-locking">Optimistic Locking</h3>
+<p>Assumes conflicts are rare.</p>
+<p>Typically implemented using:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nd">@Version</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
+</code></pre></div>
+<p>Update process:</p>
+<ol>
+<li>Read current version</li>
+<li>Attempt update</li>
+<li>Verify version before commit</li>
+</ol>
+<p>If the version changed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>OptimisticLockException
+</code></pre></div>
+<p>is thrown.</p>
+<h4 id="advantages">Advantages</h4>
+<ul>
+<li>Better scalability</li>
+<li>No database lock held</li>
+</ul>
+<h4 id="disadvantages">Disadvantages</h4>
+<ul>
+<li>Updates may need retries</li>
+</ul>
+<hr />
+<h3 id="pessimistic-locking">Pessimistic Locking</h3>
+<p>Assumes conflicts are likely.</p>
+<p>Database rows are locked immediately.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">account</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">FOR</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="advantages_1">Advantages</h4>
+<ul>
+<li>Prevents concurrent updates</li>
+</ul>
+<h4 id="disadvantages_1">Disadvantages</h4>
+<ul>
+<li>Lower throughput</li>
+<li>Potential deadlocks</li>
+<li>Longer lock durations</li>
+</ul>
+<hr />
+<h2 id="11-explain-executorservice-forkjoinpool-and-completablefuture">11. Explain ExecutorService, ForkJoinPool, and CompletableFuture</h2>
+<h3 id="executorservice">ExecutorService</h3>
+<p>Manages and executes tasks using a pool of reusable threads.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">ExecutorService</span><span class="w"> </span><span class="n">executor</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">        </span><span class="n">Executors</span><span class="p">.</span><span class="na">newFixedThreadPool</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">executor</span><span class="p">.</span><span class="na">submit</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">processPayment</span><span class="p">());</span>
+</code></pre></div>
+<p>Benefits:</p>
+<ul>
+<li>Thread reuse</li>
+<li>Resource management</li>
+<li>Better scalability</li>
+</ul>
+<hr />
+<h3 id="forkjoinpool">ForkJoinPool</h3>
+<p>Designed for recursive divide-and-conquer workloads.</p>
 <p>Process:</p>
 <ol>
-<li>Compare current value with expected value.</li>
-<li>If equal, update the value.</li>
-<li>Otherwise fail and retry.</li>
+<li>Split large task (Fork)</li>
+<li>Execute subtasks in parallel</li>
+<li>Combine results (Join)</li>
 </ol>
-<p>AtomicInteger and ConcurrentHashMap use CAS internally.</p>
-<h3 id="follow-up-what-is-a-hash-collision">Follow-up: What is a hash collision?</h3>
-<p>A hash collision occurs when multiple keys map to the same bucket.</p>
-<p>HashMap stores multiple entries within that bucket and uses equals() to locate the correct entry.</p>
-<h3 id="follow-up-why-is-hashtable-slower">Follow-up: Why is Hashtable slower?</h3>
-<p>Hashtable synchronizes most operations on a single lock.</p>
-<p>This forces threads to wait even when accessing unrelated entries.</p>
-<p>ConcurrentHashMap provides much better scalability.</p>
-<hr />
-<h2 id="equals-vs-hashcode">equals() vs hashCode()</h2>
-<h3 id="interview-answer_1">Interview Answer</h3>
-<p>equals() defines logical equality.</p>
-<p>hashCode() determines the bucket location used by hash-based collections.</p>
-<p>Whenever equals() is overridden, hashCode() must also be overridden.</p>
-<h3 id="why">Why?</h3>
-<p>HashMap first uses hashCode() to find a bucket and then uses equals() to find the matching object.</p>
-<p>Failing to override both methods can cause lookup failures.</p>
-<h3 id="example">Example</h3>
-<p>Two objects may be logically equal:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">user1</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">user2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">parallelStream</span><span class="p">()</span>
 </code></pre></div>
-<p>but produce different hash codes, preventing HashMap from locating them correctly.</p>
+<p>often uses ForkJoinPool internally.</p>
+<hr />
+<h3 id="work-stealing">Work Stealing</h3>
+<p>Each worker thread has its own task queue.</p>
+<p>If a worker becomes idle:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Worker-1 queue -&gt; empty
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Worker-2 queue -&gt; many tasks
+</code></pre></div>
+<p>Worker-1 can steal tasks from Worker-2.</p>
+<p>Benefits:</p>
+<ul>
+<li>Better CPU utilization</li>
+<li>Improved load balancing</li>
+</ul>
+<hr />
+<h3 id="completablefuture">CompletableFuture</h3>
+<p>Represents an asynchronous computation.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">future</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">        </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">getUser</span><span class="p">()</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="p">);</span>
+</code></pre></div>
+<p>Supports chaining:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">future</span><span class="p">.</span><span class="na">thenApply</span><span class="p">(...)</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">      </span><span class="p">.</span><span class="na">thenAccept</span><span class="p">(...)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">      </span><span class="p">.</span><span class="na">exceptionally</span><span class="p">(...);</span>
+</code></pre></div>
+<p>Allows asynchronous workflows without blocking.</p>
+<hr />
+<h3 id="relationship">Relationship</h3>
+<ul>
+<li>ExecutorService executes tasks.</li>
+<li>ForkJoinPool is a specialized ExecutorService.</li>
+<li>CompletableFuture represents asynchronous computations and typically uses ExecutorService or ForkJoinPool underneath.</li>
+</ul>
+<hr />
+<h2 id="12-what-is-a-deadlock">12. What is a deadlock?</h2>
+<p>A deadlock occurs when two or more threads permanently wait for resources held by each other.</p>
+<p>Example:</p>
+<p>Thread A:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Holds Lock A
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Waiting for Lock B
+</code></pre></div>
+<p>Thread B:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Holds Lock B
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>Waiting for Lock A
+</code></pre></div>
+<p>Neither thread can continue.</p>
+<hr />
+<h3 id="detection">Detection</h3>
+<p>Common tools:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>jstack<span class="w"> </span>&lt;pid&gt;
+</code></pre></div>
+<ul>
+<li>VisualVM</li>
+<li>Java Mission Control</li>
+<li>Thread Dumps</li>
+</ul>
+<hr />
+<h3 id="prevention">Prevention</h3>
+<ul>
+<li>Consistent lock ordering</li>
+<li>Reduced nested locking</li>
+<li>tryLock()</li>
+<li>Lock acquisition timeouts</li>
+</ul>
+<hr />
+<h2 id="13-what-is-the-difference-between-synchronized-and-reentrantlock">13. What is the difference between synchronized and ReentrantLock?</h2>
+<h3 id="synchronized_1">synchronized</h3>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kd">synchronized</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="c1">// critical section</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="advantages_2">Advantages</h4>
+<ul>
+<li>Simple</li>
+<li>Automatic unlock</li>
+<li>Less error-prone</li>
+</ul>
+<h4 id="disadvantages_2">Disadvantages</h4>
+<ul>
+<li>Less flexible</li>
+</ul>
+<hr />
+<h3 id="reentrantlock">ReentrantLock</h3>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="c1">// critical section</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="p">}</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">    </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="advantages_3">Advantages</h4>
+<p>Timed lock acquisition:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">lock</span><span class="p">.</span><span class="na">tryLock</span><span class="p">();</span>
+</code></pre></div>
+<p>Interruptible locking:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">lock</span><span class="p">.</span><span class="na">lockInterruptibly</span><span class="p">();</span>
+</code></pre></div>
+<p>Fairness:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">new</span><span class="w"> </span><span class="n">ReentrantLock</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>Multiple Conditions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">Condition</span><span class="w"> </span><span class="n">notEmpty</span><span class="p">;</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">Condition</span><span class="w"> </span><span class="n">notFull</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="disadvantages_3">Disadvantages</h4>
+<ul>
+<li>Must manually unlock</li>
+<li>Easier to introduce bugs</li>
+</ul>
+<hr />
+<h3 id="condition-objects">Condition Objects</h3>
+<p>Condition objects create separate wait queues.</p>
+<p>Example:</p>
+<ul>
+<li>Producers wait on <code>notFull</code></li>
+<li>Consumers wait on <code>notEmpty</code></li>
+</ul>
+<p>This avoids waking unrelated threads and improves efficiency.</p>
+<hr />
+<h2 id="14-how-would-you-implement-a-thread-safe-counter">14. How would you implement a thread-safe counter?</h2>
+<h3 id="using-synchronized">Using synchronized</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Counter</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="p">;</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="n">counter</span><span class="p">;</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="using-atomicinteger">Using AtomicInteger</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Counter</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">AtomicInteger</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">AtomicInteger</span><span class="p">();</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">counter</span><span class="p">.</span><span class="na">incrementAndGet</span><span class="p">();</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="high-throughput-systems">High Throughput Systems</h3>
+<p>Preferred:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">AtomicInteger</span>
+</code></pre></div>
+<p>because it avoids lock contention.</p>
+<p>For extremely high contention:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">LongAdder</span>
+</code></pre></div>
+<p>often provides better performance than AtomicInteger.</p>
 
 
 
