@@ -3,7 +3,7 @@ site_name: Backend Engineering Notes
 theme:
   name: material
 
-  logo: false
+  logo: assets/logo.svg
   favicon: assets/favicon.svg
 
   features:
