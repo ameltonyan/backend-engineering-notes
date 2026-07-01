@@ -4,7 +4,7 @@ theme:
   name: material
 
   logo: false
-  favicon: false
+  favicon: assets/favicon.svg
 
   features:
     - navigation.sections
