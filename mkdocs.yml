@@ -47,8 +47,8 @@ nav:
   - Interview Preparation:
       - Overview: interview-preparation/index.md
   - Java:
-      - Collections: java/collections.md
       - Java Core: java/java-core.md
+      - Collections: java/collections.md
       - JVM Internals: java/jvm.md
       - Concurrency: java/concurrency.md
   - Spring:
