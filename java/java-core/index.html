@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../collections/">
+        <link rel="prev" href="../../interview-preparation/">
       
       
-        <link rel="next" href="../jvm/">
+        <link rel="next" href="../collections/">
       
       
         
@@ -68,6 +68,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#java-core-interview-notes" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -390,6 +395,497 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Core
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-01-jvm-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 01 — JVM &amp; Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 01 — JVM &amp; Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-jvm-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. JVM Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. JVM Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-stack-vs-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Stack vs Heap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Stack vs Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-stack-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Stack Frames
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Stack Frames">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-class-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Class Loading
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Class Loading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-java-memory-model-jmm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Java Memory Model (JMM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Java Memory Model (JMM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Revision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Homework
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -409,42 +905,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Java Core
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
     </li>
   
 
@@ -1176,6 +1636,432 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#day-01-jvm-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day 01 — JVM &amp; Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Day 01 — JVM &amp; Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-jvm-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. JVM Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. JVM Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-stack-vs-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Stack vs Heap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Stack vs Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-metaspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Metaspace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Metaspace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-stack-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Stack Frames
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Stack Frames">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-class-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Class Loading
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Class Loading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-java-memory-model-jmm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Java Memory Model (JMM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Java Memory Model (JMM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interview-question_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senior-answer_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Senior Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-up-questions_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow-up Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Revision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Homework
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1192,9 +2078,187 @@
 
 
 
-  <h1>Java Core</h1>
-
-
+<h1 id="java-core-interview-notes">Java Core Interview Notes</h1>
+<h2 id="day-01-jvm-memory">Day 01 — JVM &amp; Memory</h2>
+<h3 id="topics">Topics</h3>
+<ul>
+<li>JVM Architecture</li>
+<li>Stack vs Heap</li>
+<li>Metaspace</li>
+<li>Stack Frames</li>
+<li>Class Loading</li>
+<li>Java Memory Model</li>
+</ul>
+<hr />
+<h2 id="1-jvm-architecture">1. JVM Architecture</h2>
+<h3 id="interview-question">Interview Question</h3>
+<p><strong>Explain the JVM architecture and what happens when a Java application starts.</strong></p>
+<h3 id="senior-answer">Senior Answer</h3>
+<p>Java source code is compiled by the Java compiler (<code>javac</code>) into platform-independent bytecode (<code>.class</code> files). When the application starts, the JVM loads the required classes using the Class Loader subsystem.</p>
+<p>The JVM allocates memory across several runtime data areas, including the Heap, Stack, Metaspace, Program Counter Register, and Native Method Stack.</p>
+<p>The Execution Engine initially interprets the bytecode. Frequently executed ("hot") methods are then compiled into native machine code by the Just-In-Time (JIT) compiler for better performance.</p>
+<p>Memory management is handled automatically by the Garbage Collector, which removes objects that are no longer reachable.</p>
+<h3 id="follow-up-questions">Follow-up Questions</h3>
+<ul>
+<li>What is bytecode?</li>
+<li>Why is Java platform independent?</li>
+<li>What is JIT?</li>
+<li>What is a hot method?</li>
+<li>What is the difference between Interpreter and JIT?</li>
+</ul>
+<h3 id="common-mistakes">Common Mistakes</h3>
+<p>❌ Saying the JVM executes Java source code.</p>
+<p>✅ The JVM executes bytecode.</p>
+<hr />
+<h2 id="2-stack-vs-heap">2. Stack vs Heap</h2>
+<h3 id="interview-question_1">Interview Question</h3>
+<p><strong>What is the difference between Stack and Heap memory?</strong></p>
+<h3 id="senior-answer_1">Senior Answer</h3>
+<p>The Stack is thread-local memory used to store method stack frames, local variables, primitive values, and object references. Memory is allocated and released automatically when methods are invoked and return.</p>
+<p>The Heap is shared across all threads and stores objects and arrays. Objects remain in memory until they become unreachable, after which the Garbage Collector can reclaim them.</p>
+<p>Stack allocation is faster because it follows a Last-In-First-Out (LIFO) structure, while heap allocation requires memory management by the JVM.</p>
+<h3 id="follow-up-questions_1">Follow-up Questions</h3>
+<ul>
+<li>Where are objects stored?</li>
+<li>Where are references stored?</li>
+<li>Can the Heap cause StackOverflowError?</li>
+<li>Can the Stack cause OutOfMemoryError?</li>
+<li>Why is Stack faster?</li>
+</ul>
+<h3 id="common-mistakes_1">Common Mistakes</h3>
+<p>❌ Objects are stored on the Stack.</p>
+<p>✅ Object references are on the Stack; objects themselves are on the Heap.</p>
+<hr />
+<h2 id="3-metaspace">3. Metaspace</h2>
+<h3 id="interview-question_2">Interview Question</h3>
+<p><strong>What is Metaspace?</strong></p>
+<h3 id="senior-answer_2">Senior Answer</h3>
+<p>Metaspace is the JVM memory area that stores class metadata, including class definitions, method metadata, field information, annotations, and runtime constant pools.</p>
+<p>Starting with Java 8, Metaspace replaced the Permanent Generation (PermGen). Unlike PermGen, Metaspace uses native memory instead of the Java Heap, making it more flexible and reducing OutOfMemoryErrors caused by fixed-size metadata storage.</p>
+<h3 id="follow-up-questions_2">Follow-up Questions</h3>
+<ul>
+<li>What replaced PermGen?</li>
+<li>Does Metaspace store objects?</li>
+<li>Can Metaspace run out of memory?</li>
+</ul>
+<h3 id="common-mistakes_2">Common Mistakes</h3>
+<p>❌ Metaspace stores Java objects.</p>
+<p>✅ It stores class metadata, not application objects.</p>
+<hr />
+<h2 id="4-stack-frames">4. Stack Frames</h2>
+<h3 id="interview-question_3">Interview Question</h3>
+<p><strong>What is a Stack Frame?</strong></p>
+<h3 id="senior-answer_3">Senior Answer</h3>
+<p>Every method invocation creates a new Stack Frame on the current thread's stack.</p>
+<p>A Stack Frame contains:</p>
+<ul>
+<li>Local variables</li>
+<li>Operand stack</li>
+<li>Return address</li>
+<li>Method execution information</li>
+</ul>
+<p>When the method completes, its Stack Frame is removed from the stack automatically.</p>
+<p>Each thread has its own independent Stack, which is why local variables are thread-safe by default.</p>
+<h3 id="follow-up-questions_3">Follow-up Questions</h3>
+<ul>
+<li>What is stored inside a Stack Frame?</li>
+<li>Why does recursion cause StackOverflowError?</li>
+<li>Does each thread have its own Stack?</li>
+</ul>
+<h3 id="common-mistakes_3">Common Mistakes</h3>
+<p>❌ Stack Frames are shared between threads.</p>
+<p>✅ Each thread owns its own Stack and Stack Frames.</p>
+<hr />
+<h2 id="5-class-loading">5. Class Loading</h2>
+<h3 id="interview-question_4">Interview Question</h3>
+<p><strong>Explain the Java Class Loading process.</strong></p>
+<h3 id="senior-answer_4">Senior Answer</h3>
+<p>Class loading consists of three main phases:</p>
+<ol>
+<li>Loading – The Class Loader locates the <code>.class</code> file and loads it into memory.</li>
+<li>Linking – The JVM verifies the bytecode, prepares static fields, and resolves symbolic references.</li>
+<li>Initialization – Static variables and static initialization blocks are executed.</li>
+</ol>
+<p>Java uses a parent delegation model where class loaders delegate loading to their parent before attempting to load the class themselves. This prevents duplicate loading and improves security.</p>
+<h3 id="follow-up-questions_4">Follow-up Questions</h3>
+<ul>
+<li>What is the Bootstrap ClassLoader?</li>
+<li>What is Parent Delegation?</li>
+<li>Why is Parent Delegation important?</li>
+</ul>
+<h3 id="common-mistakes_4">Common Mistakes</h3>
+<p>❌ Classes are initialized immediately after compilation.</p>
+<p>✅ Classes are initialized when first actively used.</p>
+<hr />
+<h2 id="6-java-memory-model-jmm">6. Java Memory Model (JMM)</h2>
+<h3 id="interview-question_5">Interview Question</h3>
+<p><strong>What is the Java Memory Model?</strong></p>
+<h3 id="senior-answer_5">Senior Answer</h3>
+<p>The Java Memory Model defines how threads interact through memory and guarantees visibility, ordering, and atomicity of shared variables.</p>
+<p>It specifies when changes made by one thread become visible to other threads and defines the happens-before relationship.</p>
+<p>Synchronization mechanisms such as <code>synchronized</code>, <code>volatile</code>, locks, and atomic classes rely on the Java Memory Model to ensure thread safety.</p>
+<h3 id="follow-up-questions_5">Follow-up Questions</h3>
+<ul>
+<li>What is happens-before?</li>
+<li>What does <code>volatile</code> guarantee?</li>
+<li>Does <code>volatile</code> make operations atomic?</li>
+<li>What visibility guarantees exist?</li>
+</ul>
+<h3 id="common-mistakes_5">Common Mistakes</h3>
+<p>❌ <code>volatile</code> makes every operation thread-safe.</p>
+<p>✅ <code>volatile</code> guarantees visibility and ordering, but not atomicity.</p>
+<hr />
+<h2 id="quick-revision">Quick Revision</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Key Takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JVM</td>
+<td>Executes bytecode using Interpreter and JIT</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Thread-local, stores Stack Frames</td>
+</tr>
+<tr>
+<td>Heap</td>
+<td>Shared memory for objects</td>
+</tr>
+<tr>
+<td>Metaspace</td>
+<td>Stores class metadata</td>
+</tr>
+<tr>
+<td>Stack Frame</td>
+<td>Created for every method call</td>
+</tr>
+<tr>
+<td>Class Loading</td>
+<td>Loading → Linking → Initialization</td>
+</tr>
+<tr>
+<td>JMM</td>
+<td>Defines visibility, ordering and atomicity rules</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="homework">Homework</h2>
+<p>Be able to answer every question above without reading the notes.</p>
+<p>Target answer length:</p>
+<ul>
+<li>JVM Architecture → 2 minutes</li>
+<li>Stack vs Heap → 2 minutes</li>
+<li>Metaspace → 1 minute</li>
+<li>Stack Frames → 1 minute</li>
+<li>Class Loading → 2 minutes</li>
+<li>Java Memory Model → 2 minutes</li>
+</ul>
 
 
 
