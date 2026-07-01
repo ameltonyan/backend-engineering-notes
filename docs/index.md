@@ -2,88 +2,22 @@
 
 A personal knowledge base covering backend engineering topics, system design, and production experience.
 
-## Areas
+## Main Sections
 
-### Java
-
-* Collections
-* JVM Internals
-* Concurrency
-* Generics
-* Exceptions
-
-### Spring
-
-* Dependency Injection
-* Bean Lifecycle
-* Transactions
-* AOP
-* Security
-
-### Persistence
-
-* JPA
-* Hibernate
-* Lazy Loading
-* Locking
-* Performance
-
-### Databases
-
-* ACID
-* Isolation Levels
-* Indexing
-* Query Optimization
-
-### Messaging
-
-* Kafka
-* Consumer Groups
-* Partitions
-* Delivery Guarantees
-
-### Microservices
-
-* Saga Pattern
-* Circuit Breaker
-* Retries
-* Idempotency
-* Distributed Transactions
-
-### Kubernetes
-
-* Deployments
-* Services
-* Ingress
-* Observability
-* Troubleshooting
-
-### System Design
-
-* Payment Systems
-* Money Transfers
-* Rate Limiting
-* Notification Systems
-
-### Architecture
-
-* Event Driven Architecture
-* CQRS
-* Event Sourcing
-* Monolith vs Microservices
-
-### Behavioral
-
-* Leadership
-* Conflict Resolution
-* Project Examples
-* Interview Preparation
+- [Interview Preparation](interview-preparation/index.md) — a structured 14-day interview roadmap
+- [Java](java/collections.md) — collections, JVM internals, concurrency, and core language topics
+- [Spring](spring/spring.md) — Spring Core and Spring Boot concepts
+- [Persistence](persistence/hibernate.md) — Hibernate and JPA notes
+- [Databases](databases/transactions.md) — transactions, isolation, indexing, and optimization
+- [Messaging](messaging/kafka.md) — Kafka and event-driven systems
+- [Kubernetes](kubernetes/kubernetes.md) — deployment and platform concepts
+- [System Design](system-design/system-design.md) — architecture and scalability
 
 ## Purpose
 
 This repository serves as:
 
-* A long-term engineering reference
-* A structured learning resource
-* A collection of interview preparation notes
-* A place to document practical production knowledge
+- a long-term engineering reference
+- a structured learning resource
+- a collection of interview preparation notes
+- a place to document practical production knowledge

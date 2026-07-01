@@ -2,6 +2,8 @@
 
 A personal knowledge base for backend engineering topics such as Java, JVM internals, concurrency, Spring, databases, Kafka, Kubernetes, and system design.
 
+Live site: https://ameltonyan.github.io/backend-engineering-notes/
+
 ## Quick start with MkDocs
 
 ### 1) Install Python dependencies
