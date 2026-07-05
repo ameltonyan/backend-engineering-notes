@@ -1,0 +1,67 @@
+.content-card {
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.status {
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.status.error {
+  color: #fda4af;
+}
+
+.markdown-body {
+  color: #dbeafe;
+  line-height: 1.78;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  color: #f8fafc;
+  margin-top: 1.6em;
+}
+
+.markdown-body p,
+.markdown-body li {
+  color: #cbd5e1;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.3rem;
+}
+
+.markdown-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  background: rgba(148, 163, 184, 0.08);
+  color: #e2e8f0;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+
+.markdown-body pre {
+  background: rgba(15, 23, 42, 0.96);
+  border-radius: 20px;
+  padding: 22px;
+  overflow-x: auto;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.markdown-body a {
+  color: #7dd3fc;
+}
+
+.markdown-body blockquote {
+  border-left: 3px solid rgba(96, 165, 250, 0.7);
+  padding-left: 18px;
+  color: #cbd5e1;
+  margin: 1.5rem 0;
+}
