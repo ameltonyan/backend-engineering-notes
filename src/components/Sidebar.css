@@ -5,6 +5,14 @@
   color: #e2e8f0;
 }
 
+/* Keep sidebar visible while the main content scrolls */
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  /* Do not set height/overflow here - let the content area scroll instead so sidebar stays 'frozen' */
+}
+
 .brand {
   font-size: 1.15rem;
   font-weight: 700;

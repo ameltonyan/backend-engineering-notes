@@ -1,14 +1,15 @@
 .app-shell {
   display: grid;
   grid-template-columns: 280px 1fr;
-  min-height: 100vh;
+  height: 100vh; /* fill viewport so internal content can scroll */
   background: radial-gradient(circle at top left, rgba(49, 130, 206, 0.12), transparent 32%),
     linear-gradient(180deg, #050816 0%, #0b1221 100%);
 }
 
 .content {
   padding: 32px 40px;
-  overflow-y: auto;
+  overflow: auto; /* allow internal scrolling */
+  min-height: 0; /* enable proper child overflow inside CSS grid */
 }
 
 .page-header {
