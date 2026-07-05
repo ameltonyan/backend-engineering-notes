@@ -1,3 +1,5 @@
+import './Header.css'
+
 type HeaderProps = {
   title: string
   section: string
