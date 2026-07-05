@@ -19,7 +19,10 @@ function Sidebar({ pages, activePageId, onSelectPage }: SidebarProps) {
 
   return (
     <aside className="sidebar">
-      <div className="brand">Backend Engineering Notes</div>
+      <div className="brand">
+        <img src="/assets/logo.svg" alt="Backend Engineering Notes" className="brand-logo" />
+        <span>Backend Engineering Notes</span>
+      </div>
 
       <div className="nav-section">
         {sectionNames.map((section) => (
