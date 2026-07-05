@@ -43,3 +43,23 @@
   color: #fff;
   transform: translateX(1px);
 }
+
+/* Section grouping styles */
+.sidebar-section {
+  margin-bottom: 12px;
+}
+
+.section-group-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 8px 0;
+}
+
+.section-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 6px;
+}

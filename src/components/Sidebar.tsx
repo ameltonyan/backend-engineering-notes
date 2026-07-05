@@ -8,19 +8,35 @@ type SidebarProps = {
 }
 
 function Sidebar({ pages, activePageId, onSelectPage }: SidebarProps) {
+  const sections = pages.reduce((acc, page) => {
+    const key = page.section || 'Other'
+    if (!acc[key]) acc[key] = []
+    acc[key].push(page)
+    return acc
+  }, {} as Record<string, ContentPageMeta[]>)
+
+  const sectionNames = Object.keys(sections)
+
   return (
     <aside className="sidebar">
       <div className="brand">Backend Engineering Notes</div>
+
       <div className="nav-section">
-        <div className="nav-section-title">Sections</div>
-        {pages.map((page) => (
-          <button
-            key={page.id}
-            className={page.id === activePageId ? 'nav-item active' : 'nav-item'}
-            onClick={() => onSelectPage(page.id)}
-          >
-            {page.title}
-          </button>
+        {sectionNames.map((section) => (
+          <div className="sidebar-section" key={section}>
+            <div className="section-group-title">{section}</div>
+            <div className="section-items">
+              {sections[section].map((page) => (
+                <button
+                  key={page.id}
+                  className={page.id === activePageId ? 'nav-item active' : 'nav-item'}
+                  onClick={() => onSelectPage(page.id)}
+                >
+                  {page.title}
+                </button>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </aside>
