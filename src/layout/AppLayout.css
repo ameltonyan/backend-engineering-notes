@@ -10,6 +10,7 @@
   padding: 32px 40px;
   overflow: auto;
   min-height: 0;
+  background: linear-gradient(180deg, #050816 0%, #0b1221 100%);
 }
 
 .page-header {
