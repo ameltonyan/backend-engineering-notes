@@ -1,8 +1,6 @@
 # Day 01 — JVM & Memory
 
-## Question 1
-
-### Explain the JVM architecture.
+## Q1. Explain the JVM architecture.
 
 ### Answer
 
@@ -16,9 +14,7 @@ The JVM also manages memory automatically using the Garbage Collector, so develo
 
 ---
 
-## Question 2
-
-### Why is Java platform independent?
+## Q2. Why is Java platform independent?
 
 ### Answer
 
@@ -30,9 +26,7 @@ That's why we often say "Write Once, Run Anywhere."
 
 ---
 
-## Question 3
-
-### What is bytecode?
+## Q3. What is bytecode?
 
 ### Answer
 
@@ -44,9 +38,7 @@ This is one of the main reasons Java applications are portable across different 
 
 ---
 
-## Question 4
-
-### What is the difference between the Interpreter and the JIT compiler?
+## Q4. What is the difference between the Interpreter and the JIT compiler?
 
 ### Answer
 
@@ -60,9 +52,7 @@ The Interpreter provides fast startup, while the JIT compiler improves long-term
 
 ---
 
-## Question 5
-
-### What is a hot method?
+## Q5. What is a hot method?
 
 ### Answer
 
@@ -74,9 +64,7 @@ This optimization improves performance because native code executes much faster 
 
 ---
 
-## Question 6
-
-### What is the difference between Stack and Heap?
+## Q6. What is the difference between Stack and Heap?
 
 ### Answer
 
@@ -90,9 +78,7 @@ Because the Stack is very simple and follows a LIFO structure, it's much faster 
 
 ---
 
-## Question 7
-
-### Where are local variables stored?
+## Q7. Where are local variables stored?
 
 ### Answer
 
@@ -104,9 +90,7 @@ For object variables, the reference is stored on the Stack, while the actual obj
 
 ---
 
-## Question 8
-
-### Where are object references stored?
+## Q8. Where are object references stored?
 
 ### Answer
 
@@ -118,9 +102,7 @@ So the reference is on the Stack, while the actual object lives on the Heap.
 
 ---
 
-## Question 9
-
-### Where are objects stored?
+## Q9. Where are objects stored?
 
 ### Answer
 
@@ -132,9 +114,7 @@ Objects remain on the Heap until they become unreachable, at which point the Gar
 
 ---
 
-## Question 10
-
-### What is Metaspace?
+## Q10. What is Metaspace?
 
 ### Answer
 
@@ -143,3 +123,150 @@ Metaspace is the JVM memory area that stores class metadata, such as class defin
 It replaced PermGen in Java 8 and uses native memory instead of Heap memory.
 
 One important thing to remember is that Metaspace stores information about classes, not the actual objects created from those classes.
+
+
+## Q11. What is a Stack Frame?
+
+### Answer
+
+A Stack Frame is created every time a method is called. It contains everything the JVM needs to execute that method, such as local variables, the operand stack, and the return address.
+
+When the method finishes, the Stack Frame is automatically removed from the Stack.
+
+Since every thread has its own Stack, each thread also has its own Stack Frames.
+
+---
+
+## Q12. What information is stored inside a Stack Frame?
+
+### Answer
+
+A Stack Frame mainly contains local variables, the operand stack used during calculations, the return address so the JVM knows where to continue after the method finishes, and some additional information required during method execution.
+
+Every method call creates a new Stack Frame, and it exists only while that method is executing.
+
+---
+
+## Q13. Why does recursion sometimes cause a StackOverflowError?
+
+### Answer
+
+Every method call creates a new Stack Frame. If a recursive method never reaches its stopping condition, it keeps creating new Stack Frames until the thread's Stack becomes full.
+
+When there's no more space available for another Stack Frame, the JVM throws a `StackOverflowError`.
+
+---
+
+## Q14. Explain the Java Class Loading process.
+
+### Answer
+
+The Class Loading process has three main phases.
+
+First is **Loading**, where the JVM finds the `.class` file and loads it into memory.
+
+Next is **Linking**, where the JVM verifies the bytecode, prepares static fields, and resolves symbolic references.
+
+Finally comes **Initialization**, where static variables receive their values and static initialization blocks are executed.
+
+This process happens automatically the first time a class is actively used.
+
+---
+
+## Q15. What is the Parent Delegation Model?
+
+### Answer
+
+The Parent Delegation Model means that a Class Loader first asks its parent to load a class before trying to load it itself.
+
+For example, if my application needs the `String` class, the application Class Loader first asks the Platform Class Loader, which then asks the Bootstrap Class Loader.
+
+This prevents the same class from being loaded multiple times and also protects core Java classes from being replaced by application classes.
+
+---
+
+## Q16. What is the Bootstrap Class Loader?
+
+### Answer
+
+The Bootstrap Class Loader is the top-level Class Loader in Java.
+
+It's responsible for loading core Java classes such as `java.lang.String`, `Object`, `Integer`, and other classes from the Java runtime.
+
+Since these classes are loaded first, every Java application can use them without explicitly loading them.
+
+---
+
+## Q17. What is the Java Memory Model?
+
+### Answer
+
+The Java Memory Model defines how multiple threads interact through shared memory.
+
+It specifies when changes made by one thread become visible to another thread and defines rules for visibility, ordering, and atomicity.
+
+Without these rules, different threads could see inconsistent values or execute operations in an unexpected order.
+
+Synchronization mechanisms like `synchronized`, `volatile`, locks, and atomic classes all rely on the Java Memory Model.
+
+---
+
+## Q18. What is the happens-before relationship?
+
+### Answer
+
+The happens-before relationship is a rule defined by the Java Memory Model.
+
+It guarantees that if one operation happens before another, then all changes made by the first operation are visible to the second one.
+
+For example, when a thread exits a synchronized block, all changes made inside that block become visible to another thread that later enters the same synchronized block.
+
+This rule is what allows Java to provide predictable behavior in multithreaded applications.
+
+---
+
+## Q19. Why is `counter++` not thread-safe?
+
+### Answer
+
+Although `counter++` looks like a single operation, it's actually three separate steps.
+
+First, the current value is read.
+
+Second, it's incremented.
+
+Finally, the new value is written back.
+
+If two threads perform these steps at the same time, one update can overwrite the other, leading to an incorrect result.
+
+To make it thread-safe, I would use `AtomicInteger`, `LongAdder`, or synchronization, depending on the use case.
+
+---
+
+## Q20. How would you investigate an OutOfMemoryError?
+
+### Answer
+
+The first thing I'd do is identify what type of `OutOfMemoryError` occurred, because there are different causes, such as Java Heap Space, Metaspace, or Direct Buffer Memory.
+
+If it's a Heap issue, I'd capture a Heap Dump and analyze it using tools like Eclipse MAT or VisualVM to see which objects are consuming the most memory and why they're still being referenced.
+
+I'd also check the application logs, review recent changes, and verify whether the problem is caused by a memory leak, an unbounded cache, or simply insufficient Heap size.
+
+Once I identify the root cause, I'd fix the application code if it's a memory leak, or adjust JVM settings like `-Xms` and `-Xmx` if the application genuinely needs more memory.
+
+## Q21. How do you identify what type of `OutOfMemoryError` occurred?
+
+### Answer
+
+The first thing I'd check is the exception message because it usually tells you which memory area has run out. Depending on the type of `OutOfMemoryError`, the investigation is different.
+
+| Error | Typical Cause | Next Step |
+|--------|---------------|-----------|
+| `Java heap space` | Heap is full due to a memory leak, large objects, or insufficient heap size. | Analyze a Heap Dump using Eclipse MAT or VisualVM. |
+| `GC overhead limit exceeded` | The Garbage Collector spends too much time reclaiming very little memory. | Investigate for memory leaks or increase heap size if appropriate. |
+| `Metaspace` | Too many classes loaded or a classloader leak. | Check class loading and Metaspace usage. |
+| `Direct buffer memory` | Off-heap NIO buffers are exhausted. | Investigate `ByteBuffer` usage and native memory. |
+| `Unable to create new native thread` | The JVM or operating system cannot create more threads. | Check thread count, thread dumps, and OS limits. |
+
+The first step is always to identify the exact `OutOfMemoryError`, because each type points to a different root cause and requires a different troubleshooting approach.
