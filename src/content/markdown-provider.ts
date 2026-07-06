@@ -1,6 +1,6 @@
 import type { ContentProvider, ContentPageData, ContentPageMeta } from './content-api'
 
-const manifestPath = '/content/manifest.json'
+const manifestPath = `${import.meta.env.BASE_URL}content/manifest.json`
 
 export class MarkdownContentProvider implements ContentProvider {
   async getPageList(): Promise<ContentPageMeta[]> {
@@ -18,7 +18,7 @@ export class MarkdownContentProvider implements ContentProvider {
       throw new Error(`Page not found: ${id}`)
     }
 
-    const response = await fetch(page.path)
+    const response = await fetch(`${import.meta.env.BASE_URL}${page.path}`)
     if (!response.ok) {
       throw new Error(`Unable to load content: ${page.path}`)
     }
