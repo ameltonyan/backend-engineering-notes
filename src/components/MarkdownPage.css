@@ -1,14 +1,157 @@
-.content-card {
+.content-card,
+.focus-reader {
   background: rgba(15, 23, 42, 0.94);
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: 28px;
-  padding: 30px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
 }
 
+.content-card {
+  padding: 30px;
+}
+
+.focus-reader {
+  display: flex;
+  flex: 0 0 auto;
+  min-height: 0;
+  height: calc(100dvh - 120px);
+  flex-direction: column;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.reader-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  padding: 0 4px 14px;
+}
+
+.reader-position {
+  display: block;
+}
+
+.reader-position {
+  color: #7b93af;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.reader-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.reader-actions button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 50%;
+  background: rgba(30, 41, 59, 0.82);
+  color: #f8fafc;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.reader-actions button:hover:not(:disabled),
+.reader-actions button:focus-visible {
+  border-color: rgba(125, 211, 252, 0.62);
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.reader-actions button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.reader-frame {
+  position: relative;
+  min-height: 0;
+  flex: 1 1 auto;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #070d1d;
+}
+
+.reader-frame::before,
+.reader-frame::after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  height: 42px;
+  content: '';
+  pointer-events: none;
+}
+
+.reader-frame::before {
+  top: 0;
+  background: linear-gradient(to bottom, #070d1d 2%, rgba(7, 13, 29, 0));
+  border-radius: 26px 26px 45% 45%;
+}
+
+.reader-frame::after {
+  bottom: 0;
+  background: linear-gradient(to top, #070d1d 2%, rgba(7, 13, 29, 0));
+  border-radius: 45% 45% 26px 26px;
+}
+
+.reader-viewport {
+  height: 100%;
+  padding: 20px clamp(12px, 3vw, 36px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  scroll-padding-block: 20px;
+  scroll-snap-type: y proximity;
+  scrollbar-color: rgba(125, 211, 252, 0.5) transparent;
+  scrollbar-width: thin;
+}
+
+.reader-viewport:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.7);
+  outline-offset: -3px;
+}
+
+.qa-card {
+  min-height: calc(100% - 32px);
+  margin: 16px auto;
+  padding: clamp(24px, 4vw, 48px);
+  scroll-snap-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08), transparent 38%),
+    linear-gradient(160deg, rgba(20, 31, 54, 0.98), rgba(10, 18, 36, 0.98));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  opacity: 0.58;
+  transform: scale(0.965);
+  transform-origin: center;
+  transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.qa-card.active {
+  border-color: rgba(125, 211, 252, 0.2);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reader-hint {
+  margin: 11px 0 0;
+  flex: 0 0 auto;
+  color: #64748b;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
 .status {
-  color: #cbd5e1;
   margin: 0;
+  color: #cbd5e1;
   line-height: 1.8;
 }
 
@@ -17,8 +160,18 @@
 }
 
 .markdown-body {
+  min-width: 0;
   color: #dbeafe;
   line-height: 1.78;
+  overflow-wrap: anywhere;
+}
+
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body > :last-child {
+  margin-bottom: 0;
 }
 
 .markdown-body h1,
@@ -27,6 +180,12 @@
 .markdown-body h4 {
   color: #f8fafc;
   margin-top: 1.6em;
+}
+
+.markdown-body h2:first-child {
+  margin-bottom: 1em;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.25;
 }
 
 .markdown-body p,
@@ -40,19 +199,24 @@
 }
 
 .markdown-body code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  background: rgba(148, 163, 184, 0.08);
-  color: #e2e8f0;
   padding: 4px 8px;
   border-radius: 10px;
+  background: rgba(148, 163, 184, 0.08);
+  color: #e2e8f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 .markdown-body pre {
-  background: rgba(15, 23, 42, 0.96);
-  border-radius: 20px;
   padding: 22px;
   overflow-x: auto;
   border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 20px;
+  background: rgba(5, 10, 23, 0.96);
+}
+
+.markdown-body pre code {
+  padding: 0;
+  background: transparent;
 }
 
 .markdown-body a {
@@ -60,8 +224,76 @@
 }
 
 .markdown-body blockquote {
-  border-left: 3px solid rgba(96, 165, 250, 0.7);
-  padding-left: 18px;
-  color: #cbd5e1;
   margin: 1.5rem 0;
+  padding-left: 18px;
+  border-left: 3px solid rgba(96, 165, 250, 0.7);
+  color: #cbd5e1;
+}
+
+.markdown-body img,
+.markdown-body table {
+  max-width: 100%;
+}
+
+.markdown-body table {
+  display: block;
+  overflow-x: auto;
+}
+
+@media (max-width: 1024px) {
+  .focus-reader {
+    height: calc(100dvh - 150px);
+  }
+}
+
+@media (max-width: 600px) {
+  .content-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .focus-reader {
+    height: calc(100dvh - 132px);
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .reader-toolbar {
+    padding-bottom: 9px;
+  }
+
+  .reader-frame {
+    border-radius: 20px;
+  }
+
+  .reader-viewport {
+    padding: 14px 8px;
+    scroll-padding-block: 14px;
+  }
+
+  .qa-card {
+    min-height: calc(100% - 24px);
+    margin: 12px auto;
+    padding: 24px 18px;
+    border-radius: 30px;
+  }
+
+  .markdown-body pre {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .reader-hint {
+    margin-top: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader-viewport {
+    scroll-behavior: auto;
+  }
+
+  .qa-card {
+    transition: none;
+  }
 }
