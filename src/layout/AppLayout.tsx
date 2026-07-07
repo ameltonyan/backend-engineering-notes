@@ -12,6 +12,7 @@ function AppLayout() {
   const [pageMarkdown, setPageMarkdown] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const activePage = useMemo(
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
@@ -47,15 +48,40 @@ function AppLayout() {
       .finally(() => setLoading(false))
   }, [activePageId])
 
+  useEffect(() => {
+    if (!isSidebarOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsSidebarOpen(false)
+    }
+
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [isSidebarOpen])
+
   return (
     <div className="app-shell">
       <Sidebar
         pages={pages}
         activePageId={activePageId}
         onSelectPage={setActivePageId}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
       />
+      {isSidebarOpen && (
+        <button
+          className="sidebar-backdrop"
+          type="button"
+          aria-label="Close navigation"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
       <main className="content">
-        <AppHeader title={activePage?.title ?? 'Loading page'} section={activePage?.section ?? 'Loading'} />
+        <AppHeader
+          title={activePage?.title ?? 'Loading page'}
+          section={activePage?.section ?? 'Loading'}
+          onMenuClick={() => setIsSidebarOpen(true)}
+        />
         <MarkdownPage
           markdown={pageMarkdown}
           loading={loading}
