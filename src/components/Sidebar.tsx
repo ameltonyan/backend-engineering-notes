@@ -1,4 +1,5 @@
 import type { ContentPageMeta } from '../content/content-api'
+import logoUrl from '../assets/logo.svg'
 import './Sidebar.css'
 
 type SidebarProps = {
@@ -26,7 +27,7 @@ function Sidebar({ pages, activePageId, onSelectPage, isOpen, onClose }: Sidebar
       aria-label="Site navigation"
     >
       <div className="brand">
-        <img src="/assets/logo.svg" alt="Backend Engineering Notes" className="brand-logo" />
+        <img src={logoUrl} alt="Backend Engineering Notes" className="brand-logo" />
         <span>Backend Engineering Notes</span>
         <button className="sidebar-close" type="button" aria-label="Close navigation" onClick={onClose}>
           ×
