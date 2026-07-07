@@ -165,14 +165,11 @@ function MarkdownPage({ markdown, loading, error }: MarkdownPageProps) {
   }
 
   return (
-    <section className="focus-reader" aria-label="Focused reading mode">
+    <section className="focus-reader" aria-label="Question and answer reader">
       <div className="reader-toolbar">
-        <div>
-          <span className="reader-eyebrow">Focused reading</span>
-          <span className="reader-position" aria-live="polite">
-            {sections.length ? `${activeIndex + 1} of ${sections.length}` : 'No sections'}
-          </span>
-        </div>
+        <span className="reader-position" aria-live="polite">
+          {sections.length ? `Question ${activeIndex + 1} of ${sections.length}` : 'No questions'}
+        </span>
         <div className="reader-actions">
           <button
             type="button"

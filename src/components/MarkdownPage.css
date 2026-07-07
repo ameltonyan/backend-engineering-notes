@@ -12,8 +12,9 @@
 
 .focus-reader {
   display: flex;
+  flex: 0 0 auto;
   min-height: 0;
-  height: calc(100dvh - 178px);
+  height: calc(100dvh - 120px);
   flex-direction: column;
   padding: 18px;
   overflow: hidden;
@@ -27,23 +28,14 @@
   padding: 0 4px 14px;
 }
 
-.reader-eyebrow,
 .reader-position {
   display: block;
 }
 
-.reader-eyebrow {
-  color: #e2e8f0;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .reader-position {
-  margin-top: 2px;
   color: #7b93af;
   font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .reader-actions {
