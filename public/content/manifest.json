@@ -1,5 +1,4 @@
 [
-  {"id": "home", "title": "Home", "section": "Overview", "path": "content/index.md"},
   {"id": "interview-prep", "title": "Interview Preparation", "section": "Interview Preparation", "path": "content/interview-preparation/index.md"},
   {"id": "java-core", "title": "Java Core", "section": "Java", "path": "content/java/java-core.md"},
   {"id": "java-collections", "title": "Collections", "section": "Java", "path": "content/java/collections.md"},
