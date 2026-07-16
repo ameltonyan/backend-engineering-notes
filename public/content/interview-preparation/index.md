@@ -1,9 +1,5 @@
 # Interview Preparation
 
-This section turns your notes into a more structured interview-preparation roadmap for a senior Java engineer.
-
-The goal is not to relearn everything from zero, but to refresh the core concepts, strengthen the internals, and practice explaining them clearly.
-
 ## Recommended Study Pattern
 
 For each day, follow this rhythm:
@@ -13,11 +9,9 @@ For each day, follow this rhythm:
 3. 45 minutes — answer 20–30 interview questions aloud
 4. 30 minutes — solve one coding or design problem
 
----
+## Day 01 — JVM & Memory
 
-## Week 1 — Java Mastery
-
-### Day 01 — JVM & Memory
+**Week 1 — Java Mastery**
 
 **Theory**
 
@@ -33,9 +27,8 @@ For each day, follow this rhythm:
 - 25 interview questions
 - Review memory-related bugs and GC behavior
 
----
 
-### Day 02 — Collections
+## Day 02 — Collections
 
 **Theory**
 
@@ -50,9 +43,8 @@ For each day, follow this rhythm:
 - 30 interview questions
 - Compare collection choices for different scenarios
 
----
 
-### Day 03 — Concurrency I
+## Day 03 — Concurrency I
 
 **Theory**
 
@@ -72,9 +64,8 @@ For each day, follow this rhythm:
 - 30 interview questions
 - Focus on visibility, atomicity, and coordination
 
----
 
-### Day 04 — Concurrency II
+## Day 04 — Concurrency II
 
 **Theory**
 
@@ -91,9 +82,8 @@ For each day, follow this rhythm:
 - One multithreading exercise
 - One real-world concurrency scenario
 
----
 
-### Day 05 — Core Java Language
+## Day 05 — Core Java Language
 
 **Theory**
 
@@ -112,9 +102,8 @@ For each day, follow this rhythm:
 
 - Review common interview questions on language features
 
----
 
-### Day 06 — Functional Java
+## Day 06 — Functional Java
 
 **Theory**
 
@@ -129,9 +118,8 @@ For each day, follow this rhythm:
 - Stream exercises
 - Compare imperative vs functional solutions
 
----
 
-### Day 07 — Mock Interview
+## Day 07 — Mock Interview
 
 **Focus**
 
@@ -139,11 +127,9 @@ For each day, follow this rhythm:
 - Review weak areas
 - Practice speaking clearly under pressure
 
----
+## Day 08 — Spring Core
 
-## Week 2 — Spring, Hibernate & Architecture
-
-### Day 08 — Spring Core
+**Week 2 — Spring, Hibernate & Architecture**
 
 **Theory**
 
@@ -158,9 +144,8 @@ For each day, follow this rhythm:
 
 - Explain bean creation and lifecycle flow
 
----
 
-### Day 09 — Spring Boot
+## Day 09 — Spring Boot
 
 **Theory**
 
@@ -176,9 +161,8 @@ For each day, follow this rhythm:
 
 - One Spring Boot design or debugging scenario
 
----
 
-### Day 10 — Hibernate & JPA
+## Day 10 — Hibernate & JPA
 
 **Theory**
 
@@ -195,9 +179,8 @@ For each day, follow this rhythm:
 
 - Common Hibernate interview questions
 
----
 
-### Day 11 — Database Essentials
+## Day 11 — Database Essentials
 
 **Theory**
 
@@ -212,9 +195,8 @@ For each day, follow this rhythm:
 
 - Explain how you would debug a slow query
 
----
 
-### Day 12 — Microservices & Messaging
+## Day 12 — Microservices & Messaging
 
 **Theory**
 
@@ -233,9 +215,8 @@ For each day, follow this rhythm:
 - One architecture discussion
 - One messaging tradeoff question
 
----
 
-### Day 13 — System Design
+## Day 13 — System Design
 
 **Theory**
 
@@ -251,9 +232,8 @@ For each day, follow this rhythm:
 
 - Design a simple scalable system end to end
 
----
 
-### Day 14 — Final Mock Interview
+## Day 14 — Final Mock Interview
 
 **Focus**
 
@@ -263,8 +243,6 @@ For each day, follow this rhythm:
 - Architecture
 - Coding
 - Behavioral questions
-
----
 
 ## Final Advice
 

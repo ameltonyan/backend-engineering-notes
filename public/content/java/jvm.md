@@ -10,8 +10,6 @@ Stack stores method frames, local variables, and references and is private to ea
 
 Metaspace stores class metadata and resides in native memory outside the heap.
 
----
-
 ## Heap
 
 Stores:
@@ -22,8 +20,6 @@ Stores:
 Managed by the garbage collector.
 
 Shared between all threads.
-
----
 
 ## Stack
 
@@ -42,8 +38,6 @@ Follows LIFO behavior.
 Each thread owns its own stack.
 
 Local variables are not shared between threads.
-
----
 
 ## Metaspace
 
@@ -67,8 +61,6 @@ PermGen.
 
 Java 8 replaced PermGen with Metaspace.
 
----
-
 ## String Pool
 
 ### Interview Answer
@@ -88,8 +80,6 @@ In modern Java versions, the String Pool resides inside the heap.
 * Hashcode caching
 * Security
 
----
-
 ## Full GC
 
 ### Interview Answer
@@ -103,8 +93,6 @@ Frequent Full GC events usually indicate memory pressure or memory leaks.
 ### What is Stop-The-World?
 
 Application threads are temporarily paused while garbage collection is performed.
-
----
 
 ## ClassLoader
 

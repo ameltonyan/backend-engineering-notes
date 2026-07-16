@@ -1,12 +1,8 @@
 # Java Core and Concurrency
 
-## 1. HashMap vs ConcurrentHashMap vs Hashtable
-
-## Question
+## HashMap vs ConcurrentHashMap vs Hashtable
 
 What is the difference between HashMap, ConcurrentHashMap, and Hashtable?
-
-## Answer
 
 HashMap is a non-thread-safe implementation of the Map interface that stores data as key-value pairs. Internally it uses hashing to distribute entries across buckets, which allows O(1) average lookup performance.
 
@@ -115,9 +111,7 @@ For concurrent access, ConcurrentHashMap should be used.
 * ConcurrentHashMap uses CAS and fine-grained synchronization.
 * Hashtable synchronizes the entire map.
 
----
-
-## 2. What happens when executing `String s = "hello";`?
+## What happens when executing `String s = "hello";`?
 
 When the JVM encounters the string literal `"hello"`, it first checks the String Pool.
 
@@ -144,9 +138,7 @@ String b = "hello";
 
 Both variables reference the same String object.
 
----
-
-## 3. Explain Heap, Stack, and Metaspace
+## Explain Heap, Stack, and Metaspace
 
 ### Heap
 
@@ -161,7 +153,6 @@ Characteristics:
 * Managed by the garbage collector
 * Configurable using `-Xms` and `-Xmx`
 
----
 
 ### Stack
 
@@ -178,7 +169,6 @@ Characteristics:
 * One stack per thread
 * LIFO (Last-In-First-Out)
 
----
 
 ### Metaspace
 
@@ -196,9 +186,7 @@ Characteristics:
 * Outside the heap
 * Replaced PermGen in Java 8
 
----
-
-## 4. What is the difference between `==` and `equals()`?
+## What is the difference between `==` and `equals()`?
 
 ### `==`
 
@@ -222,7 +210,6 @@ Output:
 false
 ```
 
----
 
 ### `equals()`
 
@@ -244,9 +231,7 @@ true
 
 Whenever `equals()` is overridden, `hashCode()` must also be overridden.
 
----
-
-## 5. What is a memory leak in Java?
+## What is a memory leak in Java?
 
 A memory leak occurs when objects are no longer needed but remain reachable from GC roots.
 
@@ -262,9 +247,7 @@ A memory leak occurs when objects are no longer needed but remain reachable from
 
 Garbage Collection cannot remove objects that are still reachable.
 
----
-
-## 6. Explain `volatile`, `synchronized`, and `AtomicInteger`
+## Explain `volatile`, `synchronized`, and `AtomicInteger`
 
 ### volatile
 
@@ -286,7 +269,6 @@ counter++;
 
 The increment operation is still not thread-safe.
 
----
 
 ### synchronized
 
@@ -304,7 +286,6 @@ synchronized(lock) {
 }
 ```
 
----
 
 ### AtomicInteger
 
@@ -318,7 +299,6 @@ AtomicInteger counter = new AtomicInteger();
 counter.incrementAndGet();
 ```
 
----
 
 ### What is CAS?
 
@@ -341,9 +321,7 @@ CMPXCHG
 
 on x86 processors.
 
----
-
-## 7. What happens during a Full GC?
+## What happens during a Full GC?
 
 A Full GC performs garbage collection across the entire heap.
 
@@ -364,9 +342,7 @@ Frequent Full GCs may indicate:
 * Insufficient heap size
 * Poor JVM tuning
 
----
-
-## 8. What is a ClassLoader?
+## What is a ClassLoader?
 
 A ClassLoader loads classes into JVM memory at runtime.
 
@@ -379,19 +355,16 @@ java.lang.String
 java.util.List
 ```
 
----
 
 ### Platform ClassLoader
 
 Loads JDK platform libraries.
 
----
 
 ### Application ClassLoader
 
 Loads application classes from the classpath.
 
----
 
 ### Parent Delegation Model
 
@@ -410,9 +383,7 @@ Benefits:
 * Security
 * Prevents duplicate class loading
 
----
-
-## 9. What happens when multiple threads modify the same HashMap?
+## What happens when multiple threads modify the same HashMap?
 
 HashMap is not thread-safe.
 
@@ -435,9 +406,7 @@ For concurrent access, use:
 ConcurrentHashMap
 ```
 
----
-
-## 10. Explain optimistic and pessimistic locking
+## Explain optimistic and pessimistic locking
 
 ### Optimistic Locking
 
@@ -473,7 +442,6 @@ is thrown.
 
 * Updates may need retries
 
----
 
 ### Pessimistic Locking
 
@@ -499,9 +467,7 @@ FOR UPDATE;
 * Potential deadlocks
 * Longer lock durations
 
----
-
-## 11. Explain ExecutorService, ForkJoinPool, and CompletableFuture
+## Explain ExecutorService, ForkJoinPool, and CompletableFuture
 
 ### ExecutorService
 
@@ -522,7 +488,6 @@ Benefits:
 * Resource management
 * Better scalability
 
----
 
 ### ForkJoinPool
 
@@ -542,7 +507,6 @@ parallelStream()
 
 often uses ForkJoinPool internally.
 
----
 
 ### Work Stealing
 
@@ -562,7 +526,6 @@ Benefits:
 * Better CPU utilization
 * Improved load balancing
 
----
 
 ### CompletableFuture
 
@@ -587,7 +550,6 @@ future.thenApply(...)
 
 Allows asynchronous workflows without blocking.
 
----
 
 ### Relationship
 
@@ -595,9 +557,7 @@ Allows asynchronous workflows without blocking.
 * ForkJoinPool is a specialized ExecutorService.
 * CompletableFuture represents asynchronous computations and typically uses ExecutorService or ForkJoinPool underneath.
 
----
-
-## 12. What is a deadlock?
+## What is a deadlock?
 
 A deadlock occurs when two or more threads permanently wait for resources held by each other.
 
@@ -619,7 +579,6 @@ Waiting for Lock A
 
 Neither thread can continue.
 
----
 
 ### Detection
 
@@ -633,7 +592,6 @@ jstack <pid>
 * Java Mission Control
 * Thread Dumps
 
----
 
 ### Prevention
 
@@ -642,9 +600,7 @@ jstack <pid>
 * tryLock()
 * Lock acquisition timeouts
 
----
-
-## 13. What is the difference between synchronized and ReentrantLock?
+## What is the difference between synchronized and ReentrantLock?
 
 ### synchronized
 
@@ -666,7 +622,6 @@ synchronized(lock) {
 
 * Less flexible
 
----
 
 ### ReentrantLock
 
@@ -715,7 +670,6 @@ Condition notFull;
 * Must manually unlock
 * Easier to introduce bugs
 
----
 
 ### Condition Objects
 
@@ -728,9 +682,7 @@ Example:
 
 This avoids waking unrelated threads and improves efficiency.
 
----
-
-## 14. How would you implement a thread-safe counter?
+## How would you implement a thread-safe counter?
 
 ### Using synchronized
 
@@ -745,7 +697,6 @@ public class Counter {
 }
 ```
 
----
 
 ### Using AtomicInteger
 
@@ -761,7 +712,6 @@ public class Counter {
 }
 ```
 
----
 
 ### High Throughput Systems
 

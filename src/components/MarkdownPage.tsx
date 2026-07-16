@@ -7,6 +7,7 @@ type MarkdownPageProps = {
   markdown: string
   loading: boolean
   error: string | null
+  pageId?: string
 }
 
 type ReadingSection = {
@@ -85,47 +86,58 @@ function splitIntoReadingSections(markdown: string): ReadingSection[] {
   return result
 }
 
-function MarkdownPage({ markdown, loading, error }: MarkdownPageProps) {
+function MarkdownPage({ markdown, loading, error, pageId }: MarkdownPageProps) {
   const sections = useMemo(() => splitIntoReadingSections(markdown), [markdown])
   const [activeIndex, setActiveIndex] = useState(0)
+  const activeIndexRef = useRef(0)
   const viewportRef = useRef<HTMLDivElement>(null)
-  const frameRef = useRef<number | null>(null)
 
   useEffect(() => {
+    activeIndexRef.current = 0
     setActiveIndex(0)
     viewportRef.current?.scrollTo({ top: 0 })
   }, [markdown])
 
-  useEffect(() => () => {
-    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
-  }, [])
+  useEffect(() => {
+    const viewport = viewportRef.current
+    if (!viewport) return
 
-  const updateActiveSection = () => {
-    if (frameRef.current !== null) return
+    const cards = Array.from(viewport.querySelectorAll<HTMLElement>('.qa-card'))
+    if (!cards.length) return
+    const visibility = new Map<HTMLElement, number>()
 
-    frameRef.current = requestAnimationFrame(() => {
-      frameRef.current = null
-      const viewport = viewportRef.current
-      if (!viewport) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          visibility.set(entry.target as HTMLElement, entry.isIntersecting ? entry.intersectionRatio : 0)
+        })
 
-      const viewportCenter = viewport.getBoundingClientRect().top + viewport.clientHeight / 2
-      const cards = Array.from(viewport.querySelectorAll<HTMLElement>('.qa-card'))
-      let nearestIndex = 0
-      let nearestDistance = Number.POSITIVE_INFINITY
+        const visibleCard = cards.reduce<HTMLElement | null>((mostVisible, card) => {
+          if (!mostVisible || (visibility.get(card) ?? 0) > (visibility.get(mostVisible) ?? 0)) {
+            return card
+          }
 
-      cards.forEach((card, index) => {
-        const bounds = card.getBoundingClientRect()
-        const cardCenter = bounds.top + Math.min(bounds.height, viewport.clientHeight) / 2
-        const distance = Math.abs(cardCenter - viewportCenter)
-        if (distance < nearestDistance) {
-          nearestDistance = distance
-          nearestIndex = index
-        }
-      })
+          return mostVisible
+        }, null)
 
-      setActiveIndex(nearestIndex)
-    })
-  }
+        if (!visibleCard || (visibility.get(visibleCard) ?? 0) === 0) return
+
+        const nextIndex = cards.indexOf(visibleCard)
+        if (nextIndex === -1 || nextIndex === activeIndexRef.current) return
+
+        activeIndexRef.current = nextIndex
+        setActiveIndex(nextIndex)
+      },
+      {
+        root: viewport,
+        rootMargin: '-20% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
+    )
+
+    cards.forEach((card) => observer.observe(card))
+    return () => observer.disconnect()
+  }, [markdown])
 
   const goToSection = (index: number) => {
     const nextIndex = Math.max(0, Math.min(index, sections.length - 1))
@@ -141,6 +153,7 @@ function MarkdownPage({ markdown, loading, error }: MarkdownPageProps) {
       viewport.scrollTo({ top, behavior: 'smooth' })
     }
 
+    activeIndexRef.current = nextIndex
     setActiveIndex(nextIndex)
   }
 
@@ -155,6 +168,16 @@ function MarkdownPage({ markdown, loading, error }: MarkdownPageProps) {
     }
   }
 
+  const activeSection = sections[activeIndex]
+  const dayMatch = activeSection?.label.match(/^day\s+0*(\d+)\b/i)
+  const readerPosition = pageId === 'interview-prep'
+    ? dayMatch
+      ? `Day ${Number(dayMatch[1])}`
+      : activeSection?.label ?? 'Interview preparation'
+    : sections.length
+      ? `Question ${activeIndex + 1} of ${sections.length}`
+      : 'No questions'
+
   if (loading || error) {
     return (
       <div className="content-card">
@@ -168,7 +191,7 @@ function MarkdownPage({ markdown, loading, error }: MarkdownPageProps) {
     <section className="focus-reader" aria-label="Question and answer reader">
       <div className="reader-toolbar">
         <span className="reader-position" aria-live="polite">
-          {sections.length ? `Question ${activeIndex + 1} of ${sections.length}` : 'No questions'}
+          {readerPosition}
         </span>
         <div className="reader-actions">
           <button
@@ -195,7 +218,6 @@ function MarkdownPage({ markdown, loading, error }: MarkdownPageProps) {
           ref={viewportRef}
           className="reader-viewport"
           tabIndex={0}
-          onScroll={updateActiveSection}
           onKeyDown={handleKeyDown}
           aria-label="Questions and answers. Scroll vertically or use arrow keys to navigate."
         >

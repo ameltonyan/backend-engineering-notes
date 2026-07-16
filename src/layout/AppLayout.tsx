@@ -86,6 +86,7 @@ function AppLayout() {
           markdown={pageMarkdown}
           loading={loading}
           error={error}
+          pageId={activePage?.id}
         />
       </main>
     </div>
