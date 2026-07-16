@@ -13,6 +13,10 @@ function AppLayout() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const [theme, setTheme] = useState<'dark' | 'light'>(() =>
+    window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
+  )
 
   const activePage = useMemo(
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
@@ -24,9 +28,7 @@ function AppLayout() {
       .getPageList()
       .then((list) => {
         setPages(list)
-        if (!activePageId && list.length) {
-          setActivePageId(list[0].id)
-        }
+        setActivePageId((currentPageId) => currentPageId || list[0]?.id || '')
       })
       .catch((err) => setError(err.message))
   }, [])
@@ -36,16 +38,29 @@ function AppLayout() {
       return
     }
 
-    setLoading(true)
-    setError(null)
-    contentProvider
-      .getPageData(activePageId)
-      .then((page) => setPageMarkdown(page.markdown))
-      .catch((err) => {
-        setError(err.message)
-        setPageMarkdown('')
-      })
-      .finally(() => setLoading(false))
+    let cancelled = false
+
+    const loadPage = async () => {
+      setLoading(true)
+      setError(null)
+
+      try {
+        const page = await contentProvider.getPageData(activePageId)
+        if (!cancelled) setPageMarkdown(page.markdown)
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : 'Unable to load content')
+          setPageMarkdown('')
+        }
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    void loadPage()
+    return () => {
+      cancelled = true
+    }
   }, [activePageId])
 
   useEffect(() => {
@@ -59,15 +74,33 @@ function AppLayout() {
     return () => document.removeEventListener('keydown', closeOnEscape)
   }, [isSidebarOpen])
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    window.localStorage.setItem('theme', theme)
+  }, [theme])
+
   return (
-    <div className="app-shell">
+    <div className={isSidebarCollapsed ? 'app-shell sidebar-collapsed' : 'app-shell'}>
       <Sidebar
         pages={pages}
         activePageId={activePageId}
         onSelectPage={setActivePageId}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
+        isLightTheme={theme === 'light'}
+        onThemeToggle={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')}
       />
+      <button
+        className="sidebar-edge-toggle"
+        type="button"
+        aria-label={isSidebarCollapsed ? 'Show navigation' : 'Hide navigation'}
+        aria-controls="site-navigation"
+        aria-expanded={!isSidebarCollapsed}
+        title={isSidebarCollapsed ? 'Show navigation' : 'Hide navigation'}
+        onClick={() => setIsSidebarCollapsed((collapsed) => !collapsed)}
+      >
+        <span aria-hidden="true">{isSidebarCollapsed ? '›' : '‹'}</span>
+      </button>
       {isSidebarOpen && (
         <button
           className="sidebar-backdrop"
@@ -83,6 +116,7 @@ function AppLayout() {
           onMenuClick={() => setIsSidebarOpen(true)}
         />
         <MarkdownPage
+          key={activePageId}
           markdown={pageMarkdown}
           loading={loading}
           error={error}

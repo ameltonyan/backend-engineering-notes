@@ -8,9 +8,19 @@ type SidebarProps = {
   onSelectPage: (id: string) => void
   isOpen: boolean
   onClose: () => void
+  isLightTheme: boolean
+  onThemeToggle: () => void
 }
 
-function Sidebar({ pages, activePageId, onSelectPage, isOpen, onClose }: SidebarProps) {
+function Sidebar({
+  pages,
+  activePageId,
+  onSelectPage,
+  isOpen,
+  onClose,
+  isLightTheme,
+  onThemeToggle,
+}: SidebarProps) {
   const sections = pages.reduce((acc, page) => {
     const key = page.section || 'Other'
     if (!acc[key]) acc[key] = []
@@ -54,6 +64,21 @@ function Sidebar({ pages, activePageId, onSelectPage, isOpen, onClose }: Sidebar
             </div>
           </div>
         ))}
+      </div>
+      <div className="sidebar-footer">
+        <button
+          className="theme-toggle"
+          type="button"
+          role="switch"
+          aria-checked={isLightTheme}
+          aria-label="Light theme"
+          onClick={onThemeToggle}
+        >
+          <span className="theme-toggle-label">Light theme</span>
+          <span className="theme-toggle-track" aria-hidden="true">
+            <span className="theme-toggle-thumb" />
+          </span>
+        </button>
       </div>
     </aside>
   )

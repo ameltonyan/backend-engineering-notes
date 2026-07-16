@@ -93,12 +93,6 @@ function MarkdownPage({ markdown, loading, error, pageId }: MarkdownPageProps) {
   const viewportRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    activeIndexRef.current = 0
-    setActiveIndex(0)
-    viewportRef.current?.scrollTo({ top: 0 })
-  }, [markdown])
-
-  useEffect(() => {
     const viewport = viewportRef.current
     if (!viewport) return
 
