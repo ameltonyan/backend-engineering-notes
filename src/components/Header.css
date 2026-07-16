@@ -4,7 +4,6 @@
 }
 
 .menu-button {
-  display: none;
   width: 44px;
   height: 44px;
   flex: 0 0 auto;
@@ -14,6 +13,10 @@
   color: #f8fafc;
   font-size: 1.4rem;
   cursor: pointer;
+}
+
+.menu-button {
+  display: none;
 }
 
 .section-label {

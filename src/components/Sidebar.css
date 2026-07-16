@@ -1,8 +1,11 @@
 .sidebar {
+  box-sizing: border-box;
   padding: 28px 24px;
+  min-width: 0;
   border-right: 1px solid rgba(148, 163, 184, 0.1);
   background: #081028; /* opaque background to avoid showing underlying shell gradient */
   color: #e2e8f0;
+  transition: opacity 160ms ease;
 }
 
 /* Keep sidebar visible while the main content scrolls */
@@ -121,6 +124,7 @@
     font-size: 1.65rem;
     cursor: pointer;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
