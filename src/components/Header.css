@@ -7,10 +7,10 @@
   width: 44px;
   height: 44px;
   flex: 0 0 auto;
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  border: 1px solid var(--border-strong);
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.94);
-  color: #f8fafc;
+  background: var(--surface-background);
+  color: var(--text-strong);
   font-size: 1.4rem;
   cursor: pointer;
 }
@@ -23,7 +23,7 @@
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.7rem;
-  color: #7b93af;
+  color: var(--text-muted);
   margin: 0 0 4px;
 }
 
@@ -31,7 +31,7 @@
   margin: 0;
   font-size: 1.6rem;
   line-height: 1.2;
-  color: #f8fafc;
+  color: var(--text-strong);
 }
 
 @media (max-width: 1024px) {

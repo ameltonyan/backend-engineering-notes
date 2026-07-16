@@ -1,3 +1,59 @@
+:root {
+  color-scheme: dark;
+  --app-background: radial-gradient(circle at top left, rgba(49, 130, 206, 0.12), transparent 32%), linear-gradient(180deg, #050816 0%, #0b1221 100%);
+  --sidebar-background: #081028;
+  --surface-background: rgba(15, 23, 42, 0.94);
+  --reader-background: #070d1d;
+  --reader-fade: rgba(7, 13, 29, 0);
+  --card-start: rgba(20, 31, 54, 0.98);
+  --card-end: rgba(10, 18, 36, 0.98);
+  --card-glow: rgba(56, 189, 248, 0.08);
+  --code-background: rgba(5, 10, 23, 0.96);
+  --control-background: rgba(30, 41, 59, 0.82);
+  --control-hover: rgba(51, 65, 85, 0.9);
+  --nav-background: rgba(148, 163, 184, 0.08);
+  --nav-active: rgba(148, 163, 184, 0.16);
+  --border: rgba(148, 163, 184, 0.12);
+  --border-strong: rgba(148, 163, 184, 0.2);
+  --text-strong: #f8fafc;
+  --text: #cbd5e1;
+  --text-soft: #dbeafe;
+  --text-muted: #7b93af;
+  --text-subtle: #64748b;
+  --accent: #7dd3fc;
+  --accent-strong: rgba(125, 211, 252, 0.7);
+  --shadow: rgba(0, 0, 0, 0.28);
+  --backdrop: rgba(2, 6, 23, 0.72);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --app-background: radial-gradient(circle at top left, rgba(14, 116, 144, 0.08), transparent 32%), linear-gradient(180deg, #f8fafc 0%, #eaf0f7 100%);
+  --sidebar-background: #ffffff;
+  --surface-background: rgba(255, 255, 255, 0.94);
+  --reader-background: #edf2f7;
+  --reader-fade: rgba(237, 242, 247, 0);
+  --card-start: #ffffff;
+  --card-end: #f8fafc;
+  --card-glow: rgba(14, 116, 144, 0.06);
+  --code-background: #f1f5f9;
+  --control-background: #ffffff;
+  --control-hover: #e2e8f0;
+  --nav-background: #f1f5f9;
+  --nav-active: #dbeafe;
+  --border: rgba(51, 65, 85, 0.14);
+  --border-strong: rgba(51, 65, 85, 0.24);
+  --text-strong: #0f172a;
+  --text: #334155;
+  --text-soft: #1e293b;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  --accent: #0369a1;
+  --accent-strong: rgba(3, 105, 161, 0.72);
+  --shadow: rgba(15, 23, 42, 0.12);
+  --backdrop: rgba(15, 23, 42, 0.34);
+}
+
 * {
   box-sizing: border-box;
 }

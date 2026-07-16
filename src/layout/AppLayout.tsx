@@ -14,6 +14,9 @@ function AppLayout() {
   const [error, setError] = useState<string | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const [theme, setTheme] = useState<'dark' | 'light'>(() =>
+    window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
+  )
 
   const activePage = useMemo(
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
@@ -71,6 +74,11 @@ function AppLayout() {
     return () => document.removeEventListener('keydown', closeOnEscape)
   }, [isSidebarOpen])
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    window.localStorage.setItem('theme', theme)
+  }, [theme])
+
   return (
     <div className={isSidebarCollapsed ? 'app-shell sidebar-collapsed' : 'app-shell'}>
       <Sidebar
@@ -79,6 +87,8 @@ function AppLayout() {
         onSelectPage={setActivePageId}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
+        isLightTheme={theme === 'light'}
+        onThemeToggle={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')}
       />
       <button
         className="sidebar-edge-toggle"
