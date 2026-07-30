@@ -7,6 +7,7 @@ import type { ContentPageMeta } from '../content/content-api'
 import './AppLayout.css'
 
 const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
+const sidebarCollapsedStorageKey = 'backend-engineering-notes:sidebar-collapsed'
 
 function AppLayout() {
   const [pages, setPages] = useState<ContentPageMeta[]>([])
@@ -15,7 +16,9 @@ function AppLayout() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() =>
+    window.localStorage.getItem(sidebarCollapsedStorageKey) === 'true',
+  )
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
   )
@@ -98,6 +101,10 @@ function AppLayout() {
     document.documentElement.dataset.theme = theme
     window.localStorage.setItem('theme', theme)
   }, [theme])
+
+  useEffect(() => {
+    window.localStorage.setItem(sidebarCollapsedStorageKey, String(isSidebarCollapsed))
+  }, [isSidebarCollapsed])
 
   return (
     <div className={isSidebarCollapsed ? 'app-shell sidebar-collapsed' : 'app-shell'}>

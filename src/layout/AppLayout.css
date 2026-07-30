@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 280px 1fr;
   height: 100vh;
-  transition: grid-template-columns 200ms ease;
   background: var(--app-background);
 }
 
@@ -33,7 +32,6 @@
   font-size: 1.35rem;
   line-height: 1;
   cursor: pointer;
-  transition: left 200ms ease, background 160ms ease;
 }
 
 .sidebar-edge-toggle:hover,
@@ -85,16 +83,6 @@
     border: 0;
     background: var(--backdrop);
     cursor: pointer;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .app-shell {
-    transition: none;
-  }
-
-  .sidebar-edge-toggle {
-    transition: none;
   }
 }
 
