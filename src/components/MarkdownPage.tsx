@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import './MarkdownPage.css'
@@ -28,6 +28,29 @@ const supportingHeadings = new Set([
   'real world usage',
   'common follow-up questions',
 ])
+
+const readingPositionStorageKey = 'backend-engineering-notes:reading-positions'
+
+function getSavedReadingPosition(pageId: string) {
+  try {
+    const savedPositions = JSON.parse(window.localStorage.getItem(readingPositionStorageKey) ?? '{}') as Record<string, unknown>
+    const position = savedPositions[pageId]
+
+    return typeof position === 'number' && Number.isFinite(position) ? position : 0
+  } catch {
+    return 0
+  }
+}
+
+function saveReadingPosition(pageId: string, position: number) {
+  try {
+    const savedPositions = JSON.parse(window.localStorage.getItem(readingPositionStorageKey) ?? '{}') as Record<string, unknown>
+    savedPositions[pageId] = position
+    window.localStorage.setItem(readingPositionStorageKey, JSON.stringify(savedPositions))
+  } catch {
+    // Reading-position persistence is optional when storage is unavailable.
+  }
+}
 
 function plainHeading(value: string) {
   return value
@@ -88,9 +111,39 @@ function splitIntoReadingSections(markdown: string): ReadingSection[] {
 
 function MarkdownPage({ markdown, loading, error, pageId }: MarkdownPageProps) {
   const sections = useMemo(() => splitIntoReadingSections(markdown), [markdown])
+  const isContentReady = !loading && Boolean(markdown.trim())
   const [activeIndex, setActiveIndex] = useState(0)
   const activeIndexRef = useRef(0)
   const viewportRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current
+    if (!viewport || !pageId || !isContentReady) return
+
+    const savedPosition = getSavedReadingPosition(pageId)
+    const maximumScrollPosition = Math.max(0, viewport.scrollHeight - viewport.clientHeight)
+    viewport.scrollTop = Math.min(savedPosition, maximumScrollPosition)
+
+    const cards = Array.from(viewport.querySelectorAll<HTMLElement>('.qa-card'))
+    const nextIndex = cards.findIndex((card) => card.offsetTop + card.offsetHeight > viewport.scrollTop)
+    if (nextIndex !== -1) {
+      activeIndexRef.current = nextIndex
+      setActiveIndex(nextIndex)
+    }
+  }, [isContentReady, markdown, pageId])
+
+  useEffect(() => {
+    const viewport = viewportRef.current
+    if (!viewport || !pageId || !isContentReady) return
+
+    const savePosition = () => saveReadingPosition(pageId, viewport.scrollTop)
+    viewport.addEventListener('scroll', savePosition, { passive: true })
+
+    return () => {
+      savePosition()
+      viewport.removeEventListener('scroll', savePosition)
+    }
+  }, [isContentReady, markdown, pageId])
 
   useEffect(() => {
     const viewport = viewportRef.current
