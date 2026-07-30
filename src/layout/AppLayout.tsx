@@ -27,6 +27,9 @@ function AppLayout() {
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
     [activePageId, pages],
   )
+  const activePageIndex = pages.findIndex((page) => page.id === activePage?.id)
+  const previousPage = activePageIndex > 0 ? pages[activePageIndex - 1] : undefined
+  const nextPage = activePageIndex >= 0 ? pages[activePageIndex + 1] : undefined
 
   const selectPage = (pageId: string) => {
     setPageMarkdown('')
@@ -141,6 +144,10 @@ function AppLayout() {
           title={activePage?.title ?? 'Loading page'}
           section={activePage?.section ?? 'Loading'}
           onMenuClick={() => setIsSidebarOpen(true)}
+          onPreviousPage={() => previousPage && selectPage(previousPage.id)}
+          onNextPage={() => nextPage && selectPage(nextPage.id)}
+          previousPageTitle={previousPage?.title}
+          nextPageTitle={nextPage?.title}
         />
         <MarkdownPage
           key={activePageId}

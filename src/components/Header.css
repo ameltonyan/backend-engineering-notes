@@ -27,6 +27,47 @@
   margin: 0 0 4px;
 }
 
+.section-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-navigation {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 4px;
+}
+
+.page-navigation button {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--nav-background);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.page-navigation button:hover:not(:disabled),
+.page-navigation button:focus-visible {
+  border-color: var(--accent-strong);
+  color: var(--text-strong);
+}
+
+.page-navigation button:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.page-navigation button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
 .page-header h1 {
   margin: 0;
   font-size: 1.6rem;
