@@ -38,9 +38,23 @@ function Sidebar({
     >
       <div className="brand">
         <img src={logoUrl} alt="Backend Engineering Notes" className="brand-logo" />
-        <span>Backend Engineering Notes</span>
+        <div className="brand-details">
+          <span className="brand-title">Backend Engineering Notes</span>
+        </div>
         <button className="sidebar-close" type="button" aria-label="Close navigation" onClick={onClose}>
           ×
+        </button>
+        <button
+          className="theme-toggle"
+          type="button"
+          role="switch"
+          aria-checked={isLightTheme}
+          aria-label={isLightTheme ? 'Switch to dark theme' : 'Switch to light theme'}
+          onClick={onThemeToggle}
+        >
+          <span className="theme-toggle-track" aria-hidden="true">
+            <span className="theme-toggle-thumb" />
+          </span>
         </button>
       </div>
 
@@ -64,21 +78,6 @@ function Sidebar({
             </div>
           </div>
         ))}
-      </div>
-      <div className="sidebar-footer">
-        <button
-          className="theme-toggle"
-          type="button"
-          role="switch"
-          aria-checked={isLightTheme}
-          aria-label="Light theme"
-          onClick={onThemeToggle}
-        >
-          <span className="theme-toggle-label">Light theme</span>
-          <span className="theme-toggle-track" aria-hidden="true">
-            <span className="theme-toggle-thumb" />
-          </span>
-        </button>
       </div>
     </aside>
   )
