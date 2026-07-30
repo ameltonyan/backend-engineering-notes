@@ -6,6 +6,8 @@ import { contentProvider } from '../services/content/provider'
 import type { ContentPageMeta } from '../content/content-api'
 import './AppLayout.css'
 
+const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
+
 function AppLayout() {
   const [pages, setPages] = useState<ContentPageMeta[]>([])
   const [activePageId, setActivePageId] = useState<string>('')
@@ -23,12 +25,24 @@ function AppLayout() {
     [activePageId, pages],
   )
 
+  const selectPage = (pageId: string) => {
+    setPageMarkdown('')
+    setActivePageId(pageId)
+  }
+
   useEffect(() => {
     contentProvider
       .getPageList()
       .then((list) => {
         setPages(list)
-        setActivePageId((currentPageId) => currentPageId || list[0]?.id || '')
+        setActivePageId((currentPageId) => {
+          if (currentPageId) return currentPageId
+
+          const savedPageId = window.localStorage.getItem(lastActivePageStorageKey)
+          return list.some((page) => page.id === savedPageId)
+            ? savedPageId!
+            : list[0]?.id || ''
+        })
       })
       .catch((err) => setError(err.message))
   }, [])
@@ -64,6 +78,12 @@ function AppLayout() {
   }, [activePageId])
 
   useEffect(() => {
+    if (activePageId) {
+      window.localStorage.setItem(lastActivePageStorageKey, activePageId)
+    }
+  }, [activePageId])
+
+  useEffect(() => {
     if (!isSidebarOpen) return
 
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -84,7 +104,7 @@ function AppLayout() {
       <Sidebar
         pages={pages}
         activePageId={activePageId}
-        onSelectPage={setActivePageId}
+        onSelectPage={selectPage}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         isLightTheme={theme === 'light'}
