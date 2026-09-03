@@ -2,7 +2,7 @@ export type ContentPageMeta = {
   id: string
   title: string
   section: string
-  path: string
+  path?: string
 }
 
 export type ContentPageData = {
