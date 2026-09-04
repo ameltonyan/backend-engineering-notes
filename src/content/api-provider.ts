@@ -61,7 +61,7 @@ export class ApiContentProvider implements ContentProvider {
   }
 
   async getPageData(id: string): Promise<ContentPageData> {
-    const response = await fetch(buildApiUrl(`/api/pages/${id}`))
+    const response = await fetch(buildApiUrl(`/api/pages/${encodeURIComponent(id)}`))
     if (!response.ok) {
       throw new Error(`Unable to load page "${id}" (${response.status})`)
     }

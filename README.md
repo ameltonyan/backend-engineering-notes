@@ -4,12 +4,9 @@ React + TypeScript + Vite frontend for Backend Engineering Notes.
 
 ## Local development
 
-The frontend can read content from either:
+The frontend reads content from the backend API.
 
-- the backend API
-- the static markdown files in `public/content`
-
-Create a local env file from `.env.example` and use API mode for normal development:
+Create a local env file from `.env.example`:
 
 ```sh
 npm install
@@ -19,7 +16,6 @@ npm run dev
 Default local settings:
 
 ```env
-VITE_CONTENT_SOURCE=api
 VITE_API_BASE_URL=http://localhost:8080
 VITE_APP_BASE_PATH=/
 ```
@@ -44,13 +40,3 @@ https://ameltonyan.github.io
 
 After adding the variable, push to `main` to build and deploy the frontend. Do not put database credentials in frontend environment variables; all `VITE_*` values are embedded in the browser bundle.
 
-## Static mode
-
-If you want the old GitHub Pages style content mode, switch to:
-
-```env
-VITE_CONTENT_SOURCE=markdown
-VITE_APP_BASE_PATH=/backend-engineering-notes/
-```
-
-That will load the content manifest and markdown files from `public/content` instead of the backend API.

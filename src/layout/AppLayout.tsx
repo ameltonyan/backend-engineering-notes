@@ -32,7 +32,6 @@ function AppLayout() {
   const nextPage = activePageIndex >= 0 ? pages[activePageIndex + 1] : undefined
 
   const selectPage = (pageId: string) => {
-    setPageMarkdown('')
     setActivePageId(pageId)
   }
 

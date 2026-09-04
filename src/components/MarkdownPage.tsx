@@ -225,17 +225,26 @@ function MarkdownPage({ markdown, loading, error, pageId }: MarkdownPageProps) {
       ? `Question ${activeIndex + 1} of ${sections.length}`
       : 'No questions'
 
-  if (loading || error) {
+  if (error && !markdown.trim()) {
     return (
       <div className="content-card">
-        {loading && <p className="status">Loading content...</p>}
-        {error && <p className="status error">{error}</p>}
+        <p className="status error">{error}</p>
+      </div>
+    )
+  }
+
+  if (!markdown.trim()) {
+    return (
+      <div className="content-card">
+        <p className="status">{loading ? 'Loading content...' : 'No content available.'}</p>
       </div>
     )
   }
 
   return (
     <section className="focus-reader" aria-label="Question and answer reader">
+      {loading && <p className="status loading-status" aria-live="polite">Loading content...</p>}
+      {error && <p className="status error" role="alert">{error}</p>}
       <div className="reader-toolbar">
         <span className="reader-position" aria-live="polite">
           {readerPosition}
