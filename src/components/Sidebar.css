@@ -84,11 +84,78 @@
 }
 
 .section-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
   margin: 8px 0;
+}
+
+.section-group-title-button {
+  min-width: 0;
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.section-group-title-button:hover,
+.section-group-title-button:focus-visible {
+  color: var(--text-strong);
+}
+
+.section-group-title-button:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.section-collapse-toggle {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 22px;
+  flex: 0 0 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.section-collapse-toggle:hover,
+.section-collapse-toggle:focus-visible {
+  border-color: var(--border);
+  background: var(--control-hover);
+  color: var(--text-strong);
+}
+
+.section-collapse-toggle:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.section-collapse-icon {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 6px solid currentColor;
+  transition: transform 160ms ease;
+}
+
+.section-collapse-toggle[aria-expanded='true'] .section-collapse-icon {
+  transform: rotate(180deg);
 }
 
 .section-items {
