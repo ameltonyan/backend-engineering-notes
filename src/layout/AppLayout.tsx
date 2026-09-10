@@ -16,6 +16,7 @@ function AppLayout() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({})
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() =>
     window.localStorage.getItem(sidebarCollapsedStorageKey) === 'true',
   )
@@ -33,6 +34,20 @@ function AppLayout() {
 
   const selectPage = (pageId: string) => {
     setActivePageId(pageId)
+  }
+
+  const toggleSection = (section: string) => {
+    setCollapsedSections((current) => ({
+      ...current,
+      [section]: !current[section],
+    }))
+  }
+
+  const openActiveSection = () => {
+    const section = activePage?.section || 'Other'
+    setCollapsedSections((current) => ({ ...current, [section]: false }))
+    setIsSidebarCollapsed(false)
+    setIsSidebarOpen(true)
   }
 
   useEffect(() => {
@@ -116,6 +131,8 @@ function AppLayout() {
         pages={pages}
         activePageId={activePageId}
         onSelectPage={selectPage}
+        collapsedSections={collapsedSections}
+        onToggleSection={toggleSection}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         isLightTheme={theme === 'light'}
@@ -145,6 +162,7 @@ function AppLayout() {
           title={activePage?.title ?? 'Loading page'}
           section={activePage?.section ?? 'Loading'}
           onMenuClick={() => setIsSidebarOpen(true)}
+          onOpenActiveSection={openActiveSection}
           onPreviousPage={() => previousPage && selectPage(previousPage.id)}
           onNextPage={() => nextPage && selectPage(nextPage.id)}
           previousPageTitle={previousPage?.title}

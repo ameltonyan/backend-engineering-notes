@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import type { ContentPageMeta } from '../content/content-api'
 import logoUrl from '../assets/logo.svg'
 import './Sidebar.css'
@@ -7,6 +6,8 @@ type SidebarProps = {
   pages: ContentPageMeta[]
   activePageId: string
   onSelectPage: (id: string) => void
+  collapsedSections: Record<string, boolean>
+  onToggleSection: (section: string) => void
   isOpen: boolean
   onClose: () => void
   isLightTheme: boolean
@@ -17,12 +18,13 @@ function Sidebar({
   pages,
   activePageId,
   onSelectPage,
+  collapsedSections,
+  onToggleSection,
   isOpen,
   onClose,
   isLightTheme,
   onThemeToggle,
 }: SidebarProps) {
-  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({})
   const sortedPages = [...pages].sort((left, right) =>
     left.sectionDisplayOrder - right.sectionDisplayOrder
     || left.displayOrder - right.displayOrder
@@ -36,12 +38,6 @@ function Sidebar({
   }, {} as Record<string, ContentPageMeta[]>)
 
   const sectionNames = Object.keys(sections)
-  const toggleSection = (section: string) => {
-    setCollapsedSections((current) => ({
-      ...current,
-      [section]: !current[section],
-    }))
-  }
 
   return (
     <aside
@@ -79,7 +75,7 @@ function Sidebar({
                 className="section-group-title-button"
                 type="button"
                 aria-expanded={!collapsedSections[section]}
-                onClick={() => toggleSection(section)}
+                onClick={() => onToggleSection(section)}
               >
                 {section}
               </button>
@@ -89,7 +85,7 @@ function Sidebar({
                 aria-expanded={!collapsedSections[section]}
                 aria-label={`${collapsedSections[section] ? 'Expand' : 'Collapse'} ${section}`}
                 title={`${collapsedSections[section] ? 'Expand' : 'Collapse'} ${section}`}
-                onClick={() => toggleSection(section)}
+                onClick={() => onToggleSection(section)}
               >
                 <span className="section-collapse-icon" aria-hidden="true" />
               </button>

@@ -4,6 +4,7 @@ type HeaderProps = {
   title: string
   section: string
   onMenuClick: () => void
+  onOpenActiveSection: () => void
   onPreviousPage: () => void
   onNextPage: () => void
   previousPageTitle?: string
@@ -14,6 +15,7 @@ function Header({
   title,
   section,
   onMenuClick,
+  onOpenActiveSection,
   onPreviousPage,
   onNextPage,
   previousPageTitle,
@@ -54,7 +56,11 @@ function Header({
             </button>
           </div>
         </div>
-        <h1>{title}</h1>
+        <h1>
+          <button className="page-title-button" type="button" onClick={onOpenActiveSection}>
+            {title}
+          </button>
+        </h1>
       </div>
     </header>
   )
