@@ -65,7 +65,9 @@ function AppLayout() {
 
       try {
         const page = await contentProvider.getPageData(activePageId)
-        if (!cancelled) setPageMarkdown(page.markdown)
+        if (!cancelled) {
+          setPageMarkdown(page.markdown)
+        }
       } catch (err) {
         if (!cancelled) {
           setError(err instanceof Error ? err.message : 'Unable to load content')

@@ -2,6 +2,8 @@ export type ContentPageMeta = {
   id: string
   title: string
   section: string
+  sectionDisplayOrder: number
+  displayOrder: number
   path?: string
 }
 

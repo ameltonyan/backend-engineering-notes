@@ -21,7 +21,12 @@ function Sidebar({
   isLightTheme,
   onThemeToggle,
 }: SidebarProps) {
-  const sections = pages.reduce((acc, page) => {
+  const sortedPages = [...pages].sort((left, right) =>
+    left.sectionDisplayOrder - right.sectionDisplayOrder
+    || left.displayOrder - right.displayOrder
+    || left.title.localeCompare(right.title),
+  )
+  const sections = sortedPages.reduce((acc, page) => {
     const key = page.section || 'Other'
     if (!acc[key]) acc[key] = []
     acc[key].push(page)
