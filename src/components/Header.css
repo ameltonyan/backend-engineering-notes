@@ -75,6 +75,27 @@
   color: var(--text-strong);
 }
 
+.page-title-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.page-title-button:hover,
+.page-title-button:focus-visible {
+  color: var(--accent);
+}
+
+.page-title-button:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
 @media (max-width: 1024px) {
   .page-header {
     display: flex;

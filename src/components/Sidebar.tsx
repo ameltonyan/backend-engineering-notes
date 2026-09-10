@@ -6,6 +6,8 @@ type SidebarProps = {
   pages: ContentPageMeta[]
   activePageId: string
   onSelectPage: (id: string) => void
+  collapsedSections: Record<string, boolean>
+  onToggleSection: (section: string) => void
   isOpen: boolean
   onClose: () => void
   isLightTheme: boolean
@@ -16,12 +18,19 @@ function Sidebar({
   pages,
   activePageId,
   onSelectPage,
+  collapsedSections,
+  onToggleSection,
   isOpen,
   onClose,
   isLightTheme,
   onThemeToggle,
 }: SidebarProps) {
-  const sections = pages.reduce((acc, page) => {
+  const sortedPages = [...pages].sort((left, right) =>
+    left.sectionDisplayOrder - right.sectionDisplayOrder
+    || left.displayOrder - right.displayOrder
+    || left.title.localeCompare(right.title),
+  )
+  const sections = sortedPages.reduce((acc, page) => {
     const key = page.section || 'Other'
     if (!acc[key]) acc[key] = []
     acc[key].push(page)
@@ -61,21 +70,42 @@ function Sidebar({
       <div className="nav-section">
         {sectionNames.map((section) => (
           <div className="sidebar-section" key={section}>
-            <div className="section-group-title">{section}</div>
-            <div className="section-items">
-              {sections[section].map((page) => (
-                <button
-                  key={page.id}
-                  className={page.id === activePageId ? 'nav-item active' : 'nav-item'}
-                  onClick={() => {
-                    onSelectPage(page.id)
-                    onClose()
-                  }}
-                >
-                  {page.title}
-                </button>
-              ))}
+            <div className="section-group-title">
+              <button
+                className="section-group-title-button"
+                type="button"
+                aria-expanded={!collapsedSections[section]}
+                onClick={() => onToggleSection(section)}
+              >
+                {section}
+              </button>
+              <button
+                className="section-collapse-toggle"
+                type="button"
+                aria-expanded={!collapsedSections[section]}
+                aria-label={`${collapsedSections[section] ? 'Expand' : 'Collapse'} ${section}`}
+                title={`${collapsedSections[section] ? 'Expand' : 'Collapse'} ${section}`}
+                onClick={() => onToggleSection(section)}
+              >
+                <span className="section-collapse-icon" aria-hidden="true" />
+              </button>
             </div>
+            {!collapsedSections[section] && (
+              <div className="section-items">
+                {sections[section].map((page) => (
+                  <button
+                    key={page.id}
+                    className={page.id === activePageId ? 'nav-item active' : 'nav-item'}
+                    onClick={() => {
+                      onSelectPage(page.id)
+                      onClose()
+                    }}
+                  >
+                    {page.title}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

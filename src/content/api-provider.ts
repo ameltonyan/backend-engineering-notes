@@ -4,6 +4,7 @@ type ApiPageSummary = {
   slug: string
   title: string
   section: string
+  sectionDisplayOrder: number
   displayOrder: number
 }
 
@@ -32,6 +33,8 @@ function toPageMeta(page: ApiPageSummary): ContentPageMeta {
     id: page.slug,
     title: page.title,
     section: page.section,
+    sectionDisplayOrder: page.sectionDisplayOrder,
+    displayOrder: page.displayOrder,
   }
 }
 
@@ -56,7 +59,11 @@ export class ApiContentProvider implements ContentProvider {
 
     const pages = (await response.json()) as ApiPageSummary[]
     return pages
-      .sort((left, right) => left.displayOrder - right.displayOrder)
+      .sort((left, right) =>
+        left.sectionDisplayOrder - right.sectionDisplayOrder
+        || left.displayOrder - right.displayOrder
+        || left.title.localeCompare(right.title),
+      )
       .map(toPageMeta)
   }
 
