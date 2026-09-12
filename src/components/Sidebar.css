@@ -3,7 +3,10 @@
   flex-direction: column;
   box-sizing: border-box;
   padding: 28px 24px;
+  height: 100vh;
+  min-height: 0;
   min-width: 0;
+  overflow: hidden;
   border-right: 1px solid var(--border);
   background: var(--sidebar-background);
   color: var(--text-strong);
@@ -48,7 +51,13 @@
 .nav-section {
   display: grid;
   flex: 1 1 auto;
+  min-height: 0;
   gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--accent-strong) transparent;
+  scrollbar-width: thin;
 }
 
 .nav-section-title {
@@ -90,6 +99,9 @@
 }
 
 .section-group-title {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -98,7 +110,9 @@
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 8px 0;
+  margin: 0;
+  padding: 8px 0;
+  background: var(--sidebar-background);
 }
 
 .section-group-title-button {
@@ -234,7 +248,7 @@
     z-index: 30;
     width: min(86vw, 340px);
     height: 100dvh;
-    overflow-y: auto;
+    overflow: hidden;
     overscroll-behavior: contain;
     transform: translateX(-100%);
     visibility: hidden;
