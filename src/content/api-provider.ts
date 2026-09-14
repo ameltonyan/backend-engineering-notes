@@ -1,4 +1,4 @@
-import type { ContentPageData, ContentPageMeta, ContentProvider } from './content-api'
+import type { ContentPageData, ContentPageMeta, ContentProvider, WeeklyStudyProgram } from './content-api'
 
 type ApiPageSummary = {
   slug: string
@@ -51,6 +51,12 @@ function buildMarkdown(page: ApiPageResponse) {
 }
 
 export class ApiContentProvider implements ContentProvider {
+  async getStudyPrograms(): Promise<WeeklyStudyProgram[]> {
+    const response = await fetch(buildApiUrl('/api/study-programs'))
+    if (!response.ok) throw new Error(`Unable to load study programs (${response.status})`)
+    return (await response.json()) as WeeklyStudyProgram[]
+  }
+
   async getPageList(): Promise<ContentPageMeta[]> {
     const response = await fetch(buildApiUrl('/api/pages'))
     if (!response.ok) {

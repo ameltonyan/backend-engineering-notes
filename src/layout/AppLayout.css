@@ -53,6 +53,22 @@
   background: var(--app-background);
 }
 
+.study-plan-toggle {
+  align-self: flex-end;
+  margin-bottom: 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  background: var(--control-background);
+  color: var(--text-strong);
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.study-plan-toggle:hover {
+  border-color: var(--accent-strong);
+  color: var(--accent);
+}
+
 .sidebar-backdrop {
   display: none;
 }
