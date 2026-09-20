@@ -25,7 +25,7 @@ The project already has:
 Current gaps to close:
 
 - The public reader does not yet display follow-up-question hierarchy.
-- Explanations and examples are not first-class content fields.
+- Examples and optional code snippets are not first-class content fields.
 - Study progress is browser-local, not associated with a learner account.
 - Weekly programs are templates, not personalized learner plans.
 - Learner registration, profiles, and secure persistence do not exist yet.
@@ -58,11 +58,48 @@ Supabase provider backups are useful but not sufficient as the only recovery pla
 ## Product principles
 
 1. **Practise before revealing.** Let a learner think or speak an answer before seeing it.
-2. **Progressive disclosure.** Keep answers, explanations, examples, and follow-ups hidden until requested.
+2. **Progressive disclosure.** Keep answers, examples, code snippets, and follow-ups hidden until requested.
 3. **Calm reading over dashboard noise.** The reader should have only essential controls visible.
 4. **Human-reviewed AI.** AI proposes content; an administrator approves, edits, or discards it.
 5. **One source of truth.** Public content, admin preview, and plans should use the same published content model.
 6. **Accessible by default.** Keyboard navigation, focus visibility, sufficient contrast, reduced motion, and readable type are requirements, not polish.
+
+## Content production — daily quality lane
+
+Content quality is a continuous product task, not work deferred to Week 7. Start now and continue every day through the roadmap.
+
+### Daily target
+
+Create and review:
+
+- **1 root question/answer**, and
+- **1 direct likely interviewer follow-up question/answer**.
+
+This creates 2 reviewed question records per day. At a seven-day pace, eight weeks yields up to 56 root questions and 56 follow-ups. Quality takes priority: skip publication rather than publish an answer that has not passed review.
+
+### Daily workflow
+
+1. Select one narrow concept from the current topic plan.
+2. Create a draft manually or with AI.
+3. Verify technical correctness against authoritative documentation or a trusted primary source.
+4. Edit it into a concise spoken interview answer; add a realistic example and code only where it improves understanding.
+5. Check that the follow-up is a plausible next interviewer question, not merely another related fact.
+6. Mark the item `reviewed`; publish it only when it is ready for learners.
+7. Record the topic, question IDs, status, and source in a simple content ledger.
+
+### AI authoring
+
+An OpenAI API key is an authoring accelerator, not a dependency for beginning this daily lane. Until a key is available, write drafts manually or use the existing mock provider to exercise the workflow.
+
+When an OpenAI key is added, configure it **only on the API server** as `OPENAI_API_KEY`; never place it in frontend code, Git, or the admin UI. Use it to draft questions, follow-ups, examples, and optional code snippets, then apply the same human review workflow. Official OpenAI guidance is to keep API keys in server environment variables or secret management rather than client-side code. See [OpenAI API security guidance](https://platform.openai.com/docs/api-reference/backward-compatibility?lang=ruby).
+
+### Local and production discipline
+
+- **Local database:** draft and staging environment.
+- **Production Supabase database:** reviewed/published learner content only.
+- Do not make unrelated manual edits to the same question in both databases; they will drift and are not a reliable backup strategy.
+- Until off-site daily backups are proven, immediately export the production database after each publishing session and keep the encrypted export locally. This is a temporary safety net, not a substitute for the scheduled off-site backup policy.
+- The content ledger and Flyway migrations belong in Git; production data exports do not.
 
 ## Core data decisions
 
@@ -74,8 +111,8 @@ Treat follow-ups as real questions, not prose embedded in an answer.
 Question
 - question
 - shortAnswer                 # concise interview answer, initially revealable
-- explanationMarkdown         # optional: why the answer is correct
-- examplesMarkdown            # optional: practical / production example
+- example                     # optional: practical / production scenario
+- codeSnippet                 # optional: code only when it clarifies the answer
 - parentQuestionId            # null for a root question; otherwise a likely follow-up
 - displayOrder
 - difficulty
@@ -131,7 +168,7 @@ Reader requirements:
 - Persist preferences locally for guests and to the account for signed-in learners.
 - Offer only three themes: Light, Dark, and Warm/Paper.
 - Aim for balanced type: question around `1.35–1.65rem`; answer around `1.05–1.15rem` with line-height around `1.7`.
-- Do not show explanation, examples, or follow-ups until the learner chooses to expand them.
+- Do not show examples, code snippets, or follow-ups until the learner chooses to expand them.
 - Support keyboard navigation and mobile-friendly reading.
 
 ## Solo working method
@@ -163,7 +200,7 @@ Use **PostHog Cloud (EU project) on its free tier** for the first alpha and beta
 
 Start it in Week 1, before inviting the first 10 testers. The initial setup is about one focused day; add later events alongside the feature that creates them. Create one frontend analytics wrapper (for example, `src/analytics/analytics.ts`) so components do not call the vendor library directly.
 
-**Delivery schedule:** Day 5 — provider setup, privacy choice, wrapper, and `question viewed`; Day 6 — follow-up event; Day 8 — answer/explanation/example events; Day 14 — verify the dashboard and event data. Add `user signed up`, `plan created`, and `study item completed` only in the later weeks where those features are built.
+**Delivery schedule:** Day 5 — provider setup, privacy choice, wrapper, and `question viewed`; Day 6 — follow-up event; Day 8 — answer/example/code events; Day 14 — verify the dashboard and event data. Add `user signed up`, `plan created`, and `study item completed` only in the later weeks where those features are built.
 
 ### Events
 
@@ -173,7 +210,7 @@ Track explicit meaningful actions only; disable or avoid broad automatic click t
 | --- | --- | --- |
 | `question viewed` | A question first becomes visible in a browser session | `page_slug`, `section`, `question_index`, `depth` |
 | `answer revealed` | Learner reveals an answer | `page_slug`, `question_index` |
-| `detail opened` | Explanation, example, or follow-up is opened | `detail_type`, `page_slug`, `question_index` |
+| `detail opened` | Example, code snippet, or follow-up is opened | `detail_type`, `page_slug`, `question_index` |
 | `study item completed` | Completion has been successfully saved by the API | `plan_type`, `scheduled_date`, `estimated_minutes` |
 | `plan created` | Personal plan is saved | `duration_days`, `target_role` |
 | `user signed up` | Registration succeeds | `signup_method` |
@@ -194,8 +231,8 @@ For registered learners, identify analytics with the internal user ID only, neve
 
 | Day | Outcome |
 | --- | --- |
-| 1 | Write the learner journey and finalize question fields: short answer, explanation, examples, tags, status. |
-| 2 | Add the database migration and API DTO changes for explanation, examples, tags, and publishing status. |
+| 1 | Write the learner journey and finalize question fields: short answer, example, optional code snippet, tags, status. |
+| 2 | Add the database migration and API DTO changes for example, optional code snippet, tags, and publishing status. |
 | 3 | Update admin forms to create and edit the new content fields. |
 | 4 | Return `parentQuestionId` and depth from the public API. |
 | 5 | Replace public markdown-only question conversion with structured question data; set up analytics, privacy choice, wrapper, and `question viewed`. |
@@ -206,7 +243,7 @@ For registered learners, identify analytics with the internal user ID only, neve
 
 | Day | Outcome |
 | --- | --- |
-| 8 | Redesign one question card with answer reveal, explanation, and example disclosures; track these reveal/open actions. |
+| 8 | Redesign one question card with answer reveal, example, and code disclosures; track these reveal/open actions. |
 | 9 | Balance typography, spacing, code blocks, lists, and long answers. |
 | 10 | Add a compact `Aa` preferences menu and local text-size persistence. |
 | 11 | Add Light, Dark, and Warm/Paper themes with persistence. |
@@ -258,7 +295,7 @@ For registered learners, identify analytics with the internal user ID only, neve
 | 37 | Add an admin preview identical to the learner reader. |
 | 38 | Complete AI draft review: generate, inspect, edit, approve, reject, and save provenance. |
 | 39 | Add `Generate likely follow-ups` for a selected question. |
-| 40 | Add AI suggestions for explanations and examples; require admin review before saving. |
+| 40 | Add AI suggestions for examples and optional code snippets; require admin review before saving. |
 | 41 | Add duplicate detection and a content-quality checklist. |
 | 42 | Add bulk tagging and filters by topic, difficulty, and status. |
 
@@ -289,7 +326,7 @@ For registered learners, identify analytics with the internal user ID only, neve
 ## Prioritized backlog after MVP
 
 1. Confidence-based spaced review: `I know this`, `Unsure`, `Don't know` schedules a review.
-2. Search across questions, explanations, tags, and personal notes.
+2. Search across questions, examples, tags, and personal notes.
 3. Role-specific learning paths: Junior Backend, Mid-level Java, Senior Backend, System Design.
 4. Content sources, last-reviewed dates, and version history.
 5. Shareable read-only plans for mentors or study groups.
