@@ -97,11 +97,6 @@ function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: bool
           <pre><code>{question.codeSnippet}</code></pre>
         </div>
       )}
-      {question.tags.length > 0 && (
-        <ul className="question-tags" aria-label="Topics">
-          {question.tags.map((tag) => <li key={tag}>{tag}</li>)}
-        </ul>
-      )}
     </section>
   )
 }
