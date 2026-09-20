@@ -1,4 +1,4 @@
-import type { ContentPageData, ContentPageMeta, ContentProvider, WeeklyStudyProgram } from './content-api'
+import type { ContentPageData, ContentPageMeta, ContentProvider, ContentQuestion, WeeklyStudyProgram } from './content-api'
 
 type ApiPageSummary = {
   slug: string
@@ -8,20 +8,17 @@ type ApiPageSummary = {
   displayOrder: number
 }
 
-type ApiQuestionAnswer = {
-  id: number
-  question: string
-  answer: string
-  displayOrder: number
-}
+type ApiQuestionAnswer = ContentQuestion
 
 type ApiPageResponse = {
   slug: string
   title: string
+  description: string | null
   section: string
   displayOrder: number
   questions: ApiQuestionAnswer[]
 }
+
 
 function buildApiUrl(path: string) {
   const baseUrl = import.meta.env.VITE_API_BASE_URL?.trim() || 'http://localhost:8080'
@@ -36,18 +33,6 @@ function toPageMeta(page: ApiPageSummary): ContentPageMeta {
     sectionDisplayOrder: page.sectionDisplayOrder,
     displayOrder: page.displayOrder,
   }
-}
-
-function buildMarkdown(page: ApiPageResponse) {
-  const sortedQuestions = [...page.questions].sort((left, right) => left.displayOrder - right.displayOrder)
-
-  if (!sortedQuestions.length) {
-    return '_No notes available yet._'
-  }
-
-  return sortedQuestions
-    .map((questionAnswer) => `## ${questionAnswer.question}\n\n${questionAnswer.answer}`)
-    .join('\n\n')
 }
 
 export class ApiContentProvider implements ContentProvider {
@@ -84,7 +69,15 @@ export class ApiContentProvider implements ContentProvider {
       id: page.slug,
       title: page.title,
       section: page.section,
-      markdown: buildMarkdown(page),
+      description: page.description,
+      questions: page.questions
+        .sort((left, right) => left.displayOrder - right.displayOrder || left.id - right.id)
+        .map((question) => ({
+          ...question,
+          example: question.example?.trim() || null,
+          codeSnippet: question.codeSnippet?.trim() || null,
+          tags: question.tags ?? [],
+        })),
     }
   }
 }

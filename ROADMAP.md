@@ -235,7 +235,7 @@ For registered learners, identify analytics with the internal user ID only, neve
 | 2 | Add the database migration and API DTO changes for example, optional code snippet, tags, and publishing status. |
 | 3 | Update admin forms to create and edit the new content fields. |
 | 4 | Return `parentQuestionId` and depth from the public API. |
-| 5 | Replace public markdown-only question conversion with structured question data; set up analytics, privacy choice, wrapper, and `question viewed`. |
+| 5 | Render structured public question data directly; set up analytics, privacy choice, wrapper, and `question viewed`. |
 | 6 | Render collapsed, clearly labelled likely follow-up questions; track when a follow-up is opened. |
 | 7 | Test empty pages, nested follow-ups, long answers, and mobile layouts. |
 

@@ -11,7 +11,20 @@ export type ContentPageData = {
   id: string
   title: string
   section: string
-  markdown: string
+  description: string | null
+  questions: ContentQuestion[]
+}
+
+export type ContentQuestion = {
+  id: number
+  parentQuestionId: number | null
+  question: string
+  answer: string
+  example: string | null
+  codeSnippet: string | null
+  tags: string[]
+  displayOrder: number
+  depth: number
 }
 
 export type StudyDay = {

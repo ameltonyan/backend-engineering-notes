@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { ContentPageMeta, WeeklyStudyProgram } from '../content/content-api'
 import './StudyPlan.css'
 
@@ -13,28 +13,33 @@ function weekKey() {
 }
 
 function StudyPlan({ programs, pages, onOpenPage }: Props) {
-  const [programId, setProgramId] = useState<number | null>(programs[0]?.id ?? null)
-  const program = programs.find((item) => item.id === programId) ?? programs[0]
-  const storageKey = program ? `backend-engineering-notes:study:${program.id}:${weekKey()}` : ''
-  const [progress, setProgress] = useState<Record<number, { done: boolean; note: string }>>({})
+  const [selectedProgramId, setSelectedProgramId] = useState<number | null>(null)
+  const program = programs.find((item) => item.id === selectedProgramId) ?? programs[0]
 
-  useEffect(() => {
-    setProgramId(programs[0]?.id ?? null)
-  }, [programs])
-  useEffect(() => {
-    if (!storageKey) return
-    try { setProgress(JSON.parse(localStorage.getItem(storageKey) || '{}')) } catch { setProgress({}) }
-  }, [storageKey])
+  if (!program) return <section className="study-empty"><h2>No weekly program published yet</h2><p>Choose any topic from the library while an administrator prepares a plan.</p></section>
+
+  return <StudyProgram key={program.id} program={program} programs={programs} pages={pages} onOpenPage={onOpenPage} onSelectProgram={setSelectedProgramId} />
+}
+
+type StudyProgramProps = Props & {
+  program: WeeklyStudyProgram
+  onSelectProgram: (id: number) => void
+}
+
+function StudyProgram({ program, programs, pages, onOpenPage, onSelectProgram }: StudyProgramProps) {
+  const storageKey = `backend-engineering-notes:study:${program.id}:${weekKey()}`
+  const [progress, setProgress] = useState<Record<number, { done: boolean; note: string }>>(() => {
+    try { return JSON.parse(localStorage.getItem(storageKey) || '{}') as Record<number, { done: boolean; note: string }> } catch { return {} }
+  })
   const update = (day: number, value: Partial<{ done: boolean; note: string }>) => {
     setProgress((current) => {
-      const next = { ...current, [day]: { done: false, note: '', ...current[day], ...value } }
+      const next = { ...current, [day]: { ...current[day], done: false, note: '', ...value } }
       localStorage.setItem(storageKey, JSON.stringify(next)); return next
     })
   }
-  if (!program) return <section className="study-empty"><h2>No weekly program published yet</h2><p>Choose any topic from the library while an administrator prepares a plan.</p></section>
   const complete = program.days.filter((day) => progress[day.dayOfWeek]?.done).length
   return <section className="study-plan-view">
-    <div className="study-plan-heading"><div><p>Interview practice</p><h2>{program.name}</h2><span>{program.description || 'A repeatable weekly practice rhythm.'}</span></div><label>Program<select value={program.id} onChange={(event) => setProgramId(Number(event.target.value))}>{programs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label></div>
+    <div className="study-plan-heading"><div><p>Interview practice</p><h2>{program.name}</h2><span>{program.description || 'A repeatable weekly practice rhythm.'}</span></div><label>Program<select value={program.id} onChange={(event) => onSelectProgram(Number(event.target.value))}>{programs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label></div>
     <div className="study-progress"><strong>{complete} / 7 days complete</strong><div><span style={{ width: `${complete / 7 * 100}%` }} /></div><small>Week of {weekKey()}</small></div>
     <div className="study-rhythm"><strong>90-minute practice rhythm</strong>{blocks.map(([label, minutes]) => <span key={String(label)}>{minutes} min <em>{label}</em></span>)}</div>
     <div className="study-days">{[...program.days].sort((a, b) => a.dayOfWeek - b.dayOfWeek).map((day) => <article className={progress[day.dayOfWeek]?.done ? 'study-day complete' : 'study-day'} key={day.dayOfWeek}>

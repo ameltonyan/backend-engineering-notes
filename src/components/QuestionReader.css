@@ -29,10 +29,6 @@
 }
 
 .reader-position {
-  display: block;
-}
-
-.reader-position {
   color: var(--text-muted);
   font-size: 0.82rem;
   font-weight: 600;
@@ -113,15 +109,20 @@
   outline-offset: -3px;
 }
 
+.page-description {
+  margin: 16px auto 24px;
+  max-width: 760px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
 .qa-card {
   min-height: calc(100% - 32px);
   margin: 16px auto;
   padding: clamp(24px, 4vw, 48px);
   border: 1px solid var(--border);
   border-radius: 38px;
-  background:
-    radial-gradient(circle at 50% 0%, var(--card-glow), transparent 38%),
-    linear-gradient(160deg, var(--card-start), var(--card-end));
+  background: radial-gradient(circle at 50% 0%, var(--card-glow), transparent 38%), linear-gradient(160deg, var(--card-start), var(--card-end));
   box-shadow: 0 18px 44px var(--shadow);
   transition: border-color 140ms ease;
 }
@@ -130,23 +131,83 @@
   border-color: var(--accent-strong);
 }
 
-@supports (animation-timeline: view()) {
-  .qa-card {
-    animation: card-depth linear both;
-    animation-timeline: view(block);
-    animation-range: entry 0% exit 100%;
-  }
+.question-kicker {
+  margin: 0 0 9px;
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
-@keyframes card-depth {
-  0%,
-  100% {
-    transform: scale(0.96);
-  }
+.qa-card h2 {
+  margin: 0;
+  color: var(--text-strong);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.25;
+}
 
-  50% {
-    transform: scale(1);
-  }
+.question-answer {
+  margin-top: 1.5rem;
+  color: var(--text);
+  line-height: 1.78;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.question-example {
+  margin-top: 1.5rem;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent-strong);
+  background: var(--nav-background);
+  color: var(--text);
+}
+
+.question-example h3,
+.question-code h3 {
+  margin: 0 0 8px;
+  color: var(--text-strong);
+  font-size: .9rem;
+}
+
+.question-example p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.question-code {
+  margin-top: 1.5rem;
+}
+
+.question-code pre {
+  margin: 0;
+  padding: 22px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--code-background);
+  color: var(--text-soft);
+}
+
+.question-code code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+.question-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.question-tags li {
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: .78rem;
 }
 
 .reader-hint {
@@ -168,85 +229,24 @@
   color: #fda4af;
 }
 
-.markdown-body {
-  min-width: 0;
-  color: var(--text-soft);
-  line-height: 1.78;
-  overflow-wrap: anywhere;
+@supports (animation-timeline: view()) {
+  .qa-card {
+    animation: card-depth linear both;
+    animation-timeline: view(block);
+    animation-range: entry 0% exit 100%;
+  }
 }
 
-.markdown-body > :first-child {
-  margin-top: 0;
-}
+@keyframes card-depth {
 
-.markdown-body > :last-child {
-  margin-bottom: 0;
-}
+  0%,
+  100% {
+    transform: scale(.96);
+  }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4 {
-  color: var(--text-strong);
-  margin-top: 1.6em;
-}
-
-.markdown-body h2:first-child {
-  margin-bottom: 1em;
-  font-size: clamp(1.45rem, 3vw, 2rem);
-  line-height: 1.25;
-}
-
-.markdown-body p,
-.markdown-body li {
-  color: var(--text);
-}
-
-.markdown-body ul,
-.markdown-body ol {
-  padding-left: 1.3rem;
-}
-
-.markdown-body code {
-  padding: 4px 8px;
-  border-radius: 10px;
-  background: var(--nav-background);
-  color: var(--text-strong);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-}
-
-.markdown-body pre {
-  padding: 22px;
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--code-background);
-}
-
-.markdown-body pre code {
-  padding: 0;
-  background: transparent;
-}
-
-.markdown-body a {
-  color: var(--accent);
-}
-
-.markdown-body blockquote {
-  margin: 1.5rem 0;
-  padding-left: 18px;
-  border-left: 3px solid var(--accent-strong);
-  color: var(--text);
-}
-
-.markdown-body img,
-.markdown-body table {
-  max-width: 100%;
-}
-
-.markdown-body table {
-  display: block;
-  overflow-x: auto;
+  50% {
+    transform: scale(1);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -286,7 +286,7 @@
     border-radius: 30px;
   }
 
-  .markdown-body pre {
+  .question-code pre {
     padding: 16px;
     border-radius: 14px;
   }
