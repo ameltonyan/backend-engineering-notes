@@ -33,6 +33,8 @@ function AppLayout() {
   const nextPage = activePageIndex >= 0 ? pages[activePageIndex + 1] : undefined
 
   const selectPage = (pageId: string) => {
+    if (pageId === activePageId) return
+
     setPageData(null)
     setActivePageId(pageId)
   }
