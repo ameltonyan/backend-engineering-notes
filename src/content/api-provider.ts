@@ -71,7 +71,6 @@ export class ApiContentProvider implements ContentProvider {
       section: page.section,
       description: page.description,
       questions: page.questions
-        .sort((left, right) => left.displayOrder - right.displayOrder || left.id - right.id)
         .map((question) => ({
           ...question,
           example: question.example?.trim() || null,

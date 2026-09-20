@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { ContentPageData, ContentQuestion } from '../content/content-api'
 import './QuestionReader.css'
 
@@ -11,6 +11,50 @@ type QuestionReaderProps = {
 
 const readingPositionStorageKey = 'backend-engineering-notes:reading-positions'
 const emptyQuestions: ContentQuestion[] = []
+
+type ReaderQuestion = {
+  question: ContentQuestion
+  depth: number
+}
+
+function compareQuestions(left: ContentQuestion, right: ContentQuestion) {
+  return left.displayOrder - right.displayOrder || left.id - right.id
+}
+
+function buildReadingOrder(questions: ContentQuestion[]): ReaderQuestion[] {
+  const questionsById = new Map(questions.map((question) => [question.id, question]))
+  const childrenByParentId = new Map<number, ContentQuestion[]>()
+  const roots: ContentQuestion[] = []
+
+  questions.forEach((question) => {
+    if (question.parentQuestionId === null || !questionsById.has(question.parentQuestionId)) {
+      roots.push(question)
+      return
+    }
+
+    const children = childrenByParentId.get(question.parentQuestionId) ?? []
+    children.push(question)
+    childrenByParentId.set(question.parentQuestionId, children)
+  })
+
+  roots.sort(compareQuestions)
+  childrenByParentId.forEach((children) => children.sort(compareQuestions))
+
+  const ordered: ReaderQuestion[] = []
+  const visited = new Set<number>()
+  const addBranch = (question: ContentQuestion, depth: number) => {
+    if (visited.has(question.id)) return
+
+    visited.add(question.id)
+    ordered.push({ question, depth })
+    childrenByParentId.get(question.id)?.forEach((child) => addBranch(child, depth + 1))
+  }
+
+  roots.forEach((question) => addBranch(question, 0))
+  questions.slice().sort(compareQuestions).forEach((question) => addBranch(question, 0))
+
+  return ordered
+}
 
 function getSavedReadingPosition(pageId: string) {
   try {
@@ -32,10 +76,13 @@ function saveReadingPosition(pageId: string, position: number) {
   }
 }
 
-function QuestionCard({ question, isActive }: { question: ContentQuestion; isActive: boolean }) {
+function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: boolean }) {
+  const { question, depth } = item
   return (
-    <section className={isActive ? 'qa-card active' : 'qa-card'} aria-label={question.question}>
-      <p className="question-kicker">{question.parentQuestionId === null ? 'Question' : 'Follow-up question'}</p>
+    <section
+      className={`qa-card${isActive ? ' active' : ''}${depth > 0 ? ' follow-up' : ''}`}
+      aria-label={depth > 0 ? `Follow-up: ${question.question}` : question.question}
+    >
       <h2>{question.question}</h2>
       <div className="question-answer">{question.answer}</div>
       {question.example && (
@@ -61,6 +108,7 @@ function QuestionCard({ question, isActive }: { question: ContentQuestion; isAct
 
 function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
   const questions = page?.questions ?? emptyQuestions
+  const readerQuestions = useMemo(() => buildReadingOrder(questions), [questions])
   const isContentReady = !loading && Boolean(page)
   const [activeIndex, setActiveIndex] = useState(0)
   const activeIndexRef = useRef(0)
@@ -77,7 +125,7 @@ function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
     const nextIndex = cards.findIndex((card) => card.offsetTop + card.offsetHeight > viewport.scrollTop)
     activeIndexRef.current = nextIndex === -1 ? 0 : nextIndex
     setActiveIndex(activeIndexRef.current)
-  }, [isContentReady, pageId, questions.length])
+  }, [isContentReady, pageId, readerQuestions.length])
 
   useEffect(() => {
     const viewport = viewportRef.current
@@ -93,7 +141,7 @@ function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
 
   useEffect(() => {
     const viewport = viewportRef.current
-    if (!viewport || !questions.length) return
+    if (!viewport || !readerQuestions.length) return
 
     const cards = Array.from(viewport.querySelectorAll<HTMLElement>('.qa-card'))
     const visibility = new Map<HTMLElement, number>()
@@ -113,10 +161,10 @@ function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
 
     cards.forEach((card) => observer.observe(card))
     return () => observer.disconnect()
-  }, [questions])
+  }, [readerQuestions])
 
   const goToQuestion = (index: number) => {
-    const nextIndex = Math.max(0, Math.min(index, questions.length - 1))
+    const nextIndex = Math.max(0, Math.min(index, readerQuestions.length - 1))
     const viewport = viewportRef.current
     const card = viewport?.querySelectorAll<HTMLElement>('.qa-card')[nextIndex]
     if (viewport && card) {
@@ -131,17 +179,17 @@ function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
 
   if (error && !page) return <div className="content-card"><p className="status error">{error}</p></div>
   if (!page) return <div className="content-card"><p className="status">{loading ? 'Loading questions...' : 'No page available.'}</p></div>
-  if (!questions.length) return <div className="content-card"><p className="status">No published questions are available for this topic yet.</p></div>
+  if (!readerQuestions.length) return <div className="content-card"><p className="status">No published questions are available for this topic yet.</p></div>
 
   return (
     <section className="focus-reader" aria-label="Question and answer reader">
       {loading && <p className="status loading-status" aria-live="polite">Loading questions...</p>}
       {error && <p className="status error" role="alert">{error}</p>}
       <div className="reader-toolbar">
-        <span className="reader-position" aria-live="polite">Question {activeIndex + 1} of {questions.length}</span>
+        <span className="reader-position" aria-live="polite">Question {activeIndex + 1} of {readerQuestions.length}</span>
         <div className="reader-actions">
           <button type="button" aria-label="Previous question" disabled={activeIndex === 0} onClick={() => goToQuestion(activeIndex - 1)}><span aria-hidden="true">↑</span></button>
-          <button type="button" aria-label="Next question" disabled={activeIndex >= questions.length - 1} onClick={() => goToQuestion(activeIndex + 1)}><span aria-hidden="true">↓</span></button>
+          <button type="button" aria-label="Next question" disabled={activeIndex >= readerQuestions.length - 1} onClick={() => goToQuestion(activeIndex + 1)}><span aria-hidden="true">↓</span></button>
         </div>
       </div>
       <div className="reader-frame">
@@ -150,7 +198,7 @@ function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
           if (event.key === 'ArrowUp' || event.key === 'PageUp') { event.preventDefault(); goToQuestion(activeIndex - 1) }
         }} aria-label="Questions and answers. Scroll vertically or use arrow keys to navigate.">
           {page.description && <p className="page-description">{page.description}</p>}
-          {questions.map((question, index) => <QuestionCard key={question.id} question={question} isActive={index === activeIndex} />)}
+          {readerQuestions.map((item, index) => <QuestionCard key={item.question.id} item={item} isActive={index === activeIndex} />)}
         </div>
       </div>
       <p className="reader-hint">Scroll · swipe · use ↑ ↓</p>

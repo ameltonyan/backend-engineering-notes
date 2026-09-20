@@ -14,7 +14,7 @@
   display: flex;
   flex: 0 0 auto;
   min-height: 0;
-  height: calc(100dvh - 120px);
+  height: calc(100dvh - 80px);
   flex-direction: column;
   padding: 18px;
   overflow: hidden;
@@ -131,26 +131,24 @@
   border-color: var(--accent-strong);
 }
 
-.question-kicker {
-  margin: 0 0 9px;
-  color: var(--accent);
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+.qa-card.follow-up {
+  min-height: calc(78% - 32px);
+  margin-left: clamp(12px, 5vw, 56px);
+  border-left: 4px solid var(--accent-strong);
 }
 
 .qa-card h2 {
   margin: 0;
   color: var(--text-strong);
-  font-size: clamp(1.45rem, 3vw, 2rem);
-  line-height: 1.25;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  line-height: 1.35;
 }
 
 .question-answer {
   margin-top: 1.5rem;
   color: var(--text);
-  line-height: 1.78;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.8;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
@@ -235,6 +233,10 @@
     animation-timeline: view(block);
     animation-range: entry 0% exit 100%;
   }
+
+  .qa-card.follow-up {
+    margin-left: 8px;
+  }
 }
 
 @keyframes card-depth {
@@ -251,7 +253,7 @@
 
 @media (max-width: 1024px) {
   .focus-reader {
-    height: calc(100dvh - 150px);
+    height: calc(100dvh - 104px);
   }
 }
 
@@ -262,7 +264,7 @@
   }
 
   .focus-reader {
-    height: calc(100dvh - 132px);
+    height: calc(100dvh - 90px);
     padding: 12px;
     border-radius: 22px;
   }

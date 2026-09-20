@@ -2,9 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import AppHeader from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import QuestionReader from '../components/QuestionReader'
-import StudyPlan from '../components/StudyPlan'
 import { contentProvider } from '../services/content/provider'
-import type { ContentPageData, ContentPageMeta, WeeklyStudyProgram } from '../content/content-api'
+import type { ContentPageData, ContentPageMeta } from '../content/content-api'
 import './AppLayout.css'
 
 const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
@@ -24,8 +23,6 @@ function AppLayout() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
   )
-  const [programs, setPrograms] = useState<WeeklyStudyProgram[]>([])
-  const [isStudyPlanOpen, setIsStudyPlanOpen] = useState(false)
 
   const activePage = useMemo(
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
@@ -70,8 +67,6 @@ function AppLayout() {
       })
       .catch((err) => setError(err.message))
   }, [])
-
-  useEffect(() => { contentProvider.getStudyPrograms().then(setPrograms).catch(() => {}) }, [])
 
   useEffect(() => {
     if (!activePageId) {
@@ -164,8 +159,6 @@ function AppLayout() {
         />
       )}
       <main className="content">
-        <button className="study-plan-toggle" type="button" onClick={() => setIsStudyPlanOpen((open) => !open)}>{isStudyPlanOpen ? 'Back to library' : 'Weekly plan'}</button>
-        {isStudyPlanOpen ? <StudyPlan programs={programs} pages={pages} onOpenPage={(slug) => { setIsStudyPlanOpen(false); selectPage(slug) }} /> : <>
         <AppHeader
           title={activePage?.title ?? 'Loading page'}
           section={activePage?.section ?? 'Loading'}
@@ -183,7 +176,6 @@ function AppLayout() {
           error={error}
           pageId={activePage?.id}
         />
-        </>}
       </main>
     </div>
   )

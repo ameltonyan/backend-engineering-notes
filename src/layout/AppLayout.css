@@ -46,27 +46,11 @@
 .content {
   display: flex;
   flex-direction: column;
-  padding: 22px 32px;
+  padding: 12px 32px 22px;
   overflow: hidden;
   min-height: 0;
   min-width: 0;
   background: var(--app-background);
-}
-
-.study-plan-toggle {
-  align-self: flex-end;
-  margin-bottom: 8px;
-  border: 1px solid var(--border-strong);
-  border-radius: 7px;
-  background: var(--control-background);
-  color: var(--text-strong);
-  padding: 7px 10px;
-  cursor: pointer;
-}
-
-.study-plan-toggle:hover {
-  border-color: var(--accent-strong);
-  color: var(--accent);
 }
 
 .sidebar-backdrop {
@@ -88,7 +72,7 @@
   }
 
   .content {
-    padding: 18px;
+    padding: 12px 18px 18px;
   }
 
   .sidebar-backdrop {
@@ -104,6 +88,6 @@
 
 @media (max-width: 600px) {
   .content {
-    padding: 12px 10px;
+    padding: 8px 10px 12px;
   }
 }
