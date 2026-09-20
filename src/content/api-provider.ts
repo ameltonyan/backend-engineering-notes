@@ -1,4 +1,4 @@
-import type { ContentPageData, ContentPageMeta, ContentProvider } from './content-api'
+import type { ContentPageData, ContentPageMeta, ContentProvider, ContentQuestion, WeeklyStudyProgram } from './content-api'
 
 type ApiPageSummary = {
   slug: string
@@ -8,20 +8,17 @@ type ApiPageSummary = {
   displayOrder: number
 }
 
-type ApiQuestionAnswer = {
-  id: number
-  question: string
-  answer: string
-  displayOrder: number
-}
+type ApiQuestionAnswer = ContentQuestion
 
 type ApiPageResponse = {
   slug: string
   title: string
+  description: string | null
   section: string
   displayOrder: number
   questions: ApiQuestionAnswer[]
 }
+
 
 function buildApiUrl(path: string) {
   const baseUrl = import.meta.env.VITE_API_BASE_URL?.trim() || 'http://localhost:8080'
@@ -38,19 +35,13 @@ function toPageMeta(page: ApiPageSummary): ContentPageMeta {
   }
 }
 
-function buildMarkdown(page: ApiPageResponse) {
-  const sortedQuestions = [...page.questions].sort((left, right) => left.displayOrder - right.displayOrder)
-
-  if (!sortedQuestions.length) {
-    return '_No notes available yet._'
+export class ApiContentProvider implements ContentProvider {
+  async getStudyPrograms(): Promise<WeeklyStudyProgram[]> {
+    const response = await fetch(buildApiUrl('/api/study-programs'))
+    if (!response.ok) throw new Error(`Unable to load study programs (${response.status})`)
+    return (await response.json()) as WeeklyStudyProgram[]
   }
 
-  return sortedQuestions
-    .map((questionAnswer) => `## ${questionAnswer.question}\n\n${questionAnswer.answer}`)
-    .join('\n\n')
-}
-
-export class ApiContentProvider implements ContentProvider {
   async getPageList(): Promise<ContentPageMeta[]> {
     const response = await fetch(buildApiUrl('/api/pages'))
     if (!response.ok) {
@@ -78,7 +69,14 @@ export class ApiContentProvider implements ContentProvider {
       id: page.slug,
       title: page.title,
       section: page.section,
-      markdown: buildMarkdown(page),
+      description: page.description,
+      questions: page.questions
+        .map((question) => ({
+          ...question,
+          example: question.example?.trim() || null,
+          codeSnippet: question.codeSnippet?.trim() || null,
+          tags: question.tags ?? [],
+        })),
     }
   }
 }

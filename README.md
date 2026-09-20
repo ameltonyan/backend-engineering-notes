@@ -4,7 +4,7 @@ React + TypeScript + Vite frontend for Backend Engineering Notes.
 
 ## Local development
 
-The frontend reads content from the backend API.
+The frontend reads structured, published question data from the backend API. It renders question, answer, example, code snippet, tags, and follow-up metadata directly; it does not read or parse local content files.
 
 Create a local env file from `.env.example`:
 
@@ -39,4 +39,3 @@ https://ameltonyan.github.io
 ```
 
 After adding the variable, push to `main` to build and deploy the frontend. Do not put database credentials in frontend environment variables; all `VITE_*` values are embedded in the browser bundle.
-

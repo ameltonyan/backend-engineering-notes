@@ -55,12 +55,12 @@ function Header({
               <span aria-hidden="true">→</span>
             </button>
           </div>
+          <h1>
+            <button className="page-title-button" type="button" onClick={onOpenActiveSection}>
+              {title}
+            </button>
+          </h1>
         </div>
-        <h1>
-          <button className="page-title-button" type="button" onClick={onOpenActiveSection}>
-            {title}
-          </button>
-        </h1>
       </div>
     </header>
   )

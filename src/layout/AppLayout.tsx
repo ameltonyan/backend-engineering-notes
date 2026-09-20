@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import AppHeader from '../components/Header'
 import Sidebar from '../components/Sidebar'
-import MarkdownPage from '../components/MarkdownPage'
+import QuestionReader from '../components/QuestionReader'
 import { contentProvider } from '../services/content/provider'
-import type { ContentPageMeta } from '../content/content-api'
+import type { ContentPageData, ContentPageMeta } from '../content/content-api'
 import './AppLayout.css'
 
 const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
@@ -12,7 +12,7 @@ const sidebarCollapsedStorageKey = 'backend-engineering-notes:sidebar-collapsed'
 function AppLayout() {
   const [pages, setPages] = useState<ContentPageMeta[]>([])
   const [activePageId, setActivePageId] = useState<string>('')
-  const [pageMarkdown, setPageMarkdown] = useState<string>('')
+  const [pageData, setPageData] = useState<ContentPageData | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -33,6 +33,7 @@ function AppLayout() {
   const nextPage = activePageIndex >= 0 ? pages[activePageIndex + 1] : undefined
 
   const selectPage = (pageId: string) => {
+    setPageData(null)
     setActivePageId(pageId)
   }
 
@@ -81,12 +82,12 @@ function AppLayout() {
       try {
         const page = await contentProvider.getPageData(activePageId)
         if (!cancelled) {
-          setPageMarkdown(page.markdown)
+          setPageData(page)
         }
       } catch (err) {
         if (!cancelled) {
           setError(err instanceof Error ? err.message : 'Unable to load content')
-          setPageMarkdown('')
+          setPageData(null)
         }
       } finally {
         if (!cancelled) setLoading(false)
@@ -168,9 +169,9 @@ function AppLayout() {
           previousPageTitle={previousPage?.title}
           nextPageTitle={nextPage?.title}
         />
-        <MarkdownPage
+        <QuestionReader
           key={activePageId}
-          markdown={pageMarkdown}
+          page={pageData}
           loading={loading}
           error={error}
           pageId={activePage?.id}
