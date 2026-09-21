@@ -9,6 +9,21 @@
   grid-template-columns: 40px minmax(0, 1fr);
 }
 
+.app-shell.focus-mode {
+  grid-template-columns: minmax(0, 1fr);
+  height: 100dvh;
+}
+
+.focus-mode .sidebar,
+.focus-mode .sidebar-edge-toggle,
+.focus-mode .page-header {
+  display: none;
+}
+
+.focus-mode .content {
+  padding: 0;
+}
+
 .sidebar-collapsed .sidebar {
   overflow: hidden;
   opacity: 0;

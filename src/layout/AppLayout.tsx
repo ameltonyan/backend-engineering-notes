@@ -4,14 +4,12 @@ import Sidebar from '../components/Sidebar'
 import QuestionReader from '../components/QuestionReader'
 import { contentProvider } from '../services/content/provider'
 import type { ContentPageData, ContentPageMeta } from '../content/content-api'
+import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import './AppLayout.css'
 
 const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
 const sidebarCollapsedStorageKey = 'backend-engineering-notes:sidebar-collapsed'
 const readerFontSizeStorageKey = 'backend-engineering-notes:reader-font-size'
-
-type ReadingTheme = 'dark' | 'light' | 'paper' | 'sepia'
-type ReaderFontSize = 'small' | 'standard' | 'large'
 
 function savedTheme(): ReadingTheme {
   const value = window.localStorage.getItem('theme')
@@ -36,6 +34,7 @@ function AppLayout() {
   )
   const [theme, setTheme] = useState<ReadingTheme>(savedTheme)
   const [readerFontSize, setReaderFontSize] = useState<ReaderFontSize>(savedReaderFontSize)
+  const [isFocusMode, setIsFocusMode] = useState(false)
 
   const activePage = useMemo(
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
@@ -146,8 +145,24 @@ function AppLayout() {
     window.localStorage.setItem(sidebarCollapsedStorageKey, String(isSidebarCollapsed))
   }, [isSidebarCollapsed])
 
+  useEffect(() => {
+    if (!isFocusMode) return
+
+    const exitFocusMode = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsFocusMode(false)
+    }
+    document.addEventListener('keydown', exitFocusMode)
+    return () => document.removeEventListener('keydown', exitFocusMode)
+  }, [isFocusMode])
+
+  const shellClassName = [
+    'app-shell',
+    isSidebarCollapsed && 'sidebar-collapsed',
+    isFocusMode && 'focus-mode',
+  ].filter(Boolean).join(' ')
+
   return (
-    <div className={isSidebarCollapsed ? 'app-shell sidebar-collapsed' : 'app-shell'}>
+    <div className={shellClassName}>
       <Sidebar
         pages={pages}
         activePageId={activePageId}
@@ -197,6 +212,13 @@ function AppLayout() {
           loading={loading}
           error={error}
           pageId={activePage?.id}
+          codeColorScheme={theme === 'dark' ? 'dark' : 'light'}
+          isFocusMode={isFocusMode}
+          onFocusModeChange={setIsFocusMode}
+          theme={theme}
+          onThemeChange={setTheme}
+          readerFontSize={readerFontSize}
+          onReaderFontSizeChange={setReaderFontSize}
         />
       </main>
     </div>

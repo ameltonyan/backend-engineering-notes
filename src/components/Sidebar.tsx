@@ -1,23 +1,9 @@
 import { useState } from 'react'
 import type { ContentPageMeta } from '../content/content-api'
+import { fontSizeOptions, themeOptions } from '../reading-preferences'
+import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import logoUrl from '../assets/logo.svg'
 import './Sidebar.css'
-
-type ReadingTheme = 'dark' | 'light' | 'paper' | 'sepia'
-type ReaderFontSize = 'small' | 'standard' | 'large'
-
-const themeOptions: Array<{ value: ReadingTheme; label: string; icon: string }> = [
-  { value: 'light', label: 'Light', icon: '☀' },
-  { value: 'dark', label: 'Dark', icon: '☾' },
-  { value: 'paper', label: 'Paper', icon: '◍' },
-  { value: 'sepia', label: 'Sepia', icon: '◒' },
-]
-
-const fontSizeOptions: Array<{ value: ReaderFontSize; label: string; icon: string }> = [
-  { value: 'small', label: 'Small text', icon: 'A−' },
-  { value: 'standard', label: 'Standard text', icon: 'A' },
-  { value: 'large', label: 'Large text', icon: 'A+' },
-]
 
 type SidebarProps = {
   pages: ContentPageMeta[]
