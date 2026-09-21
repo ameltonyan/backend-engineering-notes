@@ -24,6 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   flex: 0 0 auto;
   padding: 0 4px 14px;
 }
@@ -36,6 +37,7 @@
 
 .reader-actions {
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
@@ -61,6 +63,78 @@
 .reader-actions button:disabled {
   opacity: 0.3;
   cursor: default;
+}
+
+.reader-actions .focus-mode-button {
+  width: 38px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.reader-actions .focus-mode-button.active {
+  border-color: var(--accent-strong);
+}
+
+.focus-mode-icon {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.focus-reading-preferences,
+.focus-preference-group {
+  display: flex;
+  align-items: center;
+}
+
+.focus-reading-preferences {
+  min-width: 0;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.focus-preference-group {
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--nav-background);
+}
+
+.reader-toolbar .reader-preference-button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.reader-toolbar .reader-font-button {
+  width: 34px;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.reader-toolbar .reader-preference-button:hover,
+.reader-toolbar .reader-preference-button:focus-visible {
+  background: var(--control-hover);
+  color: var(--text-strong);
+}
+
+.reader-toolbar .reader-preference-button.selected {
+  border-color: var(--accent-strong);
+  background: var(--control-hover);
+  color: var(--text-strong);
 }
 
 .reader-frame {
@@ -97,7 +171,7 @@
 
 .reader-viewport {
   height: 100%;
-  padding: 20px clamp(12px, 3vw, 36px);
+  padding: 20px clamp(8px, 1.5vw, 22px);
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-color: var(--accent-strong) transparent;
@@ -120,7 +194,7 @@
   position: relative;
   min-height: calc(100% - 32px);
   margin: 16px auto;
-  padding: clamp(24px, 4vw, 48px);
+  padding: clamp(24px, 3vw, 42px);
   border: 0;
   border-radius: 38px;
   background: transparent;
@@ -179,19 +253,70 @@
   margin-top: 1em;
 }
 
-.question-example {
+.question-detail {
   margin-top: 1.5rem;
-  padding: 16px 18px;
-  border-left: 3px solid var(--accent-strong);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   background: var(--nav-background);
   color: var(--text);
 }
 
-.question-example h3,
-.question-code h3 {
-  margin: 0 0 8px;
+.question-detail summary {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 16px;
   color: var(--text-strong);
-  font-size: .9rem;
+  font-size: .86rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.question-detail summary::-webkit-details-marker {
+  display: none;
+}
+
+.question-detail summary:hover,
+.question-detail summary:focus-visible {
+  background: var(--control-hover);
+}
+
+.question-detail summary:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: -3px;
+}
+
+.question-detail[open] summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-action {
+  color: var(--text-muted);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.detail-hide,
+.question-detail[open] .detail-show {
+  display: none;
+}
+
+.question-detail[open] .detail-hide {
+  display: inline;
+}
+
+.question-example {
+  border-left: 3px solid var(--accent-strong);
+}
+
+.question-example-content {
+  padding: 16px 18px;
 }
 
 .question-example-content p {
@@ -205,6 +330,10 @@
 
 .question-code {
   margin-top: 1.5rem;
+}
+
+.question-code-content {
+  padding: 14px;
 }
 
 .code-block {
@@ -297,6 +426,23 @@
   text-align: center;
 }
 
+.focus-mode .focus-reader {
+  height: 100dvh;
+  padding: 14px clamp(12px, 2vw, 28px) 12px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.focus-mode .reader-toolbar {
+  width: min(100%, 1100px);
+  margin-inline: auto;
+}
+
+.focus-mode .reader-frame {
+  border-radius: 20px;
+}
+
 .status {
   margin: 0;
   color: var(--text);
@@ -348,6 +494,21 @@
     padding-bottom: 9px;
   }
 
+  .focus-mode .focus-reader {
+    height: 100dvh;
+    padding: 8px;
+  }
+
+  .focus-mode .reader-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .focus-mode .focus-reading-preferences {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
   .reader-frame {
     border-radius: 20px;
   }
@@ -365,6 +526,15 @@
 
   .qa-card.follow-up {
     margin-left: 8px;
+  }
+
+  .question-detail summary {
+    min-height: 44px;
+    padding-inline: 14px;
+  }
+
+  .question-code-content {
+    padding: 10px;
   }
 
   .code-block {
