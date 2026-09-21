@@ -83,20 +83,22 @@ function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: bool
       className={`qa-card${isActive ? ' active' : ''}${depth > 0 ? ' follow-up' : ''}`}
       aria-label={depth > 0 ? `Follow-up: ${question.question}` : question.question}
     >
-      <h2>{question.question}</h2>
-      <div className="question-answer">{question.answer}</div>
-      {question.example && (
-        <aside className="question-example">
-          <h3>Example</h3>
-          <p>{question.example}</p>
-        </aside>
-      )}
-      {question.codeSnippet && (
-        <div className="question-code">
-          <h3>Code example</h3>
-          <pre><code>{question.codeSnippet}</code></pre>
-        </div>
-      )}
+      <div className="qa-card-content">
+        <h2>{question.question}</h2>
+        <div className="question-answer">{question.answer}</div>
+        {question.example && (
+          <aside className="question-example">
+            <h3>Example</h3>
+            <p>{question.example}</p>
+          </aside>
+        )}
+        {question.codeSnippet && (
+          <div className="question-code">
+            <h3>Code example</h3>
+            <pre><code>{question.codeSnippet}</code></pre>
+          </div>
+        )}
+      </div>
     </section>
   )
 }

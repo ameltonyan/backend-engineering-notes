@@ -137,6 +137,10 @@
   border-left: 4px solid var(--accent-strong);
 }
 
+.qa-card-content {
+  transform-origin: center;
+}
+
 .qa-card h2 {
   margin: 0;
   color: var(--text-strong);
@@ -217,16 +221,28 @@
     animation-range: entry 0% exit 100%;
   }
 
-  .qa-card.follow-up {
-    margin-left: 8px;
+  .qa-card-content {
+    animation: card-content-depth linear both;
+    animation-timeline: view(block);
+    animation-range: entry 0% exit 100%;
   }
 }
 
 @keyframes card-depth {
-
   0%,
   100% {
     transform: scale(.96);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
+
+@keyframes card-content-depth {
+  0%,
+  100% {
+    transform: scale(1.0416667);
   }
 
   50% {
@@ -271,6 +287,10 @@
     border-radius: 30px;
   }
 
+  .qa-card.follow-up {
+    margin-left: 8px;
+  }
+
   .question-code pre {
     padding: 16px;
     border-radius: 14px;
@@ -288,6 +308,10 @@
 
   .qa-card {
     transition: none;
+    animation: none;
+  }
+
+  .qa-card-content {
     animation: none;
   }
 }
