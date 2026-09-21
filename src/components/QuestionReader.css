@@ -140,14 +140,14 @@
 .qa-card h2 {
   margin: 0;
   color: var(--text-strong);
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-size: var(--reader-question-size);
   line-height: 1.35;
 }
 
 .question-answer {
   margin-top: 1.5rem;
   color: var(--text);
-  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-size: var(--reader-answer-size);
   line-height: 1.8;
   overflow-wrap: anywhere;
   white-space: pre-wrap;

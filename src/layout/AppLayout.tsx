@@ -8,6 +8,20 @@ import './AppLayout.css'
 
 const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
 const sidebarCollapsedStorageKey = 'backend-engineering-notes:sidebar-collapsed'
+const readerFontSizeStorageKey = 'backend-engineering-notes:reader-font-size'
+
+type ReadingTheme = 'dark' | 'light' | 'paper' | 'sepia'
+type ReaderFontSize = 'small' | 'standard' | 'large'
+
+function savedTheme(): ReadingTheme {
+  const value = window.localStorage.getItem('theme')
+  return value === 'light' || value === 'paper' || value === 'sepia' ? value : 'dark'
+}
+
+function savedReaderFontSize(): ReaderFontSize {
+  const value = window.localStorage.getItem(readerFontSizeStorageKey)
+  return value === 'small' || value === 'large' ? value : 'standard'
+}
 
 function AppLayout() {
   const [pages, setPages] = useState<ContentPageMeta[]>([])
@@ -20,9 +34,8 @@ function AppLayout() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() =>
     window.localStorage.getItem(sidebarCollapsedStorageKey) === 'true',
   )
-  const [theme, setTheme] = useState<'dark' | 'light'>(() =>
-    window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
-  )
+  const [theme, setTheme] = useState<ReadingTheme>(savedTheme)
+  const [readerFontSize, setReaderFontSize] = useState<ReaderFontSize>(savedReaderFontSize)
 
   const activePage = useMemo(
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
@@ -125,6 +138,11 @@ function AppLayout() {
   }, [theme])
 
   useEffect(() => {
+    document.documentElement.dataset.readingSize = readerFontSize
+    window.localStorage.setItem(readerFontSizeStorageKey, readerFontSize)
+  }, [readerFontSize])
+
+  useEffect(() => {
     window.localStorage.setItem(sidebarCollapsedStorageKey, String(isSidebarCollapsed))
   }, [isSidebarCollapsed])
 
@@ -138,8 +156,10 @@ function AppLayout() {
         onToggleSection={toggleSection}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
-        isLightTheme={theme === 'light'}
-        onThemeToggle={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')}
+        theme={theme}
+        onThemeChange={setTheme}
+        readerFontSize={readerFontSize}
+        onReaderFontSizeChange={setReaderFontSize}
       />
       <button
         className="sidebar-edge-toggle"
