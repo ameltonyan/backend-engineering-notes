@@ -1,6 +1,23 @@
+import { useState } from 'react'
 import type { ContentPageMeta } from '../content/content-api'
 import logoUrl from '../assets/logo.svg'
 import './Sidebar.css'
+
+type ReadingTheme = 'dark' | 'light' | 'paper' | 'sepia'
+type ReaderFontSize = 'small' | 'standard' | 'large'
+
+const themeOptions: Array<{ value: ReadingTheme; label: string; icon: string }> = [
+  { value: 'light', label: 'Light', icon: '☀' },
+  { value: 'dark', label: 'Dark', icon: '☾' },
+  { value: 'paper', label: 'Paper', icon: '◍' },
+  { value: 'sepia', label: 'Sepia', icon: '◒' },
+]
+
+const fontSizeOptions: Array<{ value: ReaderFontSize; label: string; icon: string }> = [
+  { value: 'small', label: 'Small text', icon: 'A−' },
+  { value: 'standard', label: 'Standard text', icon: 'A' },
+  { value: 'large', label: 'Large text', icon: 'A+' },
+]
 
 type SidebarProps = {
   pages: ContentPageMeta[]
@@ -10,8 +27,10 @@ type SidebarProps = {
   onToggleSection: (section: string) => void
   isOpen: boolean
   onClose: () => void
-  isLightTheme: boolean
-  onThemeToggle: () => void
+  theme: ReadingTheme
+  onThemeChange: (theme: ReadingTheme) => void
+  readerFontSize: ReaderFontSize
+  onReaderFontSizeChange: (size: ReaderFontSize) => void
 }
 
 function Sidebar({
@@ -22,9 +41,12 @@ function Sidebar({
   onToggleSection,
   isOpen,
   onClose,
-  isLightTheme,
-  onThemeToggle,
+  theme,
+  onThemeChange,
+  readerFontSize,
+  onReaderFontSizeChange,
 }: SidebarProps) {
+  const [areReadingPreferencesOpen, setAreReadingPreferencesOpen] = useState(true)
   const sortedPages = [...pages].sort((left, right) =>
     left.sectionDisplayOrder - right.sectionDisplayOrder
     || left.displayOrder - right.displayOrder
@@ -54,17 +76,53 @@ function Sidebar({
           ×
         </button>
         <button
-          className="theme-toggle"
+          className="reading-preferences-toggle"
           type="button"
-          role="switch"
-          aria-checked={isLightTheme}
-          aria-label={isLightTheme ? 'Switch to dark theme' : 'Switch to light theme'}
-          onClick={onThemeToggle}
+          aria-label={areReadingPreferencesOpen ? 'Hide reading preferences' : 'Show reading preferences'}
+          aria-expanded={areReadingPreferencesOpen}
+          aria-controls="reading-preferences"
+          title={areReadingPreferencesOpen ? 'Hide reading preferences' : 'Show reading preferences'}
+          onClick={() => setAreReadingPreferencesOpen((open) => !open)}
         >
-          <span className="theme-toggle-track" aria-hidden="true">
-            <span className="theme-toggle-thumb" />
-          </span>
+          <span aria-hidden="true">⚙</span>
+          <span className="reading-preferences-indicator" aria-hidden="true">{areReadingPreferencesOpen ? '−' : '+'}</span>
         </button>
+        {areReadingPreferencesOpen && (
+          <div id="reading-preferences" className="reading-preferences" aria-label="Reading preferences">
+            <div className="preference-options theme-options" role="group" aria-label="Color theme">
+              {themeOptions.map((option) => (
+                <button
+                  className={theme === option.value ? 'preference-button selected theme-option' : 'preference-button theme-option'}
+                  data-reading-theme={option.value}
+                  type="button"
+                  aria-pressed={theme === option.value}
+                  aria-label={`${option.label} theme`}
+                  title={option.label}
+                  key={option.value}
+                  onClick={() => onThemeChange(option.value)}
+                >
+                  <span aria-hidden="true">{option.icon}</span>
+                </button>
+              ))}
+            </div>
+            <div className="preference-options font-size-options" role="group" aria-label="Reading text size">
+              {fontSizeOptions.map((option) => (
+                <button
+                  className={readerFontSize === option.value ? 'preference-button selected font-size-option' : 'preference-button font-size-option'}
+                  data-reading-size={option.value}
+                  type="button"
+                  aria-pressed={readerFontSize === option.value}
+                  aria-label={option.label}
+                  title={option.label}
+                  key={option.value}
+                  onClick={() => onReaderFontSizeChange(option.value)}
+                >
+                  <span aria-hidden="true">{option.icon}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="nav-section">
