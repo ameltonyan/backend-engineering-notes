@@ -106,6 +106,14 @@ function FocusModeIcon({ active }: { active: boolean }) {
   )
 }
 
+function ToolbarToggleIcon({ open }: { open: boolean }) {
+  return (
+    <svg className="focus-toolbar-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d={open ? 'm5 15 7-7 7 7' : 'm5 9 7 7 7-7'} />
+    </svg>
+  )
+}
+
 function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestion; isActive: boolean; codeColorScheme: CodeColorScheme }) {
   const { question, depth } = item
   return (
@@ -167,6 +175,7 @@ function QuestionReader({
   const readerQuestions = useMemo(() => buildReadingOrder(questions), [questions])
   const isContentReady = !loading && Boolean(page)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isFocusToolbarOpen, setIsFocusToolbarOpen] = useState(true)
   const activeIndexRef = useRef(0)
   const viewportRef = useRef<HTMLDivElement>(null)
   const hasRenderedFocusMode = useRef(false)
@@ -237,7 +246,7 @@ function QuestionReader({
       viewport.scrollTop = Math.max(0, top)
     })
     return () => window.cancelAnimationFrame(animationFrame)
-  }, [isFocusMode])
+  }, [isFocusMode, isFocusToolbarOpen])
 
   const goToQuestion = (index: number) => {
     const nextIndex = Math.max(0, Math.min(index, readerQuestions.length - 1))
@@ -261,7 +270,7 @@ function QuestionReader({
     <section className="focus-reader" aria-label="Question and answer reader">
       {loading && <p className="status loading-status" aria-live="polite">Loading questions...</p>}
       {error && <p className="status error" role="alert">{error}</p>}
-      <div className="reader-toolbar">
+      {(!isFocusMode || isFocusToolbarOpen) && <div className="reader-toolbar">
         <span className="reader-position" aria-live="polite">Question {activeIndex + 1} of {readerQuestions.length}</span>
         {isFocusMode && (
           <div className="focus-reading-preferences" aria-label="Focus mode reading preferences">
@@ -298,6 +307,18 @@ function QuestionReader({
           </div>
         )}
         <div className="reader-actions">
+          {isFocusMode && (
+            <button
+              className="focus-toolbar-toggle"
+              type="button"
+              aria-label="Hide focus controls"
+              aria-expanded="true"
+              title="Hide controls"
+              onClick={() => setIsFocusToolbarOpen(false)}
+            >
+              <ToolbarToggleIcon open />
+            </button>
+          )}
           <button type="button" aria-label="Previous question" disabled={activeIndex === 0} onClick={() => goToQuestion(activeIndex - 1)}><span aria-hidden="true">↑</span></button>
           <button type="button" aria-label="Next question" disabled={activeIndex >= readerQuestions.length - 1} onClick={() => goToQuestion(activeIndex + 1)}><span aria-hidden="true">↓</span></button>
           <button
@@ -306,12 +327,28 @@ function QuestionReader({
             aria-label={isFocusMode ? 'Exit focus mode' : 'Enter focus mode'}
             aria-pressed={isFocusMode}
             title={isFocusMode ? 'Exit focus mode (Escape)' : 'Enter focus mode'}
-            onClick={() => onFocusModeChange(!isFocusMode)}
+            onClick={() => {
+              if (!isFocusMode) setIsFocusToolbarOpen(true)
+              onFocusModeChange(!isFocusMode)
+            }}
           >
             <FocusModeIcon active={isFocusMode} />
           </button>
         </div>
-      </div>
+      </div>}
+      {isFocusMode && !isFocusToolbarOpen && (
+        <div className="focus-toolbar-collapsed">
+          <button
+            type="button"
+            aria-label="Show focus controls"
+            aria-expanded="false"
+            title="Show controls"
+            onClick={() => setIsFocusToolbarOpen(true)}
+          >
+            <ToolbarToggleIcon open={false} />
+          </button>
+        </div>
+      )}
       <div className="reader-frame">
         <div ref={viewportRef} className="reader-viewport" tabIndex={0} onKeyDown={(event) => {
           if (event.target !== event.currentTarget) return
