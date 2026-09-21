@@ -76,6 +76,13 @@ function saveReadingPosition(pageId: string, position: number) {
   }
 }
 
+function answerParagraphs(answer: string) {
+  return answer
+    .trim()
+    .split(/\r?\n\s*\r?\n/)
+    .filter(Boolean)
+}
+
 function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: boolean }) {
   const { question, depth } = item
   return (
@@ -83,9 +90,12 @@ function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: bool
       className={`qa-card${isActive ? ' active' : ''}${depth > 0 ? ' follow-up' : ''}`}
       aria-label={depth > 0 ? `Follow-up: ${question.question}` : question.question}
     >
+      <span className="qa-card-surface" aria-hidden="true" />
       <div className="qa-card-content">
         <h2>{question.question}</h2>
-        <div className="question-answer">{question.answer}</div>
+        <div className="question-answer">
+          {answerParagraphs(question.answer).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+        </div>
         {question.example && (
           <aside className="question-example">
             <h3>Example</h3>
