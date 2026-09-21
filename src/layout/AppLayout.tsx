@@ -197,6 +197,7 @@ function AppLayout() {
           loading={loading}
           error={error}
           pageId={activePage?.id}
+          codeColorScheme={theme === 'dark' ? 'dark' : 'light'}
         />
       </main>
     </div>

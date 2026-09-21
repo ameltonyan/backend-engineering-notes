@@ -203,18 +203,85 @@
   margin-top: 1.5rem;
 }
 
-.question-code pre {
-  margin: 0;
-  padding: 22px;
-  overflow-x: auto;
+.code-block {
+  overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 18px;
   background: var(--code-background);
-  color: var(--text-soft);
 }
 
-.question-code code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+.code-block-toolbar {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px 0 18px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--code-background) 86%, var(--text) 14%);
+}
+
+.code-language {
+  color: var(--text-muted);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.code-copy-button {
+  padding: 5px 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: .75rem;
+  cursor: pointer;
+}
+
+.code-copy-button:hover,
+.code-copy-button:focus-visible {
+  border-color: var(--border-strong);
+  background: var(--control-hover);
+  color: var(--text-strong);
+}
+
+.code-highlight {
+  margin: 0;
+  padding: 18px 0;
+  overflow-x: auto;
+  font-size: clamp(.8rem, .76rem + .16vw, .9rem);
+  line-height: 1.65;
+  tab-size: 4;
+}
+
+.code-highlight code {
+  display: block;
+  min-width: max-content;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-variant-ligatures: none;
+}
+
+.code-line {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  min-height: 1.65em;
+  padding-right: 20px;
+}
+
+.code-line:hover {
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+.code-line-number {
+  padding-right: 1rem;
+  color: var(--text-subtle);
+  text-align: right;
+  user-select: none;
+}
+
+.code-line-content {
+  white-space: pre;
 }
 
 .reader-hint {
@@ -296,9 +363,17 @@
     margin-left: 8px;
   }
 
-  .question-code pre {
-    padding: 16px;
+  .code-block {
     border-radius: 14px;
+  }
+
+  .code-highlight {
+    padding: 14px 0;
+  }
+
+  .code-line {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    padding-right: 14px;
   }
 
   .reader-hint {

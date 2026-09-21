@@ -1,5 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { ContentPageData, ContentQuestion } from '../content/content-api'
+import CodeBlock from './CodeBlock'
+import type { CodeColorScheme } from './CodeBlock'
 import './QuestionReader.css'
 
 type QuestionReaderProps = {
@@ -7,6 +9,7 @@ type QuestionReaderProps = {
   loading: boolean
   error: string | null
   pageId?: string
+  codeColorScheme: CodeColorScheme
 }
 
 const readingPositionStorageKey = 'backend-engineering-notes:reading-positions'
@@ -83,7 +86,7 @@ function answerParagraphs(answer: string) {
     .filter(Boolean)
 }
 
-function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: boolean }) {
+function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestion; isActive: boolean; codeColorScheme: CodeColorScheme }) {
   const { question, depth } = item
   return (
     <section
@@ -105,7 +108,7 @@ function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: bool
         {question.codeSnippet && (
           <div className="question-code">
             <h3>Code example</h3>
-            <pre><code>{question.codeSnippet}</code></pre>
+            <CodeBlock code={question.codeSnippet} tags={question.tags} colorScheme={codeColorScheme} />
           </div>
         )}
       </div>
@@ -113,7 +116,7 @@ function QuestionCard({ item, isActive }: { item: ReaderQuestion; isActive: bool
   )
 }
 
-function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
+function QuestionReader({ page, loading, error, pageId, codeColorScheme }: QuestionReaderProps) {
   const questions = page?.questions ?? emptyQuestions
   const readerQuestions = useMemo(() => buildReadingOrder(questions), [questions])
   const isContentReady = !loading && Boolean(page)
@@ -205,7 +208,7 @@ function QuestionReader({ page, loading, error, pageId }: QuestionReaderProps) {
           if (event.key === 'ArrowUp' || event.key === 'PageUp') { event.preventDefault(); goToQuestion(activeIndex - 1) }
         }} aria-label="Questions and answers. Scroll vertically or use arrow keys to navigate.">
           {page.description && <p className="page-description">{page.description}</p>}
-          {readerQuestions.map((item, index) => <QuestionCard key={item.question.id} item={item} isActive={index === activeIndex} />)}
+          {readerQuestions.map((item, index) => <QuestionCard key={item.question.id} item={item} isActive={index === activeIndex} codeColorScheme={codeColorScheme} />)}
         </div>
       </div>
       <p className="reader-hint">Scroll · swipe · use ↑ ↓</p>
