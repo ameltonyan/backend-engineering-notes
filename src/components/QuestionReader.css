@@ -217,11 +217,35 @@
 
 .qa-card.follow-up {
   min-height: calc(78% - 32px);
-  margin-left: clamp(12px, 5vw, 56px);
+  margin-left: clamp(30px, 5vw, 56px);
 }
 
 .qa-card.follow-up .qa-card-surface {
   border-left: 4px solid var(--accent-strong);
+}
+
+.follow-up-connector {
+  position: absolute;
+  top: -31px;
+  left: -43px;
+  z-index: 3;
+  width: 64px;
+  height: 48px;
+  overflow: visible;
+  fill: none;
+  stroke: var(--accent-strong);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.follow-up-connector-line {
+  stroke-width: 2;
+  opacity: .62;
+}
+
+.follow-up-connector-arrow {
+  stroke-width: 2.2;
 }
 
 .qa-card-content {
@@ -266,8 +290,7 @@
   display: flex;
   min-height: 46px;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 10px;
   padding: 0 16px;
   color: var(--text-strong);
   font-size: .86rem;
@@ -278,6 +301,22 @@
 
 .question-detail summary::-webkit-details-marker {
   display: none;
+}
+
+.question-detail summary::before {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  content: '';
+  opacity: .7;
+  transform: rotate(-45deg);
+  transition: transform 140ms ease;
+}
+
+.question-detail[open] summary::before {
+  transform: rotate(45deg) translate(-1px, -1px);
 }
 
 .question-detail summary:hover,
@@ -292,23 +331,6 @@
 
 .question-detail[open] summary {
   border-bottom: 1px solid var(--border);
-}
-
-.detail-action {
-  color: var(--text-muted);
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-
-.detail-hide,
-.question-detail[open] .detail-show {
-  display: none;
-}
-
-.question-detail[open] .detail-hide {
-  display: inline;
 }
 
 .question-example {
@@ -525,7 +547,14 @@
   }
 
   .qa-card.follow-up {
-    margin-left: 8px;
+    margin-left: 22px;
+  }
+
+  .follow-up-connector {
+    top: -27px;
+    left: -28px;
+    width: 46px;
+    height: 40px;
   }
 
   .question-detail summary {

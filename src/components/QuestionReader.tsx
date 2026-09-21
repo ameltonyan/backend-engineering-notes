@@ -113,6 +113,12 @@ function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestio
       className={`qa-card${isActive ? ' active' : ''}${depth > 0 ? ' follow-up' : ''}`}
       aria-label={depth > 0 ? `Follow-up: ${question.question}` : question.question}
     >
+      {depth > 0 && (
+        <svg className="follow-up-connector" viewBox="0 0 64 48" aria-hidden="true">
+          <path className="follow-up-connector-line" d="M4 2c0 25 13 37 40 37h10" />
+          <path className="follow-up-connector-arrow" d="m48 33 6 6-6 6" />
+        </svg>
+      )}
       <span className="qa-card-surface" aria-hidden="true" />
       <div className="qa-card-content">
         <h2>{question.question}</h2>
@@ -123,7 +129,6 @@ function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestio
           <details className="question-detail question-example">
             <summary>
               <span>Example</span>
-              <span className="detail-action" aria-hidden="true"><span className="detail-show">Show</span><span className="detail-hide">Hide</span></span>
             </summary>
             <div className="question-example-content">
               {answerParagraphs(question.example).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
@@ -134,7 +139,6 @@ function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestio
           <details className="question-detail question-code">
             <summary>
               <span>Code example</span>
-              <span className="detail-action" aria-hidden="true"><span className="detail-show">Show</span><span className="detail-hide">Hide</span></span>
             </summary>
             <div className="question-code-content">
               <CodeBlock code={question.codeSnippet} tags={question.tags} colorScheme={codeColorScheme} />
