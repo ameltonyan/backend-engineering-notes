@@ -102,7 +102,9 @@ function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestio
         {question.example && (
           <aside className="question-example">
             <h3>Example</h3>
-            <p>{question.example}</p>
+            <div className="question-example-content">
+              {answerParagraphs(question.example).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            </div>
           </aside>
         )}
         {question.codeSnippet && (

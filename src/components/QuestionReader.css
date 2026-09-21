@@ -194,9 +194,13 @@
   font-size: .9rem;
 }
 
-.question-example p {
+.question-example-content p {
   margin: 0;
   white-space: pre-wrap;
+}
+
+.question-example-content p + p {
+  margin-top: .85em;
 }
 
 .question-code {
