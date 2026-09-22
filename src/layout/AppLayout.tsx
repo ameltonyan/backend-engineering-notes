@@ -146,6 +146,15 @@ function AppLayout() {
   }, [isSidebarCollapsed])
 
   useEffect(() => {
+    const syncFocusModeWithFullscreen = () => {
+      if (!document.fullscreenElement) setIsFocusMode(false)
+    }
+
+    document.addEventListener('fullscreenchange', syncFocusModeWithFullscreen)
+    return () => document.removeEventListener('fullscreenchange', syncFocusModeWithFullscreen)
+  }, [])
+
+  useEffect(() => {
     if (!isFocusMode) return
 
     const exitFocusMode = (event: KeyboardEvent) => {
@@ -154,6 +163,25 @@ function AppLayout() {
     document.addEventListener('keydown', exitFocusMode)
     return () => document.removeEventListener('keydown', exitFocusMode)
   }, [isFocusMode])
+
+  const changeFocusMode = (enabled: boolean) => {
+    setIsFocusMode(enabled)
+
+    if (enabled) {
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+        void document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(() => {
+          // Keep the distraction-free layout when browser fullscreen is unavailable.
+        })
+      }
+      return
+    }
+
+    if (document.fullscreenElement && document.exitFullscreen) {
+      void document.exitFullscreen().catch(() => {
+        // The browser may already be leaving fullscreen (for example via Escape).
+      })
+    }
+  }
 
   const shellClassName = [
     'app-shell',
@@ -214,7 +242,7 @@ function AppLayout() {
           pageId={activePage?.id}
           codeColorScheme={theme === 'dark' ? 'dark' : 'light'}
           isFocusMode={isFocusMode}
-          onFocusModeChange={setIsFocusMode}
+          onFocusModeChange={changeFocusMode}
           theme={theme}
           onThemeChange={setTheme}
           readerFontSize={readerFontSize}
