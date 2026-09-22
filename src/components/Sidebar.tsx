@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { ContentPageMeta } from '../content/content-api'
+import type { ContentPageMeta, Difficulty } from '../content/content-api'
 import { fontSizeOptions, themeOptions } from '../reading-preferences'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import logoUrl from '../assets/logo.svg'
@@ -17,6 +17,8 @@ type SidebarProps = {
   onThemeChange: (theme: ReadingTheme) => void
   readerFontSize: ReaderFontSize
   onReaderFontSizeChange: (size: ReaderFontSize) => void
+  difficulty: Difficulty
+  onDifficultyChange: (difficulty: Difficulty) => void
 }
 
 function Sidebar({
@@ -31,6 +33,8 @@ function Sidebar({
   onThemeChange,
   readerFontSize,
   onReaderFontSizeChange,
+  difficulty,
+  onDifficultyChange,
 }: SidebarProps) {
   const [areReadingPreferencesOpen, setAreReadingPreferencesOpen] = useState(true)
   const sortedPages = [...pages].sort((left, right) =>
@@ -111,7 +115,18 @@ function Sidebar({
         )}
       </div>
 
+      <label className="difficulty-selector">
+        <span>Difficulty level</span>
+        <select value={difficulty} onChange={(event) => onDifficultyChange(event.target.value as Difficulty)}>
+          <option value="BEGINNER">Beginner</option>
+          <option value="INTERMEDIATE">Intermediate</option>
+          <option value="ADVANCED">Advanced</option>
+          <option value="EXPERT">Expert</option>
+        </select>
+      </label>
+
       <div className="nav-section">
+        {!pages.length && <p className="difficulty-empty">No published content at this level yet.</p>}
         {sectionNames.map((section) => (
           <div className="sidebar-section" key={section}>
             <div className="section-group-title">

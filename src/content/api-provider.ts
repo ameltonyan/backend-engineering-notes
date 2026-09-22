@@ -1,4 +1,4 @@
-import type { ContentPageData, ContentPageMeta, ContentProvider, ContentQuestion, WeeklyStudyProgram } from './content-api'
+import type { ContentPageData, ContentPageMeta, ContentProvider, ContentQuestion, Difficulty, WeeklyStudyProgram } from './content-api'
 
 type ApiPageSummary = {
   slug: string
@@ -42,8 +42,8 @@ export class ApiContentProvider implements ContentProvider {
     return (await response.json()) as WeeklyStudyProgram[]
   }
 
-  async getPageList(): Promise<ContentPageMeta[]> {
-    const response = await fetch(buildApiUrl('/api/pages'))
+  async getPageList(difficulty: Difficulty): Promise<ContentPageMeta[]> {
+    const response = await fetch(buildApiUrl(`/api/pages?difficulty=${encodeURIComponent(difficulty)}`))
     if (!response.ok) {
       throw new Error(`Unable to load page list (${response.status})`)
     }
@@ -58,8 +58,8 @@ export class ApiContentProvider implements ContentProvider {
       .map(toPageMeta)
   }
 
-  async getPageData(id: string): Promise<ContentPageData> {
-    const response = await fetch(buildApiUrl(`/api/pages/${encodeURIComponent(id)}`))
+  async getPageData(id: string, difficulty: Difficulty): Promise<ContentPageData> {
+    const response = await fetch(buildApiUrl(`/api/pages/${encodeURIComponent(id)}?difficulty=${encodeURIComponent(difficulty)}`))
     if (!response.ok) {
       throw new Error(`Unable to load page "${id}" (${response.status})`)
     }

@@ -60,6 +60,36 @@
   scrollbar-width: thin;
 }
 
+.difficulty-selector {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 18px;
+  color: var(--text-muted);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.difficulty-selector select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--control-background);
+  color: var(--text-strong);
+  font: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.difficulty-empty {
+  margin: 4px 0;
+  color: var(--text-muted);
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
 .nav-section-title {
   font-size: 0.82rem;
   font-weight: 600;

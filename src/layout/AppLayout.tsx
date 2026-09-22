@@ -3,13 +3,19 @@ import AppHeader from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import QuestionReader from '../components/QuestionReader'
 import { contentProvider } from '../services/content/provider'
-import type { ContentPageData, ContentPageMeta } from '../content/content-api'
+import type { ContentPageData, ContentPageMeta, Difficulty } from '../content/content-api'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import './AppLayout.css'
 
 const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
 const sidebarCollapsedStorageKey = 'backend-engineering-notes:sidebar-collapsed'
 const readerFontSizeStorageKey = 'backend-engineering-notes:reader-font-size'
+const difficultyStorageKey = 'backend-engineering-notes:difficulty'
+
+function savedDifficulty(): Difficulty {
+  const value = window.localStorage.getItem(difficultyStorageKey)
+  return value === 'BEGINNER' || value === 'INTERMEDIATE' || value === 'EXPERT' ? value : 'ADVANCED'
+}
 
 function savedTheme(): ReadingTheme {
   const value = window.localStorage.getItem('theme')
@@ -35,6 +41,7 @@ function AppLayout() {
   const [theme, setTheme] = useState<ReadingTheme>(savedTheme)
   const [readerFontSize, setReaderFontSize] = useState<ReaderFontSize>(savedReaderFontSize)
   const [isFocusMode, setIsFocusMode] = useState(false)
+  const [difficulty, setDifficulty] = useState<Difficulty>(savedDifficulty)
 
   const activePage = useMemo(
     () => pages.find((page) => page.id === activePageId) ?? pages[0],
@@ -66,21 +73,32 @@ function AppLayout() {
   }
 
   useEffect(() => {
-    contentProvider
-      .getPageList()
-      .then((list) => {
+    let cancelled = false
+    const loadPageList = async () => {
+      setLoading(true)
+      setError(null)
+      setPageData(null)
+      try {
+        const list = await contentProvider.getPageList(difficulty)
+        if (cancelled) return
         setPages(list)
         setActivePageId((currentPageId) => {
-          if (currentPageId) return currentPageId
+          if (list.some((page) => page.id === currentPageId)) return currentPageId
 
-          const savedPageId = window.localStorage.getItem(lastActivePageStorageKey)
+          const savedPageId = window.localStorage.getItem(`${lastActivePageStorageKey}:${difficulty}`)
           return list.some((page) => page.id === savedPageId)
             ? savedPageId!
             : list[0]?.id || ''
         })
-      })
-      .catch((err) => setError(err.message))
-  }, [])
+      } catch (err) {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Unable to load page list')
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    void loadPageList()
+    return () => { cancelled = true }
+  }, [difficulty])
 
   useEffect(() => {
     if (!activePageId) {
@@ -94,7 +112,7 @@ function AppLayout() {
       setError(null)
 
       try {
-        const page = await contentProvider.getPageData(activePageId)
+        const page = await contentProvider.getPageData(activePageId, difficulty)
         if (!cancelled) {
           setPageData(page)
         }
@@ -112,13 +130,17 @@ function AppLayout() {
     return () => {
       cancelled = true
     }
-  }, [activePageId])
+  }, [activePageId, difficulty])
 
   useEffect(() => {
     if (activePageId) {
-      window.localStorage.setItem(lastActivePageStorageKey, activePageId)
+      window.localStorage.setItem(`${lastActivePageStorageKey}:${difficulty}`, activePageId)
     }
-  }, [activePageId])
+  }, [activePageId, difficulty])
+
+  useEffect(() => {
+    window.localStorage.setItem(difficultyStorageKey, difficulty)
+  }, [difficulty])
 
   useEffect(() => {
     if (!isSidebarOpen) return
@@ -203,6 +225,8 @@ function AppLayout() {
         onThemeChange={setTheme}
         readerFontSize={readerFontSize}
         onReaderFontSizeChange={setReaderFontSize}
+        difficulty={difficulty}
+        onDifficultyChange={setDifficulty}
       />
       <button
         className="sidebar-edge-toggle"
@@ -235,7 +259,7 @@ function AppLayout() {
           nextPageTitle={nextPage?.title}
         />
         <QuestionReader
-          key={activePageId}
+          key={`${difficulty}:${activePageId}`}
           page={pageData}
           loading={loading}
           error={error}
