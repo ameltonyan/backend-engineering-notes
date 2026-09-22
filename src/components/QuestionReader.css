@@ -22,6 +22,7 @@
 }
 
 .reader-toolbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -512,7 +513,8 @@
   box-shadow: 0 8px 24px var(--shadow);
 }
 
-.focus-toolbar-collapsed {
+.focus-toolbar-toggle-slot {
+  position: relative;
   display: flex;
   min-height: 32px;
   flex: 0 0 auto;
@@ -521,7 +523,7 @@
   margin-bottom: 8px;
 }
 
-.focus-toolbar-collapsed button {
+.focus-toolbar-toggle-slot button {
   display: grid;
   width: 38px;
   height: 30px;
@@ -534,8 +536,53 @@
   cursor: pointer;
 }
 
-.focus-toolbar-collapsed button:hover,
-.focus-toolbar-collapsed button:focus-visible {
+.focus-toolbar-toggle-slot button:hover,
+.focus-toolbar-toggle-slot button:focus-visible {
+  border-color: var(--accent-strong);
+  background: var(--control-hover);
+  color: var(--text-strong);
+}
+
+.focus-toolbar-toggle-slot .focus-mode-button {
+  position: absolute;
+  right: 0;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--text-strong);
+}
+
+.focus-toolbar-toggle-slot.open {
+  position: absolute;
+  top: 21px;
+  right: clamp(21px, calc((100% - 1100px) / 2 + 9px), 37px);
+  z-index: 4;
+  width: 38px;
+  min-height: 38px;
+  margin: 0;
+}
+
+.focus-toolbar-toggle-slot.open .focus-mode-button {
+  right: 0;
+}
+
+.reader-toolbar .focus-toolbar-toggle {
+  position: absolute;
+  left: 50%;
+  display: grid;
+  width: 38px;
+  height: 30px;
+  padding: 0;
+  place-items: center;
+  transform: translateX(-50%);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--control-background);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.reader-toolbar .focus-toolbar-toggle:hover,
+.reader-toolbar .focus-toolbar-toggle:focus-visible {
   border-color: var(--accent-strong);
   background: var(--control-hover);
   color: var(--text-strong);

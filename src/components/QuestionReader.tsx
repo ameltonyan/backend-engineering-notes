@@ -270,9 +270,44 @@ function QuestionReader({
     <section className="focus-reader" aria-label="Question and answer reader">
       {loading && <p className="status loading-status" aria-live="polite">Loading questions...</p>}
       {error && <p className="status error" role="alert">{error}</p>}
+      {isFocusMode && (
+        <div className={isFocusToolbarOpen ? 'focus-toolbar-toggle-slot open' : 'focus-toolbar-toggle-slot'}>
+          {!isFocusToolbarOpen && <button
+            type="button"
+            aria-label="Show focus controls"
+            aria-expanded="false"
+            title="Show controls"
+            onClick={() => setIsFocusToolbarOpen(true)}
+          >
+            <ToolbarToggleIcon open={false} />
+          </button>}
+          <button
+            className="focus-mode-button active"
+            type="button"
+            aria-label="Exit focus mode"
+            aria-pressed="true"
+            title="Exit focus mode (Escape)"
+            onClick={() => onFocusModeChange(false)}
+          >
+            <FocusModeIcon active />
+          </button>
+        </div>
+      )}
       {(!isFocusMode || isFocusToolbarOpen) && <div className="reader-toolbar">
         <span className="reader-position" aria-live="polite">Question {activeIndex + 1} of {readerQuestions.length}</span>
         {isFocusMode && (
+          <button
+            className="focus-toolbar-toggle"
+            type="button"
+            aria-label="Hide focus controls"
+            aria-expanded="true"
+            title="Hide controls"
+            onClick={() => setIsFocusToolbarOpen(false)}
+          >
+            <ToolbarToggleIcon open />
+          </button>
+        )}
+        {isFocusMode && isFocusToolbarOpen && (
           <div className="focus-reading-preferences" aria-label="Focus mode reading preferences">
             <div className="focus-preference-group" role="group" aria-label="Color theme">
               {themeOptions.map((option) => (
@@ -304,32 +339,10 @@ function QuestionReader({
                 </button>
               ))}
             </div>
-            <button
-              className="focus-mode-button active"
-              type="button"
-              aria-label="Exit focus mode"
-              aria-pressed="true"
-              title="Exit focus mode (Escape)"
-              onClick={() => onFocusModeChange(false)}
-            >
-              <FocusModeIcon active />
-            </button>
           </div>
         )}
-        <div className="reader-actions">
-          {isFocusMode && (
-            <button
-              className="focus-toolbar-toggle"
-              type="button"
-              aria-label="Hide focus controls"
-              aria-expanded="true"
-              title="Hide controls"
-              onClick={() => setIsFocusToolbarOpen(false)}
-            >
-              <ToolbarToggleIcon open />
-            </button>
-          )}
-          {!isFocusMode && <button
+        {!isFocusMode && <div className="reader-actions">
+          <button
             className="focus-mode-button"
             type="button"
             aria-label="Enter focus mode"
@@ -341,22 +354,9 @@ function QuestionReader({
             }}
           >
             <FocusModeIcon active={false} />
-          </button>}
-        </div>
-      </div>}
-      {isFocusMode && !isFocusToolbarOpen && (
-        <div className="focus-toolbar-collapsed">
-          <button
-            type="button"
-            aria-label="Show focus controls"
-            aria-expanded="false"
-            title="Show controls"
-            onClick={() => setIsFocusToolbarOpen(true)}
-          >
-            <ToolbarToggleIcon open={false} />
           </button>
-        </div>
-      )}
+        </div>}
+      </div>}
       <div className="reader-frame">
         <div ref={viewportRef} className="reader-viewport" tabIndex={0} onKeyDown={(event) => {
           if (event.target !== event.currentTarget) return
