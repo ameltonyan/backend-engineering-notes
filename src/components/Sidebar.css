@@ -61,36 +61,89 @@
 }
 
 .difficulty-selector {
+  flex: 0 0 auto;
   min-width: 0;
   margin: 0 0 18px;
-  padding: 9px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--nav-background);
+  overflow: hidden;
 }
 
-.difficulty-selector legend {
-  float: left;
+.difficulty-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 44px;
   width: 100%;
-  margin: 0 0 8px;
-  padding: 0;
+  padding: 10px 11px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--text-muted);
+  cursor: pointer;
+}
+
+.difficulty-toggle:hover,
+.difficulty-toggle:focus-visible {
+  background: var(--control-hover);
+  color: var(--text-strong);
+}
+
+.difficulty-toggle:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: -2px;
+}
+
+.difficulty-toggle-copy {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 7px;
+  line-height: 1.25;
+}
+
+.difficulty-toggle-copy > span {
   font-size: .68rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
 }
 
+.difficulty-toggle-copy strong {
+  overflow: hidden;
+  color: var(--text-strong);
+  font-size: .76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.difficulty-toggle-indicator {
+  width: 0;
+  height: 0;
+  flex: 0 0 auto;
+  margin-right: 3px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid currentColor;
+  transition: transform 160ms ease;
+}
+
+.difficulty-toggle[aria-expanded='true'] .difficulty-toggle-indicator {
+  transform: rotate(90deg);
+}
+
 .difficulty-options {
-  clear: both;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px;
+  gap: 7px;
+  padding: 8px 9px 10px;
 }
 
 .difficulty-option {
   min-width: 0;
-  min-height: 32px;
+  min-height: 34px;
   width: 100%;
   padding: 5px 7px;
   border: 1px solid var(--border-strong);
@@ -291,10 +344,17 @@
 }
 
 .reading-preferences-indicator {
-  width: 16px;
-  font-size: 1.1rem;
-  line-height: 1;
-  text-align: center;
+  width: 0;
+  height: 0;
+  margin-right: 3px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid currentColor;
+  transition: transform 160ms ease;
+}
+
+.reading-preferences-toggle[aria-expanded='true'] .reading-preferences-indicator {
+  transform: rotate(90deg);
 }
 
 .preference-options {
