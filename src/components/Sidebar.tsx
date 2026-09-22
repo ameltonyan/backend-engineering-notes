@@ -115,15 +115,27 @@ function Sidebar({
         )}
       </div>
 
-      <label className="difficulty-selector">
-        <span>Difficulty level</span>
-        <select value={difficulty} onChange={(event) => onDifficultyChange(event.target.value as Difficulty)}>
-          <option value="BEGINNER">Beginner</option>
-          <option value="INTERMEDIATE">Intermediate</option>
-          <option value="ADVANCED">Advanced</option>
-          <option value="EXPERT">Expert</option>
-        </select>
-      </label>
+      <fieldset className="difficulty-selector">
+        <legend>Difficulty level</legend>
+        <div className="difficulty-options">
+          {([
+            ['BEGINNER', 'Beginner'],
+            ['INTERMEDIATE', 'Intermediate'],
+            ['ADVANCED', 'Advanced'],
+            ['EXPERT', 'Expert'],
+          ] as const).map(([value, label]) => (
+            <button
+              className={difficulty === value ? 'difficulty-option selected' : 'difficulty-option'}
+              type="button"
+              aria-pressed={difficulty === value}
+              key={value}
+              onClick={() => onDifficultyChange(value)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </fieldset>
 
       <div className="nav-section">
         {!pages.length && <p className="difficulty-empty">No published content at this level yet.</p>}
