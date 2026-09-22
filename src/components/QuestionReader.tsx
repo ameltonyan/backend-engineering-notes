@@ -319,8 +319,6 @@ function QuestionReader({
               <ToolbarToggleIcon open />
             </button>
           )}
-          <button type="button" aria-label="Previous question" disabled={activeIndex === 0} onClick={() => goToQuestion(activeIndex - 1)}><span aria-hidden="true">↑</span></button>
-          <button type="button" aria-label="Next question" disabled={activeIndex >= readerQuestions.length - 1} onClick={() => goToQuestion(activeIndex + 1)}><span aria-hidden="true">↓</span></button>
           <button
             className={isFocusMode ? 'focus-mode-button active' : 'focus-mode-button'}
             type="button"
@@ -359,7 +357,10 @@ function QuestionReader({
           {readerQuestions.map((item, index) => <QuestionCard key={item.question.id} item={item} isActive={index === activeIndex} codeColorScheme={codeColorScheme} />)}
         </div>
       </div>
-      <p className="reader-hint">Scroll · swipe · use ↑ ↓</p>
+      <div className="reader-navigation" aria-label="Question navigation">
+        <button type="button" aria-label="Previous question" title="Previous question" disabled={activeIndex === 0} onClick={() => goToQuestion(activeIndex - 1)}><span aria-hidden="true">↑</span></button>
+        <button type="button" aria-label="Next question" title="Next question" disabled={activeIndex >= readerQuestions.length - 1} onClick={() => goToQuestion(activeIndex + 1)}><span aria-hidden="true">↓</span></button>
+      </div>
     </section>
   )
 }
