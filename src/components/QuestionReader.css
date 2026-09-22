@@ -66,14 +66,24 @@
   cursor: default;
 }
 
-.reader-actions .focus-mode-button {
+.focus-mode-button {
+  display: grid;
   width: 38px;
+  height: 38px;
   padding: 0;
+  place-items: center;
+  border: 1px solid var(--border-strong);
   border-radius: 50%;
+  background: var(--control-background);
+  color: var(--text-strong);
+  cursor: pointer;
 }
 
-.reader-actions .focus-mode-button.active {
+.focus-mode-button:hover,
+.focus-mode-button:focus-visible,
+.focus-mode-button.active {
   border-color: var(--accent-strong);
+  background: var(--control-hover);
 }
 
 .focus-toolbar-toggle-icon {

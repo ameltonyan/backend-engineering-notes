@@ -304,6 +304,16 @@ function QuestionReader({
                 </button>
               ))}
             </div>
+            <button
+              className="focus-mode-button active"
+              type="button"
+              aria-label="Exit focus mode"
+              aria-pressed="true"
+              title="Exit focus mode (Escape)"
+              onClick={() => onFocusModeChange(false)}
+            >
+              <FocusModeIcon active />
+            </button>
           </div>
         )}
         <div className="reader-actions">
@@ -319,19 +329,19 @@ function QuestionReader({
               <ToolbarToggleIcon open />
             </button>
           )}
-          <button
-            className={isFocusMode ? 'focus-mode-button active' : 'focus-mode-button'}
+          {!isFocusMode && <button
+            className="focus-mode-button"
             type="button"
-            aria-label={isFocusMode ? 'Exit focus mode' : 'Enter focus mode'}
-            aria-pressed={isFocusMode}
-            title={isFocusMode ? 'Exit focus mode (Escape)' : 'Enter focus mode'}
+            aria-label="Enter focus mode"
+            aria-pressed="false"
+            title="Enter focus mode"
             onClick={() => {
-              if (!isFocusMode) setIsFocusToolbarOpen(true)
-              onFocusModeChange(!isFocusMode)
+              setIsFocusToolbarOpen(false)
+              onFocusModeChange(true)
             }}
           >
-            <FocusModeIcon active={isFocusMode} />
-          </button>
+            <FocusModeIcon active={false} />
+          </button>}
         </div>
       </div>}
       {isFocusMode && !isFocusToolbarOpen && (
