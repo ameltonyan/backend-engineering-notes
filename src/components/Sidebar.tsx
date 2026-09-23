@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { ContentPageMeta } from '../content/content-api'
+import type { ContentPageMeta, Difficulty } from '../content/content-api'
 import { fontSizeOptions, themeOptions } from '../reading-preferences'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import logoUrl from '../assets/logo.svg'
@@ -17,6 +17,8 @@ type SidebarProps = {
   onThemeChange: (theme: ReadingTheme) => void
   readerFontSize: ReaderFontSize
   onReaderFontSizeChange: (size: ReaderFontSize) => void
+  difficulty: Difficulty
+  onDifficultyChange: (difficulty: Difficulty) => void
 }
 
 function Sidebar({
@@ -31,8 +33,17 @@ function Sidebar({
   onThemeChange,
   readerFontSize,
   onReaderFontSizeChange,
+  difficulty,
+  onDifficultyChange,
 }: SidebarProps) {
   const [areReadingPreferencesOpen, setAreReadingPreferencesOpen] = useState(true)
+  const [isDifficultyOpen, setIsDifficultyOpen] = useState(true)
+  const difficultyLabel = {
+    BEGINNER: 'Beginner',
+    INTERMEDIATE: 'Intermediate',
+    ADVANCED: 'Advanced',
+    EXPERT: 'Expert',
+  }[difficulty]
   const sortedPages = [...pages].sort((left, right) =>
     left.sectionDisplayOrder - right.sectionDisplayOrder
     || left.displayOrder - right.displayOrder
@@ -71,7 +82,7 @@ function Sidebar({
           onClick={() => setAreReadingPreferencesOpen((open) => !open)}
         >
           <span aria-hidden="true">⚙</span>
-          <span className="reading-preferences-indicator" aria-hidden="true">{areReadingPreferencesOpen ? '−' : '+'}</span>
+          <span className="reading-preferences-indicator" aria-hidden="true" />
         </button>
         {areReadingPreferencesOpen && (
           <div id="reading-preferences" className="reading-preferences" aria-label="Reading preferences">
@@ -111,7 +122,45 @@ function Sidebar({
         )}
       </div>
 
+      <div className="difficulty-selector">
+        <button
+          className="difficulty-toggle"
+          type="button"
+          aria-expanded={isDifficultyOpen}
+          aria-controls="difficulty-options"
+          aria-label={`${isDifficultyOpen ? 'Hide' : 'Show'} difficulty levels. Current level: ${difficultyLabel}`}
+          onClick={() => setIsDifficultyOpen((open) => !open)}
+        >
+          <span className="difficulty-toggle-copy">
+            <span>Difficulty</span>
+            <strong>{difficultyLabel}</strong>
+          </span>
+          <span className="difficulty-toggle-indicator" aria-hidden="true" />
+        </button>
+        {isDifficultyOpen && (
+          <div className="difficulty-options" id="difficulty-options" role="group" aria-label="Difficulty level">
+            {([
+              ['BEGINNER', 'Beginner'],
+              ['INTERMEDIATE', 'Intermediate'],
+              ['ADVANCED', 'Advanced'],
+              ['EXPERT', 'Expert'],
+            ] as const).map(([value, label]) => (
+              <button
+                className={difficulty === value ? 'difficulty-option selected' : 'difficulty-option'}
+                type="button"
+                aria-pressed={difficulty === value}
+                key={value}
+                onClick={() => onDifficultyChange(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       <div className="nav-section">
+        {!pages.length && <p className="difficulty-empty">No published content at this level yet.</p>}
         {sectionNames.map((section) => (
           <div className="sidebar-section" key={section}>
             <div className="section-group-title">
