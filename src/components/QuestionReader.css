@@ -205,7 +205,7 @@
   outline-offset: -3px;
 }
 
-.page-description {
+.topic-description {
   margin: 16px auto 24px;
   max-width: 760px;
   color: var(--text-muted);

@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import type { ContentPageMeta, Difficulty } from '../content/content-api'
+import type { ContentTopicMeta, Difficulty } from '../content/content-api'
 import { fontSizeOptions, themeOptions } from '../reading-preferences'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import logoUrl from '../assets/logo.svg'
 import './Sidebar.css'
 
 type SidebarProps = {
-  pages: ContentPageMeta[]
-  activePageId: string
-  onSelectPage: (id: string) => void
-  collapsedSections: Record<string, boolean>
-  onToggleSection: (section: string) => void
+  topics: ContentTopicMeta[]
+  activeTopicId: string
+  onSelectTopic: (id: string) => void
+  collapsedCategories: Record<string, boolean>
+  onToggleCategory: (category: string) => void
   isOpen: boolean
   onClose: () => void
   theme: ReadingTheme
@@ -22,11 +22,11 @@ type SidebarProps = {
 }
 
 function Sidebar({
-  pages,
-  activePageId,
-  onSelectPage,
-  collapsedSections,
-  onToggleSection,
+  topics,
+  activeTopicId,
+  onSelectTopic,
+  collapsedCategories,
+  onToggleCategory,
   isOpen,
   onClose,
   theme,
@@ -44,19 +44,19 @@ function Sidebar({
     ADVANCED: 'Advanced',
     EXPERT: 'Expert',
   }[difficulty]
-  const sortedPages = [...pages].sort((left, right) =>
-    left.sectionDisplayOrder - right.sectionDisplayOrder
+  const sortedTopics = [...topics].sort((left, right) =>
+    left.categoryDisplayOrder - right.categoryDisplayOrder
     || left.displayOrder - right.displayOrder
     || left.title.localeCompare(right.title),
   )
-  const sections = sortedPages.reduce((acc, page) => {
-    const key = page.section || 'Other'
+  const categories = sortedTopics.reduce((acc, topic) => {
+    const key = topic.category || 'Other'
     if (!acc[key]) acc[key] = []
-    acc[key].push(page)
+    acc[key].push(topic)
     return acc
-  }, {} as Record<string, ContentPageMeta[]>)
+  }, {} as Record<string, ContentTopicMeta[]>)
 
-  const sectionNames = Object.keys(sections)
+  const categoryNames = Object.keys(categories)
 
   return (
     <aside
@@ -159,42 +159,42 @@ function Sidebar({
         )}
       </div>
 
-      <div className="nav-section">
-        {!pages.length && <p className="difficulty-empty">No published content at this level yet.</p>}
-        {sectionNames.map((section) => (
-          <div className="sidebar-section" key={section}>
-            <div className="section-group-title">
+      <div className="nav-category">
+        {!topics.length && <p className="difficulty-empty">No published content at this level yet.</p>}
+        {categoryNames.map((category) => (
+          <div className="sidebar-category" key={category}>
+            <div className="category-group-title">
               <button
-                className="section-group-title-button"
+                className="category-group-title-button"
                 type="button"
-                aria-expanded={!collapsedSections[section]}
-                onClick={() => onToggleSection(section)}
+                aria-expanded={!collapsedCategories[category]}
+                onClick={() => onToggleCategory(category)}
               >
-                {section}
+                {category}
               </button>
               <button
-                className="section-collapse-toggle"
+                className="category-collapse-toggle"
                 type="button"
-                aria-expanded={!collapsedSections[section]}
-                aria-label={`${collapsedSections[section] ? 'Expand' : 'Collapse'} ${section}`}
-                title={`${collapsedSections[section] ? 'Expand' : 'Collapse'} ${section}`}
-                onClick={() => onToggleSection(section)}
+                aria-expanded={!collapsedCategories[category]}
+                aria-label={`${collapsedCategories[category] ? 'Expand' : 'Collapse'} ${category}`}
+                title={`${collapsedCategories[category] ? 'Expand' : 'Collapse'} ${category}`}
+                onClick={() => onToggleCategory(category)}
               >
-                <span className="section-collapse-icon" aria-hidden="true" />
+                <span className="category-collapse-icon" aria-hidden="true" />
               </button>
             </div>
-            {!collapsedSections[section] && (
-              <div className="section-items">
-                {sections[section].map((page) => (
+            {!collapsedCategories[category] && (
+              <div className="category-items">
+                {categories[category].map((topic) => (
                   <button
-                    key={page.id}
-                    className={page.id === activePageId ? 'nav-item active' : 'nav-item'}
+                    key={topic.id}
+                    className={topic.id === activeTopicId ? 'nav-item active' : 'nav-item'}
                     onClick={() => {
-                      onSelectPage(page.id)
+                      onSelectTopic(topic.id)
                       onClose()
                     }}
                   >
-                    {page.title}
+                    {topic.title}
                   </button>
                 ))}
               </div>

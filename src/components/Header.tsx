@@ -2,27 +2,27 @@ import './Header.css'
 
 type HeaderProps = {
   title: string
-  section: string
+  category: string
   onMenuClick: () => void
-  onOpenActiveSection: () => void
-  onPreviousPage: () => void
-  onNextPage: () => void
-  previousPageTitle?: string
-  nextPageTitle?: string
+  onOpenActiveCategory: () => void
+  onPreviousTopic: () => void
+  onNextTopic: () => void
+  previousTopicTitle?: string
+  nextTopicTitle?: string
 }
 
 function Header({
   title,
-  section,
+  category,
   onMenuClick,
-  onOpenActiveSection,
-  onPreviousPage,
-  onNextPage,
-  previousPageTitle,
-  nextPageTitle,
+  onOpenActiveCategory,
+  onPreviousTopic,
+  onNextTopic,
+  previousTopicTitle,
+  nextTopicTitle,
 }: HeaderProps) {
   return (
-    <header className="page-header">
+    <header className="topic-header">
       <button
         className="menu-button"
         type="button"
@@ -33,30 +33,30 @@ function Header({
         <span aria-hidden="true">☰</span>
       </button>
       <div>
-        <div className="section-label-row">
-          <p className="section-label">{section}</p>
-          <div className="page-navigation" aria-label="Page navigation">
+        <div className="category-label-row">
+          <p className="category-label">{category}</p>
+          <div className="topic-navigation" aria-label="Topic navigation">
             <button
               type="button"
-              aria-label={previousPageTitle ? `Previous page: ${previousPageTitle}` : 'No previous page'}
-              title={previousPageTitle ? `Previous: ${previousPageTitle}` : 'No previous page'}
-              disabled={!previousPageTitle}
-              onClick={onPreviousPage}
+              aria-label={previousTopicTitle ? `Previous topic: ${previousTopicTitle}` : 'No previous topic'}
+              title={previousTopicTitle ? `Previous: ${previousTopicTitle}` : 'No previous topic'}
+              disabled={!previousTopicTitle}
+              onClick={onPreviousTopic}
             >
               <span aria-hidden="true">←</span>
             </button>
             <button
               type="button"
-              aria-label={nextPageTitle ? `Next page: ${nextPageTitle}` : 'No next page'}
-              title={nextPageTitle ? `Next: ${nextPageTitle}` : 'No next page'}
-              disabled={!nextPageTitle}
-              onClick={onNextPage}
+              aria-label={nextTopicTitle ? `Next topic: ${nextTopicTitle}` : 'No next topic'}
+              title={nextTopicTitle ? `Next: ${nextTopicTitle}` : 'No next topic'}
+              disabled={!nextTopicTitle}
+              onClick={onNextTopic}
             >
               <span aria-hidden="true">→</span>
             </button>
           </div>
           <h1>
-            <button className="page-title-button" type="button" onClick={onOpenActiveSection}>
+            <button className="topic-title-button" type="button" onClick={onOpenActiveCategory}>
               {title}
             </button>
           </h1>

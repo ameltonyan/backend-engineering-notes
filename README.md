@@ -22,17 +22,17 @@ VITE_APP_BASE_PATH=/
 
 Run the backend separately at `http://localhost:8080`. The backend already allows `http://localhost:5173` through CORS by default.
 
-## GitHub Pages deployment
+## GitHub Topics deployment
 
-The GitHub Pages workflow builds the frontend in API mode. Add a repository variable named `VITE_API_BASE_URL` under **Settings > Secrets and variables > Actions > Variables**:
+The GitHub Topics workflow builds the frontend in API mode. Add a repository variable named `VITE_API_BASE_URL` under **Settings > Secrets and variables > Actions > Variables**:
 
 ```text
 https://YOUR_ORACLE_PUBLIC_HOST
 ```
 
-Use the public URL of the running backend, including its port when the API is not behind HTTPS/Nginx, for example `http://203.0.113.10:8080`. The workflow supplies the `/backend-engineering-notes/` Pages base path automatically.
+Use the public URL of the running backend, including its port when the API is not behind HTTPS/Nginx, for example `http://203.0.113.10:8080`. The workflow supplies the `/backend-engineering-notes/` Topics base path automatically.
 
-Configure the backend's `CORS_ALLOWED_ORIGINS` with the exact Pages origin, for example:
+Configure the backend's `CORS_ALLOWED_ORIGINS` with the exact Topics origin, for example:
 
 ```text
 https://ameltonyan.github.io

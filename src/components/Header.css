@@ -1,4 +1,4 @@
-.page-header {
+.topic-header {
   margin-bottom: 12px;
   flex: 0 0 auto;
 }
@@ -19,7 +19,7 @@
   display: none;
 }
 
-.section-label {
+.category-label {
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.7rem;
@@ -27,21 +27,21 @@
   margin: 0 0 4px;
 }
 
-.section-label-row {
+.category-label-row {
   display: flex;
   align-items: center;
   gap: 10px;
   min-width: 0;
 }
 
-.page-navigation {
+.topic-navigation {
   display: flex;
   flex: 0 0 auto;
   gap: 3px;
   margin-bottom: 4px;
 }
 
-.page-navigation button {
+.topic-navigation button {
   display: grid;
   width: 22px;
   height: 22px;
@@ -54,23 +54,23 @@
   cursor: pointer;
 }
 
-.page-navigation button:hover:not(:disabled),
-.page-navigation button:focus-visible {
+.topic-navigation button:hover:not(:disabled),
+.topic-navigation button:focus-visible {
   border-color: var(--accent-strong);
   color: var(--text-strong);
 }
 
-.page-navigation button:focus-visible {
+.topic-navigation button:focus-visible {
   outline: 2px solid var(--accent-strong);
   outline-offset: 2px;
 }
 
-.page-navigation button:disabled {
+.topic-navigation button:disabled {
   opacity: 0.35;
   cursor: default;
 }
 
-.page-header h1 {
+.topic-header h1 {
   margin: 0;
   min-width: 0;
   font-size: 1.45rem;
@@ -78,7 +78,7 @@
   color: var(--text-strong);
 }
 
-.page-title-button {
+.topic-title-button {
   padding: 0;
   border: 0;
   background: transparent;
@@ -88,19 +88,19 @@
   cursor: pointer;
 }
 
-.page-title-button:hover,
-.page-title-button:focus-visible {
+.topic-title-button:hover,
+.topic-title-button:focus-visible {
   color: var(--accent);
 }
 
-.page-title-button:focus-visible {
+.topic-title-button:focus-visible {
   outline: 2px solid var(--accent-strong);
   outline-offset: 4px;
   border-radius: 3px;
 }
 
 @media (max-width: 1024px) {
-  .page-header {
+  .topic-header {
     display: flex;
     align-items: flex-start;
     gap: 14px;
@@ -111,16 +111,16 @@
     place-items: center;
   }
 
-  .page-header h1 {
+  .topic-header h1 {
     font-size: clamp(1.25rem, 5.5vw, 1.6rem);
     overflow-wrap: anywhere;
   }
 
-  .section-label-row {
+  .category-label-row {
     flex-wrap: wrap;
   }
 
-  .page-navigation {
+  .topic-navigation {
     margin-left: auto;
   }
 }
