@@ -6,7 +6,6 @@ export type ContentPageMeta = {
   section: string
   sectionDisplayOrder: number
   displayOrder: number
-  minimumDifficulty: Difficulty
   path?: string
 }
 
@@ -15,7 +14,6 @@ export type ContentPageData = {
   title: string
   section: string
   description: string | null
-  minimumDifficulty: Difficulty
   questions: ContentQuestion[]
 }
 
