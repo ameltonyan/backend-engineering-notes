@@ -29,6 +29,7 @@ function savedReaderFontSize(): ReaderFontSize {
 
 function AppLayout() {
   const [pages, setPages] = useState<ContentPageMeta[]>([])
+  const [pageListDifficulty, setPageListDifficulty] = useState<Difficulty | null>(null)
   const [activePageId, setActivePageId] = useState<string>('')
   const [pageData, setPageData] = useState<ContentPageData | null>(null)
   const [loading, setLoading] = useState(false)
@@ -75,6 +76,7 @@ function AppLayout() {
   useEffect(() => {
     let cancelled = false
     const loadPageList = async () => {
+      setPageListDifficulty(null)
       setLoading(true)
       setError(null)
       setPageData(null)
@@ -90,6 +92,7 @@ function AppLayout() {
             ? savedPageId!
             : list[0]?.id || ''
         })
+        setPageListDifficulty(difficulty)
       } catch (err) {
         if (!cancelled) setError(err instanceof Error ? err.message : 'Unable to load page list')
       } finally {
@@ -101,7 +104,11 @@ function AppLayout() {
   }, [difficulty])
 
   useEffect(() => {
-    if (!activePageId) {
+    if (
+      !activePageId
+      || pageListDifficulty !== difficulty
+      || !pages.some((page) => page.id === activePageId)
+    ) {
       return
     }
 
@@ -130,7 +137,7 @@ function AppLayout() {
     return () => {
       cancelled = true
     }
-  }, [activePageId, difficulty])
+  }, [activePageId, difficulty, pageListDifficulty, pages])
 
   useEffect(() => {
     if (activePageId) {
