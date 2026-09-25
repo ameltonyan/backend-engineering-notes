@@ -6,6 +6,7 @@ type ApiPageSummary = {
   section: string
   sectionDisplayOrder: number
   displayOrder: number
+  minimumDifficulty: Difficulty
 }
 
 type ApiQuestionAnswer = ContentQuestion
@@ -16,6 +17,7 @@ type ApiPageResponse = {
   description: string | null
   section: string
   displayOrder: number
+  minimumDifficulty: Difficulty
   questions: ApiQuestionAnswer[]
 }
 
@@ -32,6 +34,7 @@ function toPageMeta(page: ApiPageSummary): ContentPageMeta {
     section: page.section,
     sectionDisplayOrder: page.sectionDisplayOrder,
     displayOrder: page.displayOrder,
+    minimumDifficulty: page.minimumDifficulty,
   }
 }
 
@@ -70,6 +73,7 @@ export class ApiContentProvider implements ContentProvider {
       title: page.title,
       section: page.section,
       description: page.description,
+      minimumDifficulty: page.minimumDifficulty,
       questions: page.questions
         .map((question) => ({
           ...question,
