@@ -91,7 +91,7 @@ This creates 2 reviewed question records per day. At a seven-day pace, eight wee
 
 An OpenAI API key is an authoring accelerator, not a dependency for beginning this daily lane. Until a key is available, write drafts manually or use the existing mock provider to exercise the workflow.
 
-When an OpenAI key is added, configure it **only on the API server** as `OPENAI_API_KEY`; never place it in frontend code, Git, or the admin UI. Use it to draft questions, follow-ups, examples, and optional code snippets, then apply the same human review workflow. Official OpenAI guidance is to keep API keys in server environment variables or secret management rather than client-side code. See [OpenAI API security guidance](https://platform.openai.com/docs/api-reference/backward-compatibility?lang=ruby).
+When an OpenAI key is added, configure it **only on the API server** as `BACKEND_NOTES_OPENAI_API_KEY`; never place it in frontend code, Git, or the admin UI. Use it to draft questions, follow-ups, examples, and optional code snippets, then apply the same human review workflow. Official OpenAI guidance is to keep API keys in server environment variables or secret management rather than client-side code. See [OpenAI API security guidance](https://platform.openai.com/docs/api-reference/backward-compatibility?lang=ruby).
 
 ### Local and production discipline
 

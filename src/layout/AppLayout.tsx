@@ -3,11 +3,11 @@ import AppHeader from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import QuestionReader from '../components/QuestionReader'
 import { contentProvider } from '../services/content/provider'
-import type { ContentPageData, ContentPageMeta, Difficulty } from '../content/content-api'
+import type { ContentTopicData, ContentTopicMeta, Difficulty } from '../content/content-api'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import './AppLayout.css'
 
-const lastActivePageStorageKey = 'backend-engineering-notes:last-active-page'
+const lastActiveTopicStorageKey = 'backend-engineering-notes:last-active-topic'
 const sidebarCollapsedStorageKey = 'backend-engineering-notes:sidebar-collapsed'
 const readerFontSizeStorageKey = 'backend-engineering-notes:reader-font-size'
 const difficultyStorageKey = 'backend-engineering-notes:difficulty'
@@ -28,13 +28,14 @@ function savedReaderFontSize(): ReaderFontSize {
 }
 
 function AppLayout() {
-  const [pages, setPages] = useState<ContentPageMeta[]>([])
-  const [activePageId, setActivePageId] = useState<string>('')
-  const [pageData, setPageData] = useState<ContentPageData | null>(null)
+  const [topics, setTopics] = useState<ContentTopicMeta[]>([])
+  const [topicListDifficulty, setTopicListDifficulty] = useState<Difficulty | null>(null)
+  const [activeTopicId, setActiveTopicId] = useState<string>('')
+  const [topicData, setTopicData] = useState<ContentTopicData | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({})
+  const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({})
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() =>
     window.localStorage.getItem(sidebarCollapsedStorageKey) === 'true',
   )
@@ -43,100 +44,106 @@ function AppLayout() {
   const [isFocusMode, setIsFocusMode] = useState(false)
   const [difficulty, setDifficulty] = useState<Difficulty>(savedDifficulty)
 
-  const activePage = useMemo(
-    () => pages.find((page) => page.id === activePageId) ?? pages[0],
-    [activePageId, pages],
+  const activeTopic = useMemo(
+    () => topics.find((topic) => topic.id === activeTopicId) ?? topics[0],
+    [activeTopicId, topics],
   )
-  const activePageIndex = pages.findIndex((page) => page.id === activePage?.id)
-  const previousPage = activePageIndex > 0 ? pages[activePageIndex - 1] : undefined
-  const nextPage = activePageIndex >= 0 ? pages[activePageIndex + 1] : undefined
+  const activeTopicIndex = topics.findIndex((topic) => topic.id === activeTopic?.id)
+  const previousTopic = activeTopicIndex > 0 ? topics[activeTopicIndex - 1] : undefined
+  const nextTopic = activeTopicIndex >= 0 ? topics[activeTopicIndex + 1] : undefined
 
-  const selectPage = (pageId: string) => {
-    if (pageId === activePageId) return
+  const selectTopic = (topicId: string) => {
+    if (topicId === activeTopicId) return
 
-    setPageData(null)
-    setActivePageId(pageId)
+    setTopicData(null)
+    setActiveTopicId(topicId)
   }
 
-  const toggleSection = (section: string) => {
-    setCollapsedSections((current) => ({
+  const toggleCategory = (category: string) => {
+    setCollapsedCategories((current) => ({
       ...current,
-      [section]: !current[section],
+      [category]: !current[category],
     }))
   }
 
-  const openActiveSection = () => {
-    const section = activePage?.section || 'Other'
-    setCollapsedSections((current) => ({ ...current, [section]: false }))
+  const openActiveCategory = () => {
+    const category = activeTopic?.category || 'Other'
+    setCollapsedCategories((current) => ({ ...current, [category]: false }))
     setIsSidebarCollapsed(false)
     setIsSidebarOpen(true)
   }
 
   useEffect(() => {
     let cancelled = false
-    const loadPageList = async () => {
+    const loadTopicList = async () => {
+      setTopicListDifficulty(null)
       setLoading(true)
       setError(null)
-      setPageData(null)
+      setTopicData(null)
       try {
-        const list = await contentProvider.getPageList(difficulty)
+        const list = await contentProvider.getTopicList(difficulty)
         if (cancelled) return
-        setPages(list)
-        setActivePageId((currentPageId) => {
-          if (list.some((page) => page.id === currentPageId)) return currentPageId
+        setTopics(list)
+        setActiveTopicId((currentTopicId) => {
+          if (list.some((topic) => topic.id === currentTopicId)) return currentTopicId
 
-          const savedPageId = window.localStorage.getItem(`${lastActivePageStorageKey}:${difficulty}`)
-          return list.some((page) => page.id === savedPageId)
-            ? savedPageId!
+          const savedTopicId = window.localStorage.getItem(`${lastActiveTopicStorageKey}:${difficulty}`)
+          return list.some((topic) => topic.id === savedTopicId)
+            ? savedTopicId!
             : list[0]?.id || ''
         })
+        setTopicListDifficulty(difficulty)
       } catch (err) {
-        if (!cancelled) setError(err instanceof Error ? err.message : 'Unable to load page list')
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Unable to load topic list')
       } finally {
         if (!cancelled) setLoading(false)
       }
     }
-    void loadPageList()
+    void loadTopicList()
     return () => { cancelled = true }
   }, [difficulty])
 
   useEffect(() => {
-    if (!activePageId) {
+    if (
+      !activeTopicId
+      || topicListDifficulty !== difficulty
+      || !topics.some((topic) => topic.id === activeTopicId)
+    ) {
       return
     }
 
     let cancelled = false
 
-    const loadPage = async () => {
+    const loadTopic = async () => {
       setLoading(true)
       setError(null)
 
       try {
-        const page = await contentProvider.getPageData(activePageId, difficulty)
+        const topic = await contentProvider.getTopicData(activeTopicId, difficulty)
         if (!cancelled) {
-          setPageData(page)
+          setTopicData(topic)
         }
       } catch (err) {
         if (!cancelled) {
           setError(err instanceof Error ? err.message : 'Unable to load content')
-          setPageData(null)
+          setTopicData(null)
         }
       } finally {
         if (!cancelled) setLoading(false)
       }
     }
 
-    void loadPage()
+    void loadTopic()
     return () => {
       cancelled = true
     }
-  }, [activePageId, difficulty])
+  }, [activeTopicId, difficulty, topicListDifficulty, topics])
 
   useEffect(() => {
-    if (activePageId) {
-      window.localStorage.setItem(`${lastActivePageStorageKey}:${difficulty}`, activePageId)
+    if (activeTopicId) {
+      window.localStorage.setItem(`${lastActiveTopicStorageKey}:${difficulty}`, activeTopicId)
     }
-  }, [activePageId, difficulty])
+  }, [activeTopicId, difficulty])
 
   useEffect(() => {
     window.localStorage.setItem(difficultyStorageKey, difficulty)
@@ -214,11 +221,11 @@ function AppLayout() {
   return (
     <div className={shellClassName}>
       <Sidebar
-        pages={pages}
-        activePageId={activePageId}
-        onSelectPage={selectPage}
-        collapsedSections={collapsedSections}
-        onToggleSection={toggleSection}
+        topics={topics}
+        activeTopicId={activeTopicId}
+        onSelectTopic={selectTopic}
+        collapsedCategories={collapsedCategories}
+        onToggleCategory={toggleCategory}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         theme={theme}
@@ -249,21 +256,21 @@ function AppLayout() {
       )}
       <main className="content">
         <AppHeader
-          title={activePage?.title ?? 'Loading page'}
-          section={activePage?.section ?? 'Loading'}
+          title={activeTopic?.title ?? 'Loading topic'}
+          category={activeTopic?.category ?? 'Loading'}
           onMenuClick={() => setIsSidebarOpen(true)}
-          onOpenActiveSection={openActiveSection}
-          onPreviousPage={() => previousPage && selectPage(previousPage.id)}
-          onNextPage={() => nextPage && selectPage(nextPage.id)}
-          previousPageTitle={previousPage?.title}
-          nextPageTitle={nextPage?.title}
+          onOpenActiveCategory={openActiveCategory}
+          onPreviousTopic={() => previousTopic && selectTopic(previousTopic.id)}
+          onNextTopic={() => nextTopic && selectTopic(nextTopic.id)}
+          previousTopicTitle={previousTopic?.title}
+          nextTopicTitle={nextTopic?.title}
         />
         <QuestionReader
-          key={`${difficulty}:${activePageId}`}
-          page={pageData}
+          key={`${difficulty}:${activeTopicId}`}
+          topic={topicData}
           loading={loading}
           error={error}
-          pageId={activePage?.id}
+          topicId={activeTopic?.id}
           codeColorScheme={theme === 'dark' ? 'dark' : 'light'}
           isFocusMode={isFocusMode}
           onFocusModeChange={changeFocusMode}

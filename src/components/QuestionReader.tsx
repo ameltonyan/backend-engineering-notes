@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import type { ContentPageData, ContentQuestion } from '../content/content-api'
+import type { ContentTopicData, ContentQuestion } from '../content/content-api'
 import { fontSizeOptions, themeOptions } from '../reading-preferences'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import CodeBlock from './CodeBlock'
@@ -7,10 +7,10 @@ import type { CodeColorScheme } from './CodeBlock'
 import './QuestionReader.css'
 
 type QuestionReaderProps = {
-  page: ContentPageData | null
+  topic: ContentTopicData | null
   loading: boolean
   error: string | null
-  pageId?: string
+  topicId?: string
   codeColorScheme: CodeColorScheme
   isFocusMode: boolean
   onFocusModeChange: (enabled: boolean) => void
@@ -67,20 +67,20 @@ function buildReadingOrder(questions: ContentQuestion[]): ReaderQuestion[] {
   return ordered
 }
 
-function getSavedReadingPosition(pageId: string) {
+function getSavedReadingPosition(topicId: string) {
   try {
     const savedPositions = JSON.parse(window.localStorage.getItem(readingPositionStorageKey) ?? '{}') as Record<string, unknown>
-    const position = savedPositions[pageId]
+    const position = savedPositions[topicId]
     return typeof position === 'number' && Number.isFinite(position) ? position : 0
   } catch {
     return 0
   }
 }
 
-function saveReadingPosition(pageId: string, position: number) {
+function saveReadingPosition(topicId: string, position: number) {
   try {
     const savedPositions = JSON.parse(window.localStorage.getItem(readingPositionStorageKey) ?? '{}') as Record<string, unknown>
-    savedPositions[pageId] = position
+    savedPositions[topicId] = position
     window.localStorage.setItem(readingPositionStorageKey, JSON.stringify(savedPositions))
   } catch {
     // Reading-position persistence is optional when storage is unavailable.
@@ -159,10 +159,10 @@ function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestio
 }
 
 function QuestionReader({
-  page,
+  topic,
   loading,
   error,
-  pageId,
+  topicId,
   codeColorScheme,
   isFocusMode,
   onFocusModeChange,
@@ -171,9 +171,9 @@ function QuestionReader({
   readerFontSize,
   onReaderFontSizeChange,
 }: QuestionReaderProps) {
-  const questions = page?.questions ?? emptyQuestions
+  const questions = topic?.questions ?? emptyQuestions
   const readerQuestions = useMemo(() => buildReadingOrder(questions), [questions])
-  const isContentReady = !loading && Boolean(page)
+  const isContentReady = !loading && Boolean(topic)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isFocusToolbarOpen, setIsFocusToolbarOpen] = useState(true)
   const activeIndexRef = useRef(0)
@@ -182,28 +182,28 @@ function QuestionReader({
 
   useLayoutEffect(() => {
     const viewport = viewportRef.current
-    if (!viewport || !pageId || !isContentReady) return
+    if (!viewport || !topicId || !isContentReady) return
 
-    const savedPosition = getSavedReadingPosition(pageId)
+    const savedPosition = getSavedReadingPosition(topicId)
     viewport.scrollTop = Math.min(savedPosition, Math.max(0, viewport.scrollHeight - viewport.clientHeight))
 
     const cards = Array.from(viewport.querySelectorAll<HTMLElement>('.qa-card'))
     const nextIndex = cards.findIndex((card) => card.offsetTop + card.offsetHeight > viewport.scrollTop)
     activeIndexRef.current = nextIndex === -1 ? 0 : nextIndex
     setActiveIndex(activeIndexRef.current)
-  }, [isContentReady, pageId, readerQuestions.length])
+  }, [isContentReady, topicId, readerQuestions.length])
 
   useEffect(() => {
     const viewport = viewportRef.current
-    if (!viewport || !pageId || !isContentReady) return
+    if (!viewport || !topicId || !isContentReady) return
 
-    const savePosition = () => saveReadingPosition(pageId, viewport.scrollTop)
+    const savePosition = () => saveReadingPosition(topicId, viewport.scrollTop)
     viewport.addEventListener('scroll', savePosition, { passive: true })
     return () => {
       savePosition()
       viewport.removeEventListener('scroll', savePosition)
     }
-  }, [isContentReady, pageId])
+  }, [isContentReady, topicId])
 
   useEffect(() => {
     const viewport = viewportRef.current
@@ -262,8 +262,8 @@ function QuestionReader({
     setActiveIndex(nextIndex)
   }
 
-  if (error && !page) return <div className="content-card"><p className="status error">{error}</p></div>
-  if (!page) return <div className="content-card"><p className="status">{loading ? 'Loading questions...' : 'No page available.'}</p></div>
+  if (error && !topic) return <div className="content-card"><p className="status error">{error}</p></div>
+  if (!topic) return <div className="content-card"><p className="status">{loading ? 'Loading questions...' : 'No topic available.'}</p></div>
   if (!readerQuestions.length) return <div className="content-card"><p className="status">No published questions are available for this topic yet.</p></div>
 
   return (
@@ -360,10 +360,10 @@ function QuestionReader({
       <div className="reader-frame">
         <div ref={viewportRef} className="reader-viewport" tabIndex={0} onKeyDown={(event) => {
           if (event.target !== event.currentTarget) return
-          if (event.key === 'ArrowDown' || event.key === 'PageDown') { event.preventDefault(); goToQuestion(activeIndex + 1) }
-          if (event.key === 'ArrowUp' || event.key === 'PageUp') { event.preventDefault(); goToQuestion(activeIndex - 1) }
+          if (event.key === 'ArrowDown' || event.key === 'TopicDown') { event.preventDefault(); goToQuestion(activeIndex + 1) }
+          if (event.key === 'ArrowUp' || event.key === 'TopicUp') { event.preventDefault(); goToQuestion(activeIndex - 1) }
         }} aria-label="Questions and answers. Scroll vertically or use arrow keys to navigate.">
-          {page.description && <p className="page-description">{page.description}</p>}
+          {topic.description && <p className="topic-description">{topic.description}</p>}
           {readerQuestions.map((item, index) => <QuestionCard key={item.question.id} item={item} isActive={index === activeIndex} codeColorScheme={codeColorScheme} />)}
         </div>
       </div>

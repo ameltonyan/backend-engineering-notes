@@ -1,18 +1,18 @@
 export type Difficulty = 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED' | 'EXPERT'
 
-export type ContentPageMeta = {
+export type ContentTopicMeta = {
   id: string
   title: string
-  section: string
-  sectionDisplayOrder: number
+  category: string
+  categoryDisplayOrder: number
   displayOrder: number
   path?: string
 }
 
-export type ContentPageData = {
+export type ContentTopicData = {
   id: string
   title: string
-  section: string
+  category: string
   description: string | null
   questions: ContentQuestion[]
 }
@@ -33,7 +33,7 @@ export type ContentQuestion = {
 export type StudyDay = {
   dayOfWeek: number
   theme: string
-  pageSlugs: string[]
+  topicSlugs: string[]
   minutes: number
   note: string | null
 }
@@ -47,7 +47,7 @@ export type WeeklyStudyProgram = {
 }
 
 export interface ContentProvider {
-  getPageList(difficulty: Difficulty): Promise<ContentPageMeta[]>
-  getPageData(id: string, difficulty: Difficulty): Promise<ContentPageData>
+  getTopicList(difficulty: Difficulty): Promise<ContentTopicMeta[]>
+  getTopicData(id: string, difficulty: Difficulty): Promise<ContentTopicData>
   getStudyPrograms(): Promise<WeeklyStudyProgram[]>
 }

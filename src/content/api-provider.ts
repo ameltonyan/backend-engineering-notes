@@ -1,20 +1,20 @@
-import type { ContentPageData, ContentPageMeta, ContentProvider, ContentQuestion, Difficulty, WeeklyStudyProgram } from './content-api'
+import type { ContentTopicData, ContentTopicMeta, ContentProvider, ContentQuestion, Difficulty, WeeklyStudyProgram } from './content-api'
 
-type ApiPageSummary = {
+type ApiTopicSummary = {
   slug: string
   title: string
-  section: string
-  sectionDisplayOrder: number
+  category: string
+  categoryDisplayOrder: number
   displayOrder: number
 }
 
 type ApiQuestionAnswer = ContentQuestion
 
-type ApiPageResponse = {
+type ApiTopicResponse = {
   slug: string
   title: string
   description: string | null
-  section: string
+  category: string
   displayOrder: number
   questions: ApiQuestionAnswer[]
 }
@@ -25,13 +25,13 @@ function buildApiUrl(path: string) {
   return new URL(path, baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`).toString()
 }
 
-function toPageMeta(page: ApiPageSummary): ContentPageMeta {
+function toTopicMeta(topic: ApiTopicSummary): ContentTopicMeta {
   return {
-    id: page.slug,
-    title: page.title,
-    section: page.section,
-    sectionDisplayOrder: page.sectionDisplayOrder,
-    displayOrder: page.displayOrder,
+    id: topic.slug,
+    title: topic.title,
+    category: topic.category,
+    categoryDisplayOrder: topic.categoryDisplayOrder,
+    displayOrder: topic.displayOrder,
   }
 }
 
@@ -42,35 +42,35 @@ export class ApiContentProvider implements ContentProvider {
     return (await response.json()) as WeeklyStudyProgram[]
   }
 
-  async getPageList(difficulty: Difficulty): Promise<ContentPageMeta[]> {
-    const response = await fetch(buildApiUrl(`/api/pages?difficulty=${encodeURIComponent(difficulty)}`))
+  async getTopicList(difficulty: Difficulty): Promise<ContentTopicMeta[]> {
+    const response = await fetch(buildApiUrl(`/api/topics?difficulty=${encodeURIComponent(difficulty)}`))
     if (!response.ok) {
-      throw new Error(`Unable to load page list (${response.status})`)
+      throw new Error(`Unable to load topic list (${response.status})`)
     }
 
-    const pages = (await response.json()) as ApiPageSummary[]
-    return pages
+    const topics = (await response.json()) as ApiTopicSummary[]
+    return topics
       .sort((left, right) =>
-        left.sectionDisplayOrder - right.sectionDisplayOrder
+        left.categoryDisplayOrder - right.categoryDisplayOrder
         || left.displayOrder - right.displayOrder
         || left.title.localeCompare(right.title),
       )
-      .map(toPageMeta)
+      .map(toTopicMeta)
   }
 
-  async getPageData(id: string, difficulty: Difficulty): Promise<ContentPageData> {
-    const response = await fetch(buildApiUrl(`/api/pages/${encodeURIComponent(id)}?difficulty=${encodeURIComponent(difficulty)}`))
+  async getTopicData(id: string, difficulty: Difficulty): Promise<ContentTopicData> {
+    const response = await fetch(buildApiUrl(`/api/topics/${encodeURIComponent(id)}?difficulty=${encodeURIComponent(difficulty)}`))
     if (!response.ok) {
-      throw new Error(`Unable to load page "${id}" (${response.status})`)
+      throw new Error(`Unable to load topic "${id}" (${response.status})`)
     }
 
-    const page = (await response.json()) as ApiPageResponse
+    const topic = (await response.json()) as ApiTopicResponse
     return {
-      id: page.slug,
-      title: page.title,
-      section: page.section,
-      description: page.description,
-      questions: page.questions
+      id: topic.slug,
+      title: topic.title,
+      category: topic.category,
+      description: topic.description,
+      questions: topic.questions
         .map((question) => ({
           ...question,
           example: question.example?.trim() || null,
