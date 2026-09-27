@@ -374,6 +374,7 @@
 
 .question-code {
   margin-top: 1.5rem;
+  border-left: 3px solid var(--accent-strong);
 }
 
 .question-code-content {
