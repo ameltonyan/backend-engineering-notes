@@ -11,6 +11,12 @@ const lastActiveTopicStorageKey = 'backend-engineering-notes:last-active-topic'
 const sidebarCollapsedStorageKey = 'backend-engineering-notes:sidebar-collapsed'
 const readerFontSizeStorageKey = 'backend-engineering-notes:reader-font-size'
 const difficultyStorageKey = 'backend-engineering-notes:difficulty'
+const readingPreferencesOpenStorageKey = 'backend-engineering-notes:reading-preferences-open'
+const difficultyOpenStorageKey = 'backend-engineering-notes:difficulty-open'
+
+function savedSectionOpen(storageKey: string): boolean {
+  return window.localStorage.getItem(storageKey) !== 'false'
+}
 
 function savedDifficulty(): Difficulty {
   const value = window.localStorage.getItem(difficultyStorageKey)
@@ -43,6 +49,8 @@ function AppLayout() {
   const [readerFontSize, setReaderFontSize] = useState<ReaderFontSize>(savedReaderFontSize)
   const [isFocusMode, setIsFocusMode] = useState(false)
   const [difficulty, setDifficulty] = useState<Difficulty>(savedDifficulty)
+  const [areReadingPreferencesOpen, setAreReadingPreferencesOpen] = useState(() => savedSectionOpen(readingPreferencesOpenStorageKey))
+  const [isDifficultyOpen, setIsDifficultyOpen] = useState(() => savedSectionOpen(difficultyOpenStorageKey))
 
   const activeTopic = useMemo(
     () => topics.find((topic) => topic.id === activeTopicId) ?? topics[0],
@@ -150,6 +158,14 @@ function AppLayout() {
   }, [difficulty])
 
   useEffect(() => {
+    window.localStorage.setItem(readingPreferencesOpenStorageKey, String(areReadingPreferencesOpen))
+  }, [areReadingPreferencesOpen])
+
+  useEffect(() => {
+    window.localStorage.setItem(difficultyOpenStorageKey, String(isDifficultyOpen))
+  }, [isDifficultyOpen])
+
+  useEffect(() => {
     if (!isSidebarOpen) return
 
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -232,8 +248,12 @@ function AppLayout() {
         onThemeChange={setTheme}
         readerFontSize={readerFontSize}
         onReaderFontSizeChange={setReaderFontSize}
+        areReadingPreferencesOpen={areReadingPreferencesOpen}
+        onReadingPreferencesOpenChange={setAreReadingPreferencesOpen}
         difficulty={difficulty}
         onDifficultyChange={setDifficulty}
+        isDifficultyOpen={isDifficultyOpen}
+        onDifficultyOpenChange={setIsDifficultyOpen}
       />
       <button
         className="sidebar-edge-toggle"

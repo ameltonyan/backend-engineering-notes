@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import type { ContentTopicMeta, Difficulty } from '../content/content-api'
 import { fontSizeOptions, themeOptions } from '../reading-preferences'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
@@ -17,8 +16,12 @@ type SidebarProps = {
   onThemeChange: (theme: ReadingTheme) => void
   readerFontSize: ReaderFontSize
   onReaderFontSizeChange: (size: ReaderFontSize) => void
+  areReadingPreferencesOpen: boolean
+  onReadingPreferencesOpenChange: (open: boolean) => void
   difficulty: Difficulty
   onDifficultyChange: (difficulty: Difficulty) => void
+  isDifficultyOpen: boolean
+  onDifficultyOpenChange: (open: boolean) => void
 }
 
 function Sidebar({
@@ -33,11 +36,13 @@ function Sidebar({
   onThemeChange,
   readerFontSize,
   onReaderFontSizeChange,
+  areReadingPreferencesOpen,
+  onReadingPreferencesOpenChange,
   difficulty,
   onDifficultyChange,
+  isDifficultyOpen,
+  onDifficultyOpenChange,
 }: SidebarProps) {
-  const [areReadingPreferencesOpen, setAreReadingPreferencesOpen] = useState(true)
-  const [isDifficultyOpen, setIsDifficultyOpen] = useState(true)
   const difficultyLabel = {
     BEGINNER: 'Beginner',
     INTERMEDIATE: 'Intermediate',
@@ -79,7 +84,7 @@ function Sidebar({
           aria-expanded={areReadingPreferencesOpen}
           aria-controls="reading-preferences"
           title={areReadingPreferencesOpen ? 'Hide reading preferences' : 'Show reading preferences'}
-          onClick={() => setAreReadingPreferencesOpen((open) => !open)}
+          onClick={() => onReadingPreferencesOpenChange(!areReadingPreferencesOpen)}
         >
           <span aria-hidden="true">⚙</span>
           <span className="reading-preferences-indicator" aria-hidden="true" />
@@ -129,7 +134,7 @@ function Sidebar({
           aria-expanded={isDifficultyOpen}
           aria-controls="difficulty-options"
           aria-label={`${isDifficultyOpen ? 'Hide' : 'Show'} difficulty levels. Current level: ${difficultyLabel}`}
-          onClick={() => setIsDifficultyOpen((open) => !open)}
+          onClick={() => onDifficultyOpenChange(!isDifficultyOpen)}
         >
           <span className="difficulty-toggle-copy">
             <span>Difficulty</span>
