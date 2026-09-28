@@ -197,6 +197,19 @@ function QuestionUnavailableCard({ onRetry }: { onRetry: () => void }) {
   )
 }
 
+function QuestionEmptyCard() {
+  return (
+    <section className="focus-reader reader-empty" aria-label="No questions available">
+      <div className="reader-empty-card">
+        <span className="reader-empty-icon" aria-hidden="true">·</span>
+        <p className="reader-empty-eyebrow">Nothing to read yet</p>
+        <h2>No notes are available for this selection.</h2>
+        <p>Try another difficulty level, or check back once new questions have been published.</p>
+      </div>
+    </section>
+  )
+}
+
 function QuestionReader({
   topic,
   loading,
@@ -303,7 +316,7 @@ function QuestionReader({
   }
 
   if (error && !topic) return <QuestionUnavailableCard onRetry={onRetry} />
-  if (!topic) return loading ? <QuestionLoadingCard /> : <div className="content-card"><p className="status">No topic available.</p></div>
+  if (!topic) return loading ? <QuestionLoadingCard /> : <QuestionEmptyCard />
   if (!readerQuestions.length) return <div className="content-card"><p className="status">No published questions are available for this topic yet.</p></div>
 
   return (

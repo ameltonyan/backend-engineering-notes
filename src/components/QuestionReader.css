@@ -184,6 +184,56 @@
   background: var(--control-hover);
 }
 
+.reader-empty {
+  justify-content: center;
+}
+
+.reader-empty-card {
+  width: min(100%, 560px);
+  margin: auto;
+  padding: clamp(28px, 5vw, 48px);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: radial-gradient(circle at 50% 0%, var(--card-glow), transparent 48%), linear-gradient(160deg, var(--card-start), var(--card-end));
+  box-shadow: 0 18px 44px var(--shadow);
+  text-align: center;
+}
+
+.reader-empty-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 18px;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  color: var(--text-muted);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.reader-empty-eyebrow {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.reader-empty-card h2 {
+  margin: 12px 0 0;
+  color: var(--text-strong);
+  font-size: clamp(1.25rem, 1.08rem + .65vw, 1.65rem);
+}
+
+.reader-empty-card p:not(.reader-empty-eyebrow) {
+  max-width: 410px;
+  margin: 12px auto 0;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
 .reader-toolbar {
   position: relative;
   display: flex;
