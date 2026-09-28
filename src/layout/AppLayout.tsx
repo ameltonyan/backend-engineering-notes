@@ -40,6 +40,7 @@ function AppLayout() {
   const [topicData, setTopicData] = useState<ContentTopicData | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [retryVersion, setRetryVersion] = useState(0)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({})
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() =>
@@ -109,7 +110,7 @@ function AppLayout() {
     }
     void loadTopicList()
     return () => { cancelled = true }
-  }, [difficulty])
+  }, [difficulty, retryVersion])
 
   useEffect(() => {
     if (
@@ -145,7 +146,7 @@ function AppLayout() {
     return () => {
       cancelled = true
     }
-  }, [activeTopicId, difficulty, topicListDifficulty, topics])
+  }, [activeTopicId, difficulty, topicListDifficulty, topics, retryVersion])
 
   useEffect(() => {
     if (activeTopicId) {
@@ -290,6 +291,7 @@ function AppLayout() {
           topic={topicData}
           loading={loading}
           error={error}
+          onRetry={() => setRetryVersion((version) => version + 1)}
           topicId={activeTopic?.id}
           codeColorScheme={theme === 'dark' ? 'dark' : 'light'}
           isFocusMode={isFocusMode}
