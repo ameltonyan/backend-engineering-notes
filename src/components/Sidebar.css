@@ -174,13 +174,6 @@
   outline-offset: 2px;
 }
 
-.difficulty-empty {
-  margin: 4px 0;
-  color: var(--text-muted);
-  font-size: .85rem;
-  line-height: 1.5;
-}
-
 .nav-category-title {
   font-size: 0.82rem;
   font-weight: 600;
