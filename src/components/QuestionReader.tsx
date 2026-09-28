@@ -160,27 +160,18 @@ function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestio
 }
 
 function QuestionLoadingCard() {
-  return (
-    <section className="focus-reader reader-loading" aria-busy="true" aria-label="Loading questions">
-      <div className="reader-loading-frame">
-        <div className="reader-loading-card" aria-hidden="true">
-          <div className="reader-loading-heading">
-            <span className="reader-loading-label">Preparing questions</span>
-            <span className="reader-loading-dot" />
-          </div>
-          <div className="reader-loading-lines">
-            <span className="reader-loading-line reader-loading-line-title" />
-            <span className="reader-loading-line reader-loading-line-title short" />
-            <span className="reader-loading-line" />
-            <span className="reader-loading-line" />
-            <span className="reader-loading-line medium" />
-            <span className="reader-loading-line short" />
-          </div>
-        </div>
-      </div>
-      <p className="reader-loading-status" role="status">Loading questions…</p>
-    </section>
-  )
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsVisible(true), 200)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  return <section
+    className={isVisible ? 'focus-reader reader-loading reader-loading-visible' : 'focus-reader reader-loading'}
+    aria-busy="true"
+    aria-label="Loading questions"
+  />
 }
 
 function QuestionUnavailableCard({ onRetry }: { onRetry: () => void }) {
