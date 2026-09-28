@@ -10,6 +10,7 @@ type QuestionReaderProps = {
   topic: ContentTopicData | null
   loading: boolean
   error: string | null
+  onRetry: () => void
   topicId?: string
   codeColorScheme: CodeColorScheme
   isFocusMode: boolean
@@ -158,10 +159,62 @@ function QuestionCard({ item, isActive, codeColorScheme }: { item: ReaderQuestio
   )
 }
 
+function QuestionLoadingCard() {
+  return (
+    <section className="focus-reader reader-loading" aria-busy="true" aria-label="Loading questions">
+      <div className="reader-loading-frame">
+        <div className="reader-loading-card" aria-hidden="true">
+          <div className="reader-loading-heading">
+            <span className="reader-loading-label">Preparing questions</span>
+            <span className="reader-loading-dot" />
+          </div>
+          <div className="reader-loading-lines">
+            <span className="reader-loading-line reader-loading-line-title" />
+            <span className="reader-loading-line reader-loading-line-title short" />
+            <span className="reader-loading-line" />
+            <span className="reader-loading-line" />
+            <span className="reader-loading-line medium" />
+            <span className="reader-loading-line short" />
+          </div>
+        </div>
+      </div>
+      <p className="reader-loading-status" role="status">Loading questions…</p>
+    </section>
+  )
+}
+
+function QuestionUnavailableCard({ onRetry }: { onRetry: () => void }) {
+  return (
+    <section className="focus-reader reader-unavailable" aria-label="Questions unavailable">
+      <div className="reader-unavailable-card" role="alert">
+        <span className="reader-unavailable-icon" aria-hidden="true">↻</span>
+        <p className="reader-unavailable-eyebrow">Connection unavailable</p>
+        <h2>We couldn’t load these notes.</h2>
+        <p>The notes service may be temporarily unavailable. Check your connection and try again.</p>
+        <button type="button" onClick={onRetry}>Try again</button>
+      </div>
+    </section>
+  )
+}
+
+function QuestionEmptyCard() {
+  return (
+    <section className="focus-reader reader-empty" aria-label="No questions available">
+      <div className="reader-empty-card">
+        <span className="reader-empty-icon" aria-hidden="true">·</span>
+        <p className="reader-empty-eyebrow">Nothing to read yet</p>
+        <h2>No notes are available for this selection.</h2>
+        <p>Try another difficulty level, or check back once new questions have been published.</p>
+      </div>
+    </section>
+  )
+}
+
 function QuestionReader({
   topic,
   loading,
   error,
+  onRetry,
   topicId,
   codeColorScheme,
   isFocusMode,
@@ -262,8 +315,8 @@ function QuestionReader({
     setActiveIndex(nextIndex)
   }
 
-  if (error && !topic) return <div className="content-card"><p className="status error">{error}</p></div>
-  if (!topic) return <div className="content-card"><p className="status">{loading ? 'Loading questions...' : 'No topic available.'}</p></div>
+  if (error && !topic) return <QuestionUnavailableCard onRetry={onRetry} />
+  if (!topic) return loading ? <QuestionLoadingCard /> : <QuestionEmptyCard />
   if (!readerQuestions.length) return <div className="content-card"><p className="status">No published questions are available for this topic yet.</p></div>
 
   return (
@@ -363,7 +416,6 @@ function QuestionReader({
           if (event.key === 'ArrowDown' || event.key === 'TopicDown') { event.preventDefault(); goToQuestion(activeIndex + 1) }
           if (event.key === 'ArrowUp' || event.key === 'TopicUp') { event.preventDefault(); goToQuestion(activeIndex - 1) }
         }} aria-label="Questions and answers. Scroll vertically or use arrow keys to navigate.">
-          {topic.description && <p className="topic-description">{topic.description}</p>}
           {readerQuestions.map((item, index) => <QuestionCard key={item.question.id} item={item} isActive={index === activeIndex} codeColorScheme={codeColorScheme} />)}
         </div>
       </div>
