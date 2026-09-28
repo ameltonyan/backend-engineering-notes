@@ -86,7 +86,10 @@ function Sidebar({
           title={areReadingPreferencesOpen ? 'Hide reading preferences' : 'Show reading preferences'}
           onClick={() => onReadingPreferencesOpenChange(!areReadingPreferencesOpen)}
         >
-          <span aria-hidden="true">⚙</span>
+          <span className="reading-preferences-toggle-copy">
+            <span aria-hidden="true">⚙</span>
+            <span>Preferences</span>
+          </span>
           <span className="reading-preferences-indicator" aria-hidden="true" />
         </button>
         {areReadingPreferencesOpen && (
