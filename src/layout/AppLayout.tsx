@@ -86,6 +86,7 @@ function AppLayout() {
 
   useEffect(() => {
     let cancelled = false
+    let hasTopics = false
     const loadTopicList = async () => {
       setTopicListDifficulty(null)
       setLoading(true)
@@ -94,6 +95,7 @@ function AppLayout() {
       try {
         const list = await contentProvider.getTopicList(difficulty)
         if (cancelled) return
+        hasTopics = list.length > 0
         setTopics(list)
         setActiveTopicId((currentTopicId) => {
           if (list.some((topic) => topic.id === currentTopicId)) return currentTopicId
@@ -107,7 +109,7 @@ function AppLayout() {
       } catch (err) {
         if (!cancelled) setError(err instanceof Error ? err.message : 'Unable to load topic list')
       } finally {
-        if (!cancelled) setLoading(false)
+        if (!cancelled && !hasTopics) setLoading(false)
       }
     }
     void loadTopicList()
@@ -128,6 +130,7 @@ function AppLayout() {
     const loadTopic = async () => {
       const cacheKey = topicCacheKey(activeTopicId, difficulty)
       const cachedTopic = topicCacheRef.current.get(cacheKey)
+      if (cachedTopic) setTopicData(cachedTopic)
       setLoading(!cachedTopic)
       setError(null)
 
