@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import AppHeader from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import QuestionReader from '../components/QuestionReader'
@@ -13,6 +13,7 @@ const readerFontSizeStorageKey = 'backend-engineering-notes:reader-font-size'
 const difficultyStorageKey = 'backend-engineering-notes:difficulty'
 const readingPreferencesOpenStorageKey = 'backend-engineering-notes:reading-preferences-open'
 const difficultyOpenStorageKey = 'backend-engineering-notes:difficulty-open'
+const topicCacheKey = (topicId: string, difficulty: Difficulty) => difficulty + ":" + topicId
 
 function savedSectionOpen(storageKey: string): boolean {
   return window.localStorage.getItem(storageKey) !== 'false'
@@ -41,6 +42,7 @@ function AppLayout() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [retryVersion, setRetryVersion] = useState(0)
+  const topicCacheRef = useRef(new Map<string, ContentTopicData>())
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({})
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() =>
@@ -64,7 +66,7 @@ function AppLayout() {
   const selectTopic = (topicId: string) => {
     if (topicId === activeTopicId) return
 
-    setTopicData(null)
+    setTopicData(topicCacheRef.current.get(topicCacheKey(topicId, difficulty)) ?? null)
     setActiveTopicId(topicId)
   }
 
@@ -124,18 +126,23 @@ function AppLayout() {
     let cancelled = false
 
     const loadTopic = async () => {
-      setLoading(true)
+      const cacheKey = topicCacheKey(activeTopicId, difficulty)
+      const cachedTopic = topicCacheRef.current.get(cacheKey)
+      setLoading(!cachedTopic)
       setError(null)
 
       try {
         const topic = await contentProvider.getTopicData(activeTopicId, difficulty)
         if (!cancelled) {
+          topicCacheRef.current.set(cacheKey, topic)
           setTopicData(topic)
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'Unable to load content')
-          setTopicData(null)
+          if (!cachedTopic) {
+            setError(err instanceof Error ? err.message : 'Unable to load content')
+            setTopicData(null)
+          }
         }
       } finally {
         if (!cancelled) setLoading(false)

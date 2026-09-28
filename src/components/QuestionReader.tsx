@@ -403,7 +403,6 @@ function QuestionReader({
           if (event.key === 'ArrowDown' || event.key === 'TopicDown') { event.preventDefault(); goToQuestion(activeIndex + 1) }
           if (event.key === 'ArrowUp' || event.key === 'TopicUp') { event.preventDefault(); goToQuestion(activeIndex - 1) }
         }} aria-label="Questions and answers. Scroll vertically or use arrow keys to navigate.">
-          {topic.description && <p className="topic-description">{topic.description}</p>}
           {readerQuestions.map((item, index) => <QuestionCard key={item.question.id} item={item} isActive={index === activeIndex} codeColorScheme={codeColorScheme} />)}
         </div>
       </div>
