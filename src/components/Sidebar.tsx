@@ -168,7 +168,6 @@ function Sidebar({
       </div>
 
       <div className="nav-category">
-        {!topics.length && <p className="difficulty-empty">No published content at this level yet.</p>}
         {categoryNames.map((category) => (
           <div className="sidebar-category" key={category}>
             <div className="category-group-title">
