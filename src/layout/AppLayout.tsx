@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar'
 import QuestionReader from '../components/QuestionReader'
 import { contentProvider } from '../services/content/provider'
 import type { ContentTopicData, ContentTopicMeta, Difficulty } from '../content/content-api'
+import { ContentUnavailableError } from '../content/content-api'
 import type { ReaderFontSize, ReadingTheme } from '../reading-preferences'
 import './AppLayout.css'
 
@@ -64,7 +65,9 @@ function AppLayout() {
   const nextTopic = activeTopicIndex >= 0 ? topics[activeTopicIndex + 1] : undefined
 
   const selectTopic = (topicId: string) => {
-    if (topicId === activeTopicId) return
+    if (topicId === activeTopicId) {
+      return
+    }
 
     setTopicData(topicCacheRef.current.get(topicCacheKey(topicId, difficulty)) ?? null)
     setActiveTopicId(topicId)
@@ -94,11 +97,21 @@ function AppLayout() {
       setTopicData(null)
       try {
         const list = await contentProvider.getTopicList(difficulty)
-        if (cancelled) return
+        if (cancelled) {
+          return
+        }
+        const visibleTopicIds = new Set(list.map((topic) => topic.id))
+        for (const key of topicCacheRef.current.keys()) {
+          if (key.startsWith(`${difficulty}:`) && !visibleTopicIds.has(key.slice(difficulty.length + 1))) {
+            topicCacheRef.current.delete(key)
+          }
+        }
         hasTopics = list.length > 0
         setTopics(list)
         setActiveTopicId((currentTopicId) => {
-          if (list.some((topic) => topic.id === currentTopicId)) return currentTopicId
+          if (list.some((topic) => topic.id === currentTopicId)) {
+            return currentTopicId
+          }
 
           const savedTopicId = window.localStorage.getItem(`${lastActiveTopicStorageKey}:${difficulty}`)
           return list.some((topic) => topic.id === savedTopicId)
@@ -107,9 +120,13 @@ function AppLayout() {
         })
         setTopicListDifficulty(difficulty)
       } catch (err) {
-        if (!cancelled) setError(err instanceof Error ? err.message : 'Unable to load topic list')
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : 'Unable to load topic list')
+        }
       } finally {
-        if (!cancelled && !hasTopics) setLoading(false)
+        if (!cancelled && !hasTopics) {
+          setLoading(false)
+        }
       }
     }
     void loadTopicList()
@@ -130,7 +147,9 @@ function AppLayout() {
     const loadTopic = async () => {
       const cacheKey = topicCacheKey(activeTopicId, difficulty)
       const cachedTopic = topicCacheRef.current.get(cacheKey)
-      if (cachedTopic) setTopicData(cachedTopic)
+      if (cachedTopic) {
+        setTopicData(cachedTopic)
+      }
       setLoading(!cachedTopic)
       setError(null)
 
@@ -142,13 +161,21 @@ function AppLayout() {
         }
       } catch (err) {
         if (!cancelled) {
-          if (!cachedTopic) {
+          if (err instanceof ContentUnavailableError) {
+            topicCacheRef.current.delete(cacheKey)
+            setTopicData(null)
+            const remainingTopics = topics.filter((topic) => topic.id !== activeTopicId)
+            setTopics(remainingTopics)
+            setActiveTopicId(remainingTopics[0]?.id ?? '')
+          } else if (!cachedTopic) {
             setError(err instanceof Error ? err.message : 'Unable to load content')
             setTopicData(null)
           }
         }
       } finally {
-        if (!cancelled) setLoading(false)
+        if (!cancelled) {
+          setLoading(false)
+        }
       }
     }
 
@@ -161,8 +188,10 @@ function AppLayout() {
   useEffect(() => {
     if (activeTopicId) {
       window.localStorage.setItem(`${lastActiveTopicStorageKey}:${difficulty}`, activeTopicId)
+    } else if (topicListDifficulty === difficulty) {
+      window.localStorage.removeItem(`${lastActiveTopicStorageKey}:${difficulty}`)
     }
-  }, [activeTopicId, difficulty])
+  }, [activeTopicId, difficulty, topicListDifficulty])
 
   useEffect(() => {
     window.localStorage.setItem(difficultyStorageKey, difficulty)

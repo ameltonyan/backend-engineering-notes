@@ -1,4 +1,5 @@
 import type { ContentTopicData, ContentTopicMeta, ContentProvider, ContentQuestion, Difficulty, WeeklyStudyProgram } from './content-api'
+import { ContentUnavailableError } from './content-api'
 
 type ApiTopicSummary = {
   slug: string
@@ -38,7 +39,9 @@ function toTopicMeta(topic: ApiTopicSummary): ContentTopicMeta {
 export class ApiContentProvider implements ContentProvider {
   async getStudyPrograms(): Promise<WeeklyStudyProgram[]> {
     const response = await fetch(buildApiUrl('/api/study-programs'))
-    if (!response.ok) throw new Error(`Unable to load study programs (${response.status})`)
+    if (!response.ok) {
+      throw new Error(`Unable to load study programs (${response.status})`)
+    }
     return (await response.json()) as WeeklyStudyProgram[]
   }
 
@@ -60,6 +63,9 @@ export class ApiContentProvider implements ContentProvider {
 
   async getTopicData(id: string, difficulty: Difficulty): Promise<ContentTopicData> {
     const response = await fetch(buildApiUrl(`/api/topics/${encodeURIComponent(id)}?difficulty=${encodeURIComponent(difficulty)}`))
+    if (response.status === 404 || response.status === 410) {
+      throw new ContentUnavailableError(id)
+    }
     if (!response.ok) {
       throw new Error(`Unable to load topic "${id}" (${response.status})`)
     }
