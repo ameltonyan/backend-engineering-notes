@@ -1,5 +1,12 @@
 export type Difficulty = 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED' | 'EXPERT'
 
+export class ContentUnavailableError extends Error {
+  constructor(topicId: string) {
+    super(`Topic "${topicId}" is no longer available`)
+    this.name = 'ContentUnavailableError'
+  }
+}
+
 export type ContentTopicMeta = {
   id: string
   title: string
