@@ -1,8 +1,8 @@
-# Backend Engineering Notes — Public Application
+# Backend Interview Path — Public Application
 
 ## Repository Role
 
-`backend-engineering-notes` is the public, candidate-facing React application for the Backend Engineering Interview Platform.
+`backend-engineering-notes` is the public, candidate-facing React application for Backend Interview Path.
 
 The other repositories are:
 

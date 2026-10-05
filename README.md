@@ -1,6 +1,6 @@
-# Backend Engineering Notes Web
+# Backend Interview Path Web
 
-React + TypeScript + Vite frontend for Backend Engineering Notes.
+React + TypeScript + Vite frontend for Backend Interview Path.
 
 ## Local development
 

@@ -70,9 +70,9 @@ function Sidebar({
       aria-label="Site navigation"
     >
       <div className="brand">
-        <img src={logoUrl} alt="Backend Engineering Notes" className="brand-logo" />
+        <img src={logoUrl} alt="Backend Interview Path" className="brand-logo" />
         <div className="brand-details">
-          <span className="brand-title">Backend Engineering Notes</span>
+          <span className="brand-title">Backend Interview Path</span>
         </div>
         <button className="sidebar-close" type="button" aria-label="Close navigation" onClick={onClose}>
           ×

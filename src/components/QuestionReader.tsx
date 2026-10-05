@@ -180,8 +180,8 @@ function QuestionUnavailableCard({ onRetry }: { onRetry: () => void }) {
       <div className="reader-unavailable-card" role="alert">
         <span className="reader-unavailable-icon" aria-hidden="true">↻</span>
         <p className="reader-unavailable-eyebrow">Connection unavailable</p>
-        <h2>We couldn’t load these notes.</h2>
-        <p>The notes service may be temporarily unavailable. Check your connection and try again.</p>
+        <h2>We couldn’t load these questions.</h2>
+        <p>The interview content may be temporarily unavailable. Check your connection and try again.</p>
         <button type="button" onClick={onRetry}>Try again</button>
       </div>
     </section>
@@ -194,7 +194,7 @@ function QuestionEmptyCard() {
       <div className="reader-empty-card">
         <span className="reader-empty-icon" aria-hidden="true">·</span>
         <p className="reader-empty-eyebrow">Nothing to read yet</p>
-        <h2>No notes are available for this selection.</h2>
+        <h2>No questions are available for this selection.</h2>
         <p>Try another difficulty level, or check back once new questions have been published.</p>
       </div>
     </section>
